@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zombieSurvival.Controller">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="606.0" prefWidth="342.0" style="-fx-background-color: green;">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="44.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <Text layoutX="87.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REFUGIO" textAlignment="CENTER" wrappingWidth="140.62425231933594">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="76.0" prefHeight="160.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="11.0" layoutY="49.0" prefHeight="98.0" prefWidth="294.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="278.0">
+                           <children>
+                              <Text fx:id="descansoText" layoutX="12.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="254.2241668701172" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <Text layoutX="93.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DESCANSO">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="436.0" prefHeight="160.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="13.0" layoutY="48.0" prefHeight="98.0" prefWidth="294.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="286.0" prefWidth="278.0">
+                           <children>
+                              <Text fx:id="zonaComunText" layoutX="12.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="254.2241668701172" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <Text layoutX="69.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ZONA COMÚN" wrappingWidth="190.6681251525879">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="256.0" prefHeight="160.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="9.0" layoutY="53.0" prefHeight="98.0" prefWidth="171.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="155.0">
+                           <children>
+                              <Text fx:id="comedorText" layoutX="7.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.9980468749999" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <Text layoutX="88.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMEDOR">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="204.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMIDA">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="comidaCount" layoutX="222.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="366.0" layoutY="14.0" prefHeight="606.0" prefWidth="342.0" style="-fx-background-color: yellow;">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="44.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <Text layoutX="87.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TÚNELES" textAlignment="CENTER" wrappingWidth="140.62425231933594">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="68.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel1IzqText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="114.0" layoutY="36.0" prefHeight="44.0" prefWidth="86.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="84.0">
+                           <children>
+                              <Text fx:id="tunel1MidText" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="213.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel1DchText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="206.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel2IzqText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="113.0" layoutY="36.0" prefHeight="44.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="84.0">
+                           <children>
+                              <Text fx:id="tunel2MidText" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="213.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel2DchText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="344.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="213.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel3DchText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel3IzqText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="114.0" layoutY="37.0" prefHeight="44.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="84.0">
+                           <children>
+                              <Text fx:id="tunel3MidText" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="482.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="213.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel4DchText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="70.0">
+                           <children>
+                              <Text fx:id="tunel4IzqText" layoutX="3.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="114.0" layoutY="36.0" prefHeight="44.0" prefWidth="86.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="84.0">
+                           <children>
+                              <Text fx:id="tunel4MidText" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.736751556396484" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="717.0" layoutY="14.0" prefHeight="606.0" prefWidth="342.0" style="-fx-background-color: red;">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="44.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <Text layoutX="42.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ZONA DE RIESGO" textAlignment="CENTER" wrappingWidth="254.2241668701172">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="71.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo1IzqText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="173.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo1DchText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="209.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo2IzqText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="173.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo2DchText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="346.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo3IzqText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="173.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo3DchText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="474.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo4IzqText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="173.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo4DchText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
