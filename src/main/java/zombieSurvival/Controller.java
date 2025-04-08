@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
-
-import static java.lang.Thread.sleep;
+import java.util.Random;
 
 public class Controller {
+    private Random random = new Random();
 
     @FXML
     private Text
@@ -58,7 +58,7 @@ public class Controller {
                 Individuo ind = new Individuo(juego, true, i);
                 ind.start();
                 try {
-                    Thread.sleep(500); // medio segundo
+                    Thread.sleep((long) (0.5 + (1.5 * random.nextDouble())) * 1000); // medio segundo
                 } catch (InterruptedException e) {
                 }
             }

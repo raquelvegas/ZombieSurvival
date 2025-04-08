@@ -30,14 +30,12 @@ public class ListaHilos {
             contenido = contenido + lista.get(i).getName() + (" ");
         }
 
-        text.setText(contenido);
+        String finalContenido = contenido;
 
-//        String finalContenido = contenido;
-//
-//        Platform.runLater(() -> {
-//            if (text != null) {
-//                text.setText(finalContenido);
-//            }
-//        });
+        Platform.runLater(() -> {
+            if (text != null) {
+                text.setText(finalContenido);
+            }
+        });
     }
 }
