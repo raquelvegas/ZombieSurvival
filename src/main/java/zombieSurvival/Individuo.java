@@ -21,14 +21,17 @@ public class Individuo extends Thread {
     }
 
     public void run() {
-        while (vivo) {
+        //for (int i = 0; i < 2; i++)
+        //while (vivo)
+            //{
             // Zona común (1-2 segundos)
             juego.meterZonaComun(this);
             try {
-                sleep((long) (1 + random.nextDouble()) * 1000);
+                sleep((long) (5 + random.nextDouble()) * 1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            juego.sacarZonaComun(this);
 
             // Seleccion de túnel
             int tunel = random.nextInt(4);
@@ -39,6 +42,6 @@ public class Individuo extends Thread {
             // Zona exterior (3-5 segundos)
 
 
-        }
+        //}
     }
 }

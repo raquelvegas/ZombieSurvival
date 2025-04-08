@@ -23,14 +23,12 @@ public class ListaHilos {
     }
 
     private void imprimir() {
-        StringBuilder contenido = new StringBuilder();
-        if (lista.size() >= 2) {
-            for (int i = 0; i < lista.size() - 1; i++) {
-                contenido.append(lista.get(i).getName()).append(" - ");
-            }
-        } else if (lista.size() == 1) {
-            contenido.append(lista.getLast().getName());
+        String contenido = "";
+
+        for (int i = 0; i < lista.size(); i++) {
+            contenido = contenido + lista.get(i).getName() + (" ");
         }
-        text.setText(contenido.toString());
+
+        text.setText(contenido);
     }
 }

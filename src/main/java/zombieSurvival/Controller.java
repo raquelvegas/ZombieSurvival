@@ -3,6 +3,10 @@ package zombieSurvival;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
+
 public class Controller {
 
     @FXML
@@ -22,6 +26,8 @@ public class Controller {
 
     @FXML
     public void initialize(){
+        // Inicialización de las zonas
+
         ListaHilos zonaComun = new ListaHilos(zonaComunText);
 
         ListaHilos tunel0Izq = new ListaHilos(tunel0IzqText);
@@ -36,6 +42,28 @@ public class Controller {
         ListaHilos tunel3Izq = new ListaHilos(tunel3IzqText);
         ListaHilos tunel3Mid = new ListaHilos(tunel3MidText);
         ListaHilos tunel3Dch = new ListaHilos(tunel3DchText);
+
+        ArrayList<ListaHilos> esperaTuneles = new ArrayList<>();
+        esperaTuneles.add(tunel0Izq);
+        esperaTuneles.add(tunel1Izq);
+        esperaTuneles.add(tunel2Izq);
+        esperaTuneles.add(tunel3Izq);
+
+        Juego juego = new Juego(zonaComun, esperaTuneles);
+
+
+        // Inicialización de la simulación
+
+        for (int i = 0; i < 5; i++) {
+            Individuo ind = new Individuo(juego,true,i);
+            try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            ind.start();
+        }
+
     }
 
 
