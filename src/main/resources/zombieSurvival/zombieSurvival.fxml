@@ -238,6 +238,28 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
                            <children>
+                              <Text fx:id="riesgo0IzqText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="173.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
+                              <Text fx:id="riesgo0DchText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="209.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+               <children>
+                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
+                           <children>
                               <Text fx:id="riesgo1IzqText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
                            </children>
                         </AnchorPane>
@@ -254,7 +276,7 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="209.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="14.0" layoutY="346.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
                <children>
                   <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
                      <content>
@@ -276,7 +298,7 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="346.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="14.0" layoutY="474.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
                <children>
                   <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
                      <content>
@@ -292,28 +314,6 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
                            <children>
                               <Text fx:id="riesgo3DchText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="474.0" prefHeight="117.0" prefWidth="314.0" style="-fx-background-color: white;">
-               <children>
-                  <ScrollPane layoutX="14.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
-                           <children>
-                              <Text fx:id="riesgo4IzqText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <ScrollPane layoutX="173.0" layoutY="19.0" prefHeight="78.0" prefWidth="126.0">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="110.0">
-                           <children>
-                              <Text fx:id="riesgo4DchText" layoutX="4.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.13671493530273" />
                            </children>
                         </AnchorPane>
                      </content>
