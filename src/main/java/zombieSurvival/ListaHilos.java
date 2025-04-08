@@ -1,5 +1,6 @@
 package zombieSurvival;
 
+import javafx.application.Platform;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class ListaHilos {
         imprimir();
     }
 
-    private void imprimir() {
+    private synchronized void imprimir() {
         String contenido = "";
 
         for (int i = 0; i < lista.size(); i++) {
@@ -30,5 +31,13 @@ public class ListaHilos {
         }
 
         text.setText(contenido);
+
+//        String finalContenido = contenido;
+//
+//        Platform.runLater(() -> {
+//            if (text != null) {
+//                text.setText(finalContenido);
+//            }
+//        });
     }
 }

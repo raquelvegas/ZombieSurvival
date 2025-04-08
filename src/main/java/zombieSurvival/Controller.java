@@ -53,20 +53,16 @@ public class Controller {
 
 
         // Inicialización de la simulación
-
-        for (int i = 0; i < 5; i++) {
-            Individuo ind = new Individuo(juego,true,i);
-            try {
-                sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        new Thread(() -> {
+            for (int i = 0; i < 50; i++) {
+                Individuo ind = new Individuo(juego, true, i);
+                ind.start();
+                try {
+                    Thread.sleep(500); // medio segundo
+                } catch (InterruptedException e) {
+                }
             }
-            ind.start();
-        }
+        }).start();
 
     }
-
-
-
-
 }
