@@ -23,7 +23,7 @@ public class ListaHilos {
         imprimir();
     }
 
-    private synchronized void imprimir() {
+    private void imprimir() {
         String contenido = "";
 
         for (int i = 0; i < lista.size(); i++) {
