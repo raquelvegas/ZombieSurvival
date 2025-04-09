@@ -4,12 +4,14 @@ import java.util.Random;
 
 public class Humano extends Thread {
     private Juego juego;
+    private int id;
     private boolean comida = false;
     private boolean siendoAtacado = false;
     private Random random = new Random();
 
 
     public Humano(Juego juego, int id) {
+        this.id = id;
         this.juego = juego;
         String StringCeros = String.format("%04d", id);
         super.setName("H" + StringCeros);
