@@ -20,19 +20,23 @@ public class Zombie extends Thread {
     }
 
     public void run(){
-        while(true){
+        while (true){
             // Movimiento aleatorio entre las zonas de riesgo
             int zona = random.nextInt(4);
             juego.meterZonaRiesgoDch(this, zona);
 
             // Comprobación de si hay humanos en la zona de riesgo
-            int numHumanos = juego.getRiesgoIzq().get(zona).getSize();
+            int numHumanos = juego.getRiesgoIzq().get(zona).getHumanos().getSize();
             if (numHumanos != 0) {
                 // Ataque
-                int humano = random.nextInt(numHumanos);
-                atacar((Humano) juego.getRiesgoIzq().get(zona).get(humano));
+                atacar(juego.getRiesgoIzq().get(zona).elegirHumano());
             }
-
+            // Tiempo dormido
+            try {
+                sleep((long) (2 + random.nextDouble()) * 1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             // Sacamos el zombi de la zona de riesgo en la que esté
             juego.sacarZonaRiesgoDch(this, zona);
         }

@@ -17,6 +17,14 @@ public class Humano extends Thread {
         super.setName("H" + StringCeros);
     }
 
+    public boolean isSiendoAtacado() {
+        return siendoAtacado;
+    }
+
+    public void setSiendoAtacado(boolean siendoAtacado) {
+        this.siendoAtacado = siendoAtacado;
+    }
+
     public void run() {
         //for (int i = 0; i < 2; i++)
         //while (vivo)

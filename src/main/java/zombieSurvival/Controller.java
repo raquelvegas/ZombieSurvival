@@ -56,8 +56,16 @@ public class Controller {
         ListaHilos riesgo2Izq = new ListaHilos(riesgo2IzqText);
         ListaHilos riesgo3Izq = new ListaHilos(riesgo3IzqText);
 
-        ArrayList<ListaHilos> riesgoIzq = new ArrayList<>();
-        riesgoIzq.addAll(Arrays.asList(riesgo0Izq, riesgo1Izq, riesgo2Izq, riesgo3Izq));
+        ZonaRiesgoH riesgoIzq0 = new ZonaRiesgoH(riesgo0Izq);
+        ZonaRiesgoH riesgoIzq1 = new ZonaRiesgoH(riesgo1Izq);
+        ZonaRiesgoH riesgoIzq2 = new ZonaRiesgoH(riesgo2Izq);
+        ZonaRiesgoH riesgoIzq3 = new ZonaRiesgoH(riesgo3Izq);
+
+
+        ArrayList<ZonaRiesgoH> riesgoIzq = new ArrayList<>();
+        riesgoIzq.addAll(Arrays.asList(riesgoIzq0, riesgoIzq1, riesgoIzq2, riesgoIzq3));
+
+
 
 
         ListaHilos riesgo0Dch = new ListaHilos(riesgo0DchText);
@@ -75,6 +83,11 @@ public class Controller {
 
         // Inicialización de la simulación
         new Thread(() -> {
+            for (int i = 0; i < 5; i++) {
+                Zombie z = new Zombie(juego, i);
+                z.start();
+            }
+
             for (int i = 0; i < 50; i++) {
                 Humano ind = new Humano(juego, i);
                 ind.start();

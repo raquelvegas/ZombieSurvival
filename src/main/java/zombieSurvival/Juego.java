@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Juego {
     private ListaHilos zonaComun;
     private ArrayList<ListaHilos> esperaTuneles;
-    private ArrayList<ListaHilos> riesgoIzq;
+    private ArrayList<ZonaRiesgoH> riesgoIzq;
     private ArrayList<ListaHilos> riesgoDch;
 
-    public Juego(ListaHilos zonaComun, ArrayList<ListaHilos> esperaTuneles, ArrayList<ListaHilos> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
+    public Juego(ListaHilos zonaComun, ArrayList<ListaHilos> esperaTuneles, ArrayList<ZonaRiesgoH> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
         this.zonaComun = zonaComun;
         this.esperaTuneles = esperaTuneles;
         this.riesgoIzq = riesgoIzq;
@@ -26,6 +26,7 @@ public class Juego {
     public void meterZonaRiesgoDch(Zombie z, int zona) {
         riesgoDch.get(zona).meter(z);
     }
+
     public void sacarZonaRiesgoDch(Zombie z, int zona) {
         riesgoDch.get(zona).sacar(z);
     }
@@ -34,7 +35,7 @@ public class Juego {
         esperaTuneles.get(tunel).meter(i);
     }
 
-    public ArrayList<ListaHilos> getRiesgoIzq() {
+    public ArrayList<ZonaRiesgoH> getRiesgoIzq() {
         return riesgoIzq;
     }
 }
