@@ -7,3 +7,6 @@
 ## Mejoras
 1. Distintos idiomas
 2. La probabilidad de exito/fracaso en el ataque como slider.
+
+## Dudas
+1. Forma en la que los humanos se duermen mientras un ataque

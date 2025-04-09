@@ -49,13 +49,14 @@ public class Humano extends Thread {
             // Zona exterior (3-5 segundos)
             try {
                 sleep((long) (3 + random.nextDouble() * 2) * 1000);
+                if (siendoAtacado){
+                    sleep(500);
+                }
             } catch (InterruptedException e){ // Humano muerto
                 Zombie z = new Zombie(juego, id);
                 z.start();
                 break;
             }
-
-            //}
-    }
+        }
     }
 }

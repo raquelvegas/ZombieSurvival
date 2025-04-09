@@ -22,6 +22,7 @@ public class Zombie extends Thread {
         } else { // Ataque fallido
             h.setHerido(true);
         }
+        h.setSiendoAtacado(false);
     }
 
     public void run(){
