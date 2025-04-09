@@ -17,6 +17,7 @@ public class ListaHilos {
         imprimir();
     }
 
+
     public synchronized void sacar(Humano i) {
         lista.remove(i);
         imprimir();
