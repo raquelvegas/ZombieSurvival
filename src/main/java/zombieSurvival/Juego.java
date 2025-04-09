@@ -25,6 +25,10 @@ public class Juego {
         ZonaComun.sacar(i);
     }
 
+    public void meterZonaRiesgoZ(Zombie z) {
+
+    }
+
     public void esperarTunel(Humano i, int tunel){
         EsperaTuneles.get(tunel).meter(i);
     }

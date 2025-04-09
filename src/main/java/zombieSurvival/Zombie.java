@@ -22,6 +22,8 @@ public class Zombie extends Thread {
             // Comprobación de si hay humanos en la zona de riesgo
 
             // Ataque
+
+            // Sacamos el zombi de la zona de riesgo en la que esté
         }
     }
 }

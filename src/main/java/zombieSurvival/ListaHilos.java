@@ -12,13 +12,13 @@ public class ListaHilos {
         this.text = text;
     }
 
-    public synchronized void meter(Humano i) {
+    public synchronized void meter(Thread i) {
         lista.add(i);
         imprimir();
     }
 
 
-    public synchronized void sacar(Humano i) {
+    public synchronized void sacar(Thread i) {
         lista.remove(i);
         imprimir();
     }
