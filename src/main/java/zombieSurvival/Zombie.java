@@ -1,12 +1,15 @@
 package zombieSurvival;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class Zombie extends Thread {
     private int id;
     private Juego juego;
     private Random random = new Random();
     private int contadorMuertes = 0;
+    private static final Logger log = LogConfig.getLogger();
+
 
     public Zombie(Juego juego, int id) {
         this.juego = juego;
@@ -23,10 +26,11 @@ public class Zombie extends Thread {
         }
         double ataque = random.nextDouble();
         if (ataque > (double) 2/3){ // Ataque exitoso
+            log.info("El zombie " + getName() + " ha matado al humano " + h.getName());
+            contadorMuertes++;
             h.interrupt();
-            System.out.println("El zombie " + this.getName() + " ha matado al humano " + h.getName() + ". P = " + ataque);
         } else { // Ataque fallido
-            System.out.println("El zombie " + this.getName() + " ha herido al humano " + h.getName() + ". P = " + ataque);
+            log.info("El zombie " + getName() + " ha herido al humano " + h.getName());
             h.setHerido(true);
             h.setSiendoAtacado(false);
         }

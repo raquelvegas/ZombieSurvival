@@ -88,7 +88,7 @@ public class Controller {
                 z.start();
             }
 
-            for (int i = 1; i < 6; i++) {
+            for (int i = 1; i < 51; i++) {
                 Humano ind = new Humano(juego, i);
                 ind.start();
                 try {

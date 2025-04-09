@@ -1,6 +1,7 @@
 package zombieSurvival;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class Humano extends Thread {
     private Juego juego;
@@ -9,7 +10,7 @@ public class Humano extends Thread {
     private boolean siendoAtacado = false;
     private Random random = new Random();
     private boolean herido = false;
-
+    private static final Logger log = LogConfig.getLogger();
     public Humano(Juego juego, int id) {
         this.id = id;
         this.juego = juego;
@@ -50,10 +51,11 @@ public class Humano extends Thread {
             juego.meterZonaRiesgoIzq(this,tunel);
             try {
                 sleep((long) (3 + random.nextDouble() * 2) * 1000);
-                if (siendoAtacado){
+                while (siendoAtacado){
                     sleep(500);
                 }
             } catch (InterruptedException e){ // Humano muerto
+                log.warning("Humano " + this.getName() + " -> Muerto");
                 juego.sacarZonaRiesgoIzq(this, tunel);
                 Zombie z = new Zombie(juego, id);
                 z.start();

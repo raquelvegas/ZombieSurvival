@@ -10,6 +10,7 @@ module com.example.zombiesprueba {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.logging;
 
     opens zombieSurvival to javafx.fxml;
     exports zombieSurvival;
