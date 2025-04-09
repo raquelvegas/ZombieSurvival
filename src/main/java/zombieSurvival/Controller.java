@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Controller {
@@ -48,6 +49,26 @@ public class Controller {
         esperaTuneles.add(tunel1Izq);
         esperaTuneles.add(tunel2Izq);
         esperaTuneles.add(tunel3Izq);
+
+
+        ListaHilos riesgo0Izq = new ListaHilos(riesgo0IzqText);
+        ListaHilos riesgo1Izq = new ListaHilos(riesgo1IzqText);
+        ListaHilos riesgo2Izq = new ListaHilos(riesgo2IzqText);
+        ListaHilos riesgo3Izq = new ListaHilos(riesgo3IzqText);
+
+        ArrayList<ListaHilos> riesgoIzq = new ArrayList<>();
+        riesgoIzq.addAll(Arrays.asList(riesgo0Izq, riesgo1Izq, riesgo2Izq, riesgo3Izq));
+
+
+        ListaHilos riesgo0Dch = new ListaHilos(riesgo0DchText);
+        ListaHilos riesgo1Dch = new ListaHilos(riesgo1DchText);
+        ListaHilos riesgo2Dch = new ListaHilos(riesgo2DchText);
+        ListaHilos riesgo3Dch = new ListaHilos(riesgo3DchText);
+
+        ArrayList<ListaHilos> riesgoDch = new ArrayList<>();
+        riesgoDch.addAll(Arrays.asList(riesgo0Dch, riesgo1Dch, riesgo2Dch, riesgo3Dch));
+
+
 
         Juego juego = new Juego(zonaComun, esperaTuneles);
 
