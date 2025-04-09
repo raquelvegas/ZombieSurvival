@@ -23,6 +23,13 @@ public class Juego {
         zonaComun.sacar(i);
     }
 
+    public void meterZonaRiesgoIzq(Humano h, int zona){
+        riesgoIzq.get(zona).getHumanos().meter(h);
+    }
+    public void sacarZonaRiesgoIzq(Humano h, int zona) {
+        riesgoIzq.get(zona).getHumanos().sacar(h);
+    }
+
     public void meterZonaRiesgoDch(Zombie z, int zona) {
         riesgoDch.get(zona).meter(z);
     }

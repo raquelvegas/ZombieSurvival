@@ -83,12 +83,12 @@ public class Controller {
 
         // Inicialización de la simulación
         new Thread(() -> {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 1; i++) {
                 Zombie z = new Zombie(juego, i);
                 z.start();
             }
 
-            for (int i = 0; i < 50; i++) {
+            for (int i = 1; i < 6; i++) {
                 Humano ind = new Humano(juego, i);
                 ind.start();
                 try {

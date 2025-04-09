@@ -42,21 +42,24 @@ public class Humano extends Thread {
 
             // Seleccion de túnel
             int tunel = random.nextInt(4);
-            juego.esperarTunel(this, tunel);
+//            juego.esperarTunel(this, tunel);
 
             // Atravesar túnel
 
             // Zona exterior (3-5 segundos)
+            juego.meterZonaRiesgoIzq(this,tunel);
             try {
                 sleep((long) (3 + random.nextDouble() * 2) * 1000);
                 if (siendoAtacado){
                     sleep(500);
                 }
             } catch (InterruptedException e){ // Humano muerto
+                juego.sacarZonaRiesgoIzq(this, tunel);
                 Zombie z = new Zombie(juego, id);
                 z.start();
                 break;
             }
+            juego.sacarZonaRiesgoIzq(this, tunel);
         }
     }
 }
