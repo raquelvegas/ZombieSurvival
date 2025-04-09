@@ -16,7 +16,12 @@ public class Zombie extends Thread {
     }
 
     private void atacar(Humano h) {
-
+        double ataque = random.nextDouble();
+        if (ataque > (double) 2/3){ // Ataque exitoso
+            h.interrupt();
+        } else { // Ataque fallido
+            h.setHerido(true);
+        }
     }
 
     public void run(){

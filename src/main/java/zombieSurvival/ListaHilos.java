@@ -1,5 +1,6 @@
 package zombieSurvival;
 
+import javafx.application.Platform;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -23,20 +24,22 @@ public class ListaHilos {
     }
 
     private synchronized void imprimir() {
-        String contenido = "";
+        StringBuilder contenido = new StringBuilder();
 
-        for (int i = 0; i < lista.size(); i++) {
-            contenido = contenido + lista.get(i).getName() + (" ");
+        for (Thread hilo : lista) {
+            contenido.append(hilo.getName()).append(" ");
         }
-        text.setText(contenido);
 
-//        String finalContenido = contenido;
+        String textoFinal = contenido.toString();
 
-//        Platform.runLater(() -> {
-//            if (text != null) {
-//                text.setText(finalContenido);
-//            }
-//        });
+        if (text != null) {
+            Platform.runLater(() -> {
+                // Verificamos que el nodo esté en escena
+                if (text.getScene() != null) {
+                    text.setText(textoFinal);
+                }
+            });
+        }
     }
 
     public int getSize() {
