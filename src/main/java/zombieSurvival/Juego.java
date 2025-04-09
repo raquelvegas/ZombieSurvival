@@ -17,15 +17,15 @@ public class Juego {
         EsperaTuneles = esperaTuneles;
     }
 
-    public void meterZonaComun(Individuo i){
+    public void meterZonaComun(Humano i){
         ZonaComun.meter(i);
     }
 
-    public void sacarZonaComun(Individuo i){
+    public void sacarZonaComun(Humano i){
         ZonaComun.sacar(i);
     }
 
-    public void esperarTunel(Individuo i, int tunel){
+    public void esperarTunel(Humano i, int tunel){
         EsperaTuneles.get(tunel).meter(i);
     }
 

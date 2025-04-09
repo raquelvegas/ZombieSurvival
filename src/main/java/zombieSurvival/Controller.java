@@ -55,7 +55,7 @@ public class Controller {
         // Inicialización de la simulación
         new Thread(() -> {
             for (int i = 0; i < 50; i++) {
-                Individuo ind = new Individuo(juego, true, i);
+                Humano ind = new Humano(juego, i);
                 ind.start();
                 try {
                     Thread.sleep((long) (0.5 + (1.5 * random.nextDouble())) * 1000); // medio segundo

@@ -2,22 +2,17 @@ package zombieSurvival;
 
 import java.util.Random;
 
-public class Individuo extends Thread {
-    Juego juego;
-    boolean vivo;
-    boolean comida = false;
-    Random random = new Random();
+public class Humano extends Thread {
+    private Juego juego;
+    private boolean comida = false;
+    private boolean siendoAtacado = false;
+    private Random random = new Random();
 
 
-    public Individuo(Juego juego, boolean vivo, int id) {
+    public Humano(Juego juego, int id) {
         this.juego = juego;
-        this.vivo = vivo;
         String StringCeros = String.format("%04d", id);
-        if (vivo) {
-            super.setName("H" + StringCeros);
-        } else {
-            super.setName("Z" + StringCeros);
-        }
+        super.setName("H" + StringCeros);
     }
 
     public void run() {
