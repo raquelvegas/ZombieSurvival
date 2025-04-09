@@ -6,4 +6,4 @@
 
 ## Mejoras
 1. Distintos idiomas
-2. 
+2. La probabilidad de exito/fracaso en el ataque como slider.

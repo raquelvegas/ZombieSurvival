@@ -70,7 +70,7 @@ public class Controller {
 
 
 
-        Juego juego = new Juego(zonaComun, esperaTuneles);
+        Juego juego = new Juego(zonaComun, esperaTuneles, riesgoIzq, riesgoDch);
 
 
         // Inicialización de la simulación

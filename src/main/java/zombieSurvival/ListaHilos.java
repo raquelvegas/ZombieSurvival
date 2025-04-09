@@ -5,8 +5,8 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class ListaHilos {
-    ArrayList<Thread> lista = new ArrayList<>();
-    Text text;
+    private ArrayList<Thread> lista = new ArrayList<>();
+    private Text text;
 
     public ListaHilos(Text text) {
         this.text = text;
@@ -16,7 +16,6 @@ public class ListaHilos {
         lista.add(i);
         imprimir();
     }
-
 
     public synchronized void sacar(Thread i) {
         lista.remove(i);
@@ -38,5 +37,13 @@ public class ListaHilos {
 //                text.setText(finalContenido);
 //            }
 //        });
+    }
+
+    public int getSize() {
+        return lista.size();
+    }
+
+    public Thread get(int index){
+        return lista.get(index);
     }
 }

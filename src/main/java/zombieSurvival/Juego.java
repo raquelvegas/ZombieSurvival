@@ -3,34 +3,38 @@ package zombieSurvival;
 import java.util.ArrayList;
 
 public class Juego {
-    private ListaHilos ZonaComun;
-    private ArrayList<ListaHilos> EsperaTuneles;
-    private Tunel tunel0 = new Tunel();
-    private Tunel tunel1 = new Tunel();
-    private Tunel tunel2 = new Tunel();
-    private Tunel tunel3 = new Tunel();
+    private ListaHilos zonaComun;
+    private ArrayList<ListaHilos> esperaTuneles;
+    private ArrayList<ListaHilos> riesgoIzq;
+    private ArrayList<ListaHilos> riesgoDch;
 
-
-
-    public Juego(ListaHilos zonaComun, ArrayList<ListaHilos> esperaTuneles) {
-        ZonaComun = zonaComun;
-        EsperaTuneles = esperaTuneles;
+    public Juego(ListaHilos zonaComun, ArrayList<ListaHilos> esperaTuneles, ArrayList<ListaHilos> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
+        this.zonaComun = zonaComun;
+        this.esperaTuneles = esperaTuneles;
+        this.riesgoIzq = riesgoIzq;
+        this.riesgoDch = riesgoDch;
     }
 
     public void meterZonaComun(Humano i){
-        ZonaComun.meter(i);
+        zonaComun.meter(i);
     }
 
     public void sacarZonaComun(Humano i){
-        ZonaComun.sacar(i);
+        zonaComun.sacar(i);
     }
 
-    public void meterZonaRiesgoZ(Zombie z) {
-
+    public void meterZonaRiesgoDch(Zombie z, int zona) {
+        riesgoDch.get(zona).meter(z);
+    }
+    public void sacarZonaRiesgoDch(Zombie z, int zona) {
+        riesgoDch.get(zona).sacar(z);
     }
 
     public void esperarTunel(Humano i, int tunel){
-        EsperaTuneles.get(tunel).meter(i);
+        esperaTuneles.get(tunel).meter(i);
     }
 
+    public ArrayList<ListaHilos> getRiesgoIzq() {
+        return riesgoIzq;
+    }
 }

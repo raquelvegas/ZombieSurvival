@@ -8,7 +8,7 @@ public class Humano extends Thread {
     private boolean comida = false;
     private boolean siendoAtacado = false;
     private Random random = new Random();
-
+    private boolean herido = false;
 
     public Humano(Juego juego, int id) {
         this.id = id;
