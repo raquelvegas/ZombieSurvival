@@ -17,6 +17,9 @@ import java.util.Random;
 public class ControladorNuevaInterfaz {
     @FXML
     private Text
+            refugioTitle, tunelTitle, riesgoTitle, descansoTitle,
+            comedorTitle, comidaTitle, zonaComunTitle,
+
             descansoText, comedorText, comidaCount, zonaComunText,
 
             tunel0IzqText, tunel0MidText, tunel0DchText,
@@ -36,7 +39,7 @@ public class ControladorNuevaInterfaz {
     private ToggleGroup grupoIdioma;
 
     @FXML
-    private RadioMenuItem espanol, ingles, frances;
+    private RadioMenuItem espanol, ingles, frances, croata;
     @FXML
     private MenuButton idioma;
 
@@ -50,6 +53,7 @@ public class ControladorNuevaInterfaz {
     private final List<Cancion> canciones = new ArrayList<>();
     private int cancionActual = 0;
     private int idiomaActual = 0;
+    private Juego juego = null;
 
     @FXML
     public void cambiarCancionPorFlecha(MouseEvent event) {
@@ -95,6 +99,10 @@ public class ControladorNuevaInterfaz {
             //Cambiar a Francés
             idiomaActual = 2;
             actualizarTextos();
+        } else if (seleccionado == croata) {
+            //Cambiar a Croata
+            idiomaActual = 3;
+            actualizarTextos();
         }
     }
 
@@ -103,21 +111,27 @@ public class ControladorNuevaInterfaz {
         // Solo cambiar el estado de pausa y el texto del botón, sin afectar la música
         if (isPausado) {
             isPausado = false;
+            mediaPlayer.play();
             if (idiomaActual == 0) {
                 pausa.setText("⏸ Pausar");
             } else if (idiomaActual == 1) {
                 pausa.setText("⏸ Pause");
             } else if (idiomaActual == 2) {
                 pausa.setText("⏸ Pause");
+            } else if (idiomaActual == 3) {
+                pausa.setText("⏸ Pauza");
             }
         } else {
             isPausado = true;
+            mediaPlayer.pause();
             if (idiomaActual == 0) {
                 pausa.setText("▶ Jugar");
             } else if (idiomaActual == 1) {
                 pausa.setText("▶ Play");
             } else if (idiomaActual == 2) {
                 pausa.setText("▶ Jouer");
+            } else if (idiomaActual == 3) {
+                pausa.setText("▶ Igraj");
             }
         }
     }
@@ -125,8 +139,6 @@ public class ControladorNuevaInterfaz {
     @FXML
     public void initialize() {
         iniciarMusica();
-        reproducirCancion(cancionActual);
-
 
         // Inicialización de las zonas
         ListaHilos zonaComun = new ListaHilos(zonaComunText);
@@ -177,27 +189,7 @@ public class ControladorNuevaInterfaz {
         ArrayList<ListaHilos> riesgoDch = new ArrayList<>();
         riesgoDch.addAll(Arrays.asList(riesgo0Dch, riesgo1Dch, riesgo2Dch, riesgo3Dch));
 
-
-
-        Juego juego = new Juego(zonaComun, zonaDescanso, esperaTuneles, riesgoIzq, riesgoDch);
-
-
-        // Inicialización de la simulación
-        new Thread(() -> {
-            for (int i = 0; i < 1; i++) {
-                Zombie z = new Zombie(juego, i);
-                z.start();
-            }
-
-            for (int i = 1; i < 6; i++) {
-                Humano ind = new Humano(juego, i);
-                ind.start();
-                try {
-                    Thread.sleep((long) (0.5 + (1.5 * random.nextDouble())) * 1000); // medio segundo
-                } catch (InterruptedException e) {
-                }
-            }
-        }).start();
+        juego = new Juego(zonaComun, zonaDescanso, esperaTuneles, riesgoIzq, riesgoDch);
     }
 
 
@@ -213,7 +205,7 @@ public class ControladorNuevaInterfaz {
         reproductor.getValueFactory().setValue(canciones.get(cancionActual));
     }
 
-    private void reproducirCancion(int index) {
+    public void reproducirCancion(int index) {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
@@ -261,6 +253,15 @@ public class ControladorNuevaInterfaz {
             } else {
                 pausa.setText("⏸ Pausar");
             }
+
+            refugioTitle.setText("REFUGIO");
+            tunelTitle.setText("TÚNELES");
+            riesgoTitle.setText("ZONA DE RIESGO");
+            descansoTitle.setText("DESCANSO");
+            comedorTitle.setText("COMEDOR");
+            comidaTitle.setText("COMIDA");
+            zonaComunTitle.setText("ZONA COMÚN");
+
         } else if (idiomaActual == 1) {
             idioma.setText("Language");
             comoJugar.setText("How to Play");
@@ -269,6 +270,15 @@ public class ControladorNuevaInterfaz {
             } else {
                 pausa.setText("⏸ Pause");
             }
+
+            refugioTitle.setText("SHELTER");
+            tunelTitle.setText("TUNNELS");
+            riesgoTitle.setText("DANGER ZONE");
+            descansoTitle.setText("REST AREA");
+            comedorTitle.setText("DINING ROOM");
+            comidaTitle.setText("FOOD");
+            zonaComunTitle.setText("COMMON AREA");
+
         } else if (idiomaActual == 2) {
             idioma.setText("Langue");
             comoJugar.setText("Comment Jouer");
@@ -277,7 +287,39 @@ public class ControladorNuevaInterfaz {
             } else {
                 pausa.setText("⏸ Pause");
             }
+
+            refugioTitle.setText("REFUGE");
+            tunelTitle.setText("TUNNELS");
+            riesgoTitle.setText("ZONE DE DANGER");
+            descansoTitle.setText("ZONE DE REPOS");
+            comedorTitle.setText("SALLE À MANGER");
+            comidaTitle.setText("NOURRITURE");
+            zonaComunTitle.setText("ESPACE COMMUN");
+
+        } else if (idiomaActual == 3) {
+            idioma.setText("Jezik");
+            comoJugar.setText("Kako Igrati");
+            if (isPausado) {
+                pausa.setText("▶ Igraj");
+            } else {
+                pausa.setText("⏸ Pauza");
+            }
+
+            refugioTitle.setText("SKLONIŠTE");
+            tunelTitle.setText("TUNELI");
+            riesgoTitle.setText("OPASNOST");
+            descansoTitle.setText("ZONE ZA ODMOR");
+            comedorTitle.setText("BLAGOVAONICA");
+            comidaTitle.setText("HRANA");
+            zonaComunTitle.setText("ZAJEDNIČKI PROSTOR");
         }
 
+    }
+
+    public Juego getJuego(){
+        return juego;
+    }
+    public int getCancionActual(){
+        return cancionActual;
     }
 }

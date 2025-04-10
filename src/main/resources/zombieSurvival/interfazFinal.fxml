@@ -31,6 +31,7 @@
                      </RadioMenuItem>
                      <RadioMenuItem fx:id="ingles" mnemonicParsing="false" onAction="#cambiarIdioma" text="Inglés" toggleGroup="$grupoIdioma" />
                      <RadioMenuItem fx:id="frances" mnemonicParsing="false" onAction="#cambiarIdioma" text="Francés" toggleGroup="$grupoIdioma" />
+                     <RadioMenuItem fx:id="croata" mnemonicParsing="false" onAction="#cambiarIdioma" text="Croata" toggleGroup="$grupoIdioma" />
                       </items>
                   </MenuButton>
             </children>
@@ -47,13 +48,13 @@
             </children>
          </HBox>
         </ToolBar>
-        <HBox fx:id="tablero" alignment="CENTER" layoutX="6.0" layoutY="48.0" opacity="0.75" prefHeight="542.0" prefWidth="1125.0" style="-fx-background-image: url('/Background.png'); -fx-background-size: cover;">
+        <HBox fx:id="tablero" alignment="CENTER" layoutX="6.0" layoutY="48.0" opacity="0.8" prefHeight="542.0" prefWidth="1125.0" style="-fx-background-image: url('/Background.png'); -fx-background-size: cover;">
          <children>
             <VBox opacity="0.8" prefHeight="535.0" prefWidth="350.0" style="-fx-background-color: green;">
                <children>
                   <VBox alignment="CENTER" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REFUGIO" wrappingWidth="143.82422256469727">
+                        <Text fx:id="refugioTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="REFUGIO" textAlignment="CENTER" wrappingWidth="225.4241828918457">
                            <font>
                               <Font size="35.0" />
                            </font>
@@ -63,7 +64,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="      " wrappingWidth="19.72265625" />
                   <VBox alignment="TOP_CENTER" prefHeight="159.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DESCANSO">
+                        <Text fx:id="descansoTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="DESCANSO">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -83,7 +84,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="      " wrappingWidth="19.72265625" />
                   <VBox alignment="TOP_CENTER" prefHeight="159.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="COMEDOR">
+                        <Text fx:id="comedorTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="COMEDOR">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -103,7 +104,7 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     " />
                               <VBox alignment="CENTER" prefHeight="109.0" prefWidth="135.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="COMIDA">
+                                    <Text fx:id="comidaTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="COMIDA">
                                        <font>
                                           <Font size="23.0" />
                                        </font>
@@ -122,7 +123,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="      " wrappingWidth="19.72265625" />
                   <VBox alignment="TOP_CENTER" prefHeight="159.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ZONA COMÚN">
+                        <Text fx:id="zonaComunTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="ZONA COMÚN">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -146,7 +147,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TÚNELES" textAlignment="CENTER" wrappingWidth="143.82422256469727">
+                        <Text fx:id="tunelTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="TÚNELES" textAlignment="CENTER" wrappingWidth="264.62411880493164">
                            <font>
                               <Font size="35.0" />
                            </font>
@@ -284,7 +285,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ZONA DE RIESGO" textAlignment="CENTER" wrappingWidth="334.22421646118164">
+                        <Text fx:id="riesgoTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="ZONA DE RIESGO" textAlignment="CENTER" wrappingWidth="334.22421646118164">
                            <font>
                               <Font size="35.0" />
                            </font>
