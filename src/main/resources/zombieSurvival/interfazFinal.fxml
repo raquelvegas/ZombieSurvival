@@ -69,7 +69,15 @@
                            </font>
                         </Text>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff" height="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="328.0">
+                                 <children>
+                                    <Text fx:id="descansoText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="      " wrappingWidth="19.72265625" />
@@ -83,7 +91,15 @@
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff" height="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
                         <HBox prefHeight="131.0" prefWidth="350.0">
                            <children>
-                              <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                              <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                 <content>
+                                    <VBox alignment="CENTER" prefHeight="105.0" prefWidth="175.0">
+                                       <children>
+                                          <Text fx:id="comedorText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     " />
                               <VBox alignment="CENTER" prefHeight="109.0" prefWidth="135.0">
                                  <children>
@@ -92,7 +108,7 @@
                                           <Font size="23.0" />
                                        </font>
                                     </Text>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0000">
+                                    <Text fx:id="comidaCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0000">
                                        <font>
                                           <Font size="23.0" />
                                        </font>
@@ -112,7 +128,15 @@
                            </font>
                         </Text>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff" height="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="350.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="315.0">
+                                 <children>
+                                    <Text fx:id="zonaComunText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
                </children>
@@ -132,19 +156,127 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
                   <HBox alignment="CENTER" prefHeight="106.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <ScrollPane prefHeight="105.0" prefWidth="130.0" />
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="103.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="tunel0IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                        <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0" />
+                        <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0">
+                           <content>
+                              <VBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="58.0">
+                                 <children>
+                                    <Text fx:id="tunel0MidText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                        <ScrollPane prefHeight="105.0" prefWidth="130.0" />
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="99.0" prefWidth="105.0">
+                                 <children>
+                                    <Text fx:id="tunel0DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
                      </children>
                   </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <HBox alignment="CENTER" prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="103.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="tunel1IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
+                        <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0">
+                           <content>
+                              <VBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="54.0">
+                                 <children>
+                                    <Text fx:id="tunel1MidText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="tunel1DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                     </children>
+                  </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <HBox alignment="CENTER" prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="99.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="tunel2IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
+                        <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0">
+                           <content>
+                              <VBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="55.0">
+                                 <children>
+                                    <Text fx:id="tunel2MidText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="tunel2DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                     </children>
+                  </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
-                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <HBox alignment="CENTER" prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="tunel3IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
+                        <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0">
+                           <content>
+                              <VBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="54.0">
+                                 <children>
+                                    <Text fx:id="tunel3MidText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
+                        <ScrollPane prefHeight="105.0" prefWidth="130.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="tunel3DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="          " />
@@ -160,13 +292,93 @@
                      </children>
                   </VBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                  <HBox prefHeight="106.0" prefWidth="350.0" style="-fx-background-color: white;" />
+                  <HBox prefHeight="106.0" prefWidth="350.0" style="-fx-background-color: white;">
+                     <children>
+                        <ScrollPane prefHeight="105.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo0IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       " />
+                        <ScrollPane prefHeight="106.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo0DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                     </children>
+                  </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <ScrollPane prefHeight="105.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo1IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       " />
+                        <ScrollPane prefHeight="106.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo1DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                     </children>
+                  </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <ScrollPane prefHeight="105.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo2IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       " />
+                        <ScrollPane prefHeight="106.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo2DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                     </children>
+                  </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
-                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;" />
+                  <HBox prefHeight="106.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <ScrollPane prefHeight="105.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo3IzqText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       " />
+                        <ScrollPane prefHeight="106.0" prefWidth="175.0">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="102.0" prefWidth="146.0">
+                                 <children>
+                                    <Text fx:id="riesgo3DchText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </children>
+                              </VBox>
+                           </content></ScrollPane>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children></HBox>
