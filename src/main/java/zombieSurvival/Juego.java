@@ -5,14 +5,16 @@ import java.util.logging.Logger;
 
 public class Juego {
     private ListaHilos zonaComun;
+    private ListaHilos zonaDescanso;
     private ArrayList<ListaHilos> esperaTuneles;
     private ArrayList<ZonaRiesgoH> riesgoIzq;
     private ArrayList<ListaHilos> riesgoDch;
     private static final Logger log = LogConfig.getLogger();
 
 
-    public Juego(ListaHilos zonaComun, ArrayList<ListaHilos> esperaTuneles, ArrayList<ZonaRiesgoH> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
+    public Juego(ListaHilos zonaComun, ListaHilos zonaDescanso, ArrayList<ListaHilos> esperaTuneles, ArrayList<ZonaRiesgoH> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
         this.zonaComun = zonaComun;
+        this.zonaDescanso = zonaDescanso;
         this.esperaTuneles = esperaTuneles;
         this.riesgoIzq = riesgoIzq;
         this.riesgoDch = riesgoDch;
@@ -27,9 +29,19 @@ public class Juego {
         zonaComun.sacar(i);
     }
 
-    public void meterZonaRiesgoIzq(Humano h, int zona){
-        riesgoIzq.get(zona).getHumanos().meter(h);
+    public void meterZonaDescanso(Humano i) {
+        zonaDescanso.meter(i);
+        log.info("HUMANO " + i.getName() + " -> Zona Descanso");
     }
+
+    public void sacarZonaDescanso(Humano i) {
+        zonaDescanso.sacar(i);
+    }
+
+    public void meterZonaRiesgoIzq(Humano h, int zona){
+        riesgoIzq.get(zona).añadirHumano(h);
+    }
+
     public void sacarZonaRiesgoIzq(Humano h, int zona) {
         riesgoIzq.get(zona).getHumanos().sacar(h);
     }

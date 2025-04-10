@@ -38,7 +38,6 @@ public class Humano extends Thread {
         while (true) {
             //Zona común (1-2 segundos)
             juego.meterZonaComun(this);
-            setHerido(false);
             try {
                 sleep((long) (5 + random.nextDouble()) * 1000);
             } catch (InterruptedException e) {
@@ -47,7 +46,6 @@ public class Humano extends Thread {
 
             // Seleccion de túnel
             int tunel = random.nextInt(4);
-//            juego.esperarTunel(this, tunel);
 
             // Atravesar túnel
 
@@ -66,6 +64,20 @@ public class Humano extends Thread {
                 break;
             }
             juego.sacarZonaRiesgoIzq(this, tunel);
+
+            // Depositar comida
+
+            // Zona de descanso
+            if (herido) {
+                juego.meterZonaDescanso(this);
+                try {
+                    sleep((long) (2 + (random.nextDouble() * 2) * 1000));
+                } catch (Exception e) {
+                }
+                this.herido = false;
+                juego.sacarZonaDescanso(this);
+            }
+            // Comedor
         }
     }
 }

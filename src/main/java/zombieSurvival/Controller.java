@@ -30,6 +30,7 @@ public class Controller {
         // Inicialización de las zonas
 
         ListaHilos zonaComun = new ListaHilos(zonaComunText);
+        ListaHilos zonaDescanso = new ListaHilos(descansoText);
 
         ListaHilos tunel0Izq = new ListaHilos(tunel0IzqText);
         ListaHilos tunel0Mid = new ListaHilos(tunel0MidText);
@@ -78,7 +79,7 @@ public class Controller {
 
 
 
-        Juego juego = new Juego(zonaComun, esperaTuneles, riesgoIzq, riesgoDch);
+        Juego juego = new Juego(zonaComun, zonaDescanso, esperaTuneles, riesgoIzq, riesgoDch);
 
 
         // Inicialización de la simulación
@@ -88,7 +89,7 @@ public class Controller {
                 z.start();
             }
 
-            for (int i = 1; i < 21; i++) {
+            for (int i = 1; i < 6; i++) {
                 Humano ind = new Humano(juego, i);
                 ind.start();
                 try {
