@@ -17,19 +17,15 @@ public class ZonaRiesgoH {
     }
 
     public void añadirHumano(Humano h) {
-        cerrojoAdd.lock();
+        cerrojo.lock();
         try {
             humanosDisponibles.add(h);
             humanos.meter(h);
         } catch (Exception e) {
             System.out.println("Error | Clase -> ZonaRiesgoH | Método -> añadirHumano");
         } finally {
-            cerrojoAdd.unlock();
+            cerrojo.unlock();
         }
-    }
-
-    public ListaHilos getHumanos() {
-        return humanos;
     }
 
     public Humano elegirHumano() {
@@ -38,9 +34,9 @@ public class ZonaRiesgoH {
             if (!humanosDisponibles.isEmpty()) {
                 int humanoIndex = random.nextInt(humanosDisponibles.size());
                 Humano h = humanosDisponibles.get(humanoIndex);
-
                 if (!h.isSiendoAtacado() && h.isAlive()) {
                     h.setSiendoAtacado(true);
+                    humanosDisponibles.remove(h);
                     return h;
                 }
             }
@@ -52,11 +48,14 @@ public class ZonaRiesgoH {
         return null;
     }
 
-
     public void eliminarHumano(Humano h) {
         cerrojo.lock();
         try {
-            humanosDisponibles.remove(h);
+            if (humanosDisponibles.contains(h)) {
+                humanosDisponibles.remove(h);
+                h.setComida(true); // Si el humano sigue en esta lista significa que no ha sido atacado y, por tanto, ha recolectado la comida
+            }
+            humanos.sacar(h);
         } catch (Exception e) {
             System.out.println("Error | Clase -> ZonaRiesgoH | Método -> eliminarHumano");
         } finally {

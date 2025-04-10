@@ -1,5 +1,7 @@
 package zombieSurvival;
 
+import zombieSurvival.configuracionesAdicionales.LogConfig;
+
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -33,6 +35,14 @@ public class Humano extends Thread {
 
     public void setSiendoAtacado(boolean siendoAtacado) {
         this.siendoAtacado = siendoAtacado;
+    }
+
+    public boolean isComida() {
+        return comida;
+    }
+
+    public void setComida(boolean comida) {
+        this.comida = comida;
     }
 
     public boolean isHerido() {
@@ -87,6 +97,13 @@ public class Humano extends Thread {
 
                 // Depositar comida
 
+                if (comida){
+                    ////////////////////////////////////////////////////////////////
+                    //            AÑADIR COMIDA A LA PILA DE COMIDA               //
+                    ////////////////////////////////////////////////////////////////
+                    // Hay que meter los controllers como atributo de los humanos para poder modificar directamente ese número ??
+                    comida = false;
+                }
                 // Zona de descanso
                 if (herido) {
                     juego.meterZonaDescanso(this);

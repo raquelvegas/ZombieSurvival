@@ -15,4 +15,6 @@ module com.example.zombiesprueba {
 
     opens zombieSurvival to javafx.fxml;
     exports zombieSurvival;
+    exports zombieSurvival.configuracionesAdicionales;
+    opens zombieSurvival.configuracionesAdicionales to javafx.fxml;
 }

@@ -1,5 +1,7 @@
 package zombieSurvival;
 
+import zombieSurvival.configuracionesAdicionales.LogConfig;
+
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -37,7 +39,6 @@ public class Zombie extends Thread {
             if (ataque > (double) 2 / 3) { // Ataque exitoso
                 contadorMuertes++;
                 h.interrupt();
-                juego.getRiesgoIzq().get(zona).eliminarHumano(h);
                 log.info("El zombie " + getName() + " ha matado al humano " + h.getName());
             } else { // Ataque fallido
                 log.info("El zombie " + getName() + " ha herido al humano " + h.getName());

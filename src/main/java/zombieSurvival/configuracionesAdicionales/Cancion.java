@@ -1,4 +1,4 @@
-package zombieSurvival;
+package zombieSurvival.configuracionesAdicionales;
 
 public class Cancion {
     private final String nombre;

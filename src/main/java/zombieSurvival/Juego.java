@@ -1,5 +1,7 @@
 package zombieSurvival;
 
+import zombieSurvival.configuracionesAdicionales.LogConfig;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -43,7 +45,7 @@ public class Juego {
     }
 
     public void sacarZonaRiesgoIzq(Humano h, int zona) {
-        riesgoIzq.get(zona).getHumanos().sacar(h);
+        riesgoIzq.get(zona).eliminarHumano(h);
     }
 
     public void meterZonaRiesgoDch(Zombie z, int zona) {

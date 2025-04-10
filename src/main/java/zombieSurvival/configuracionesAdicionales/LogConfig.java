@@ -1,4 +1,4 @@
-package zombieSurvival;
+package zombieSurvival.configuracionesAdicionales;
 
 import java.io.IOException;
 import java.util.logging.*;

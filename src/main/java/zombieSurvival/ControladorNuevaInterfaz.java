@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
+import zombieSurvival.configuracionesAdicionales.Cancion;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -319,6 +320,7 @@ public class ControladorNuevaInterfaz {
     public Juego getJuego(){
         return juego;
     }
+
     public int getCancionActual(){
         return cancionActual;
     }

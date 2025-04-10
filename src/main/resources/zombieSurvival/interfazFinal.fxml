@@ -329,7 +329,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       " />
                         <ScrollPane maxWidth="-Infinity" prefHeight="106.0" prefWidth="175.0">
                            <content>
-                              <StackPane prefHeight="103.0" prefWidth="146.0">
+                              <StackPane prefHeight="103.0" prefWidth="148.0">
                                  <children>
                                     <Text fx:id="riesgo1DchText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="138.40001821517944" />
                                  </children>
