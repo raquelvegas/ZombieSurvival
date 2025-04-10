@@ -62,6 +62,7 @@ public class Humano extends Thread {
                 Zombie z = new Zombie(juego, id);
                 z.start();
                 break;
+
             }
             juego.sacarZonaRiesgoIzq(this, tunel);
 
