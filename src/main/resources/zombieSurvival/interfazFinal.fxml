@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
 
+<AnchorPane prefHeight="597.0" prefWidth="1137.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zombieSurvival.ControladorNuevaInterfaz">
+    <children>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="1137.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />
+        <ToolBar prefHeight="38.0" prefWidth="1137.0">
+         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="260.0">
+            <children>
+               <Button fx:id="comoJugar" mnemonicParsing="false" text="Cómo jugar" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="      " />
+                  <MenuButton fx:id="idioma" mnemonicParsing="false" text="Idioma">
+                      <items>
+                     <RadioMenuItem fx:id="espanol" mnemonicParsing="false" onAction="#cambiarIdioma" selected="true" text="Español">
+                        <toggleGroup>
+                           <ToggleGroup fx:id="grupoIdioma" />
+                        </toggleGroup>
+                     </RadioMenuItem>
+                     <RadioMenuItem fx:id="ingles" mnemonicParsing="false" onAction="#cambiarIdioma" text="Inglés" toggleGroup="$grupoIdioma" />
+                     <RadioMenuItem fx:id="frances" mnemonicParsing="false" onAction="#cambiarIdioma" text="Francés" toggleGroup="$grupoIdioma" />
+                      </items>
+                  </MenuButton>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="30.0" prefWidth="589.0">
+            <children>
+                  <Button fx:id="mute" mnemonicParsing="false" onAction="#mute" text="🔊" />
+                  <Spinner fx:id="reproductor" onMousePressed="#cambiarCancionPorFlecha" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="260.0">
+            <children>
+                  <Button fx:id="pausa" onAction="#pausar" text="⏸ Pausa" />
+            </children>
+         </HBox>
+        </ToolBar>
+    </children>
+</AnchorPane>

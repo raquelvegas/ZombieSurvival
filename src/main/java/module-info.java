@@ -11,6 +11,7 @@ module com.example.zombiesprueba {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.logging;
+    requires javafx.media;
 
     opens zombieSurvival to javafx.fxml;
     exports zombieSurvival;
