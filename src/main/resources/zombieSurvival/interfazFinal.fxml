@@ -167,7 +167,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
                         <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0">
                            <content>
-                              <VBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="58.0">
+                              <VBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="53.0">
                                  <children>
                                     <Text fx:id="tunel0MidText" strokeType="OUTSIDE" strokeWidth="0.0" />
                                  </children>
@@ -229,7 +229,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
                         <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0">
                            <content>
-                              <VBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="55.0">
+                              <VBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="55.0">
                                  <children>
                                     <Text fx:id="tunel2MidText" strokeType="OUTSIDE" strokeWidth="0.0" />
                                  </children>
@@ -258,9 +258,9 @@
                               </VBox>
                            </content></ScrollPane>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    " />
-                        <ScrollPane maxHeight="-Infinity" prefHeight="33.0" prefWidth="78.0">
+                        <ScrollPane maxHeight="-Infinity" prefHeight="27.0" prefWidth="73.0">
                            <content>
-                              <VBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="54.0">
+                              <VBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="54.0">
                                  <children>
                                     <Text fx:id="tunel3MidText" strokeType="OUTSIDE" strokeWidth="0.0" />
                                  </children>
