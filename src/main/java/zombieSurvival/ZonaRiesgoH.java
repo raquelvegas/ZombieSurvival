@@ -1,11 +1,13 @@
 package zombieSurvival;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ZonaRiesgoH {
     private ListaHilos humanos;
+    private ArrayList<Humano> humanosDisponibles;
     private Lock cerrojo = new ReentrantLock();
     private Random random = new Random();
 
@@ -21,17 +23,14 @@ public class ZonaRiesgoH {
         cerrojo.lock();
         Humano eleccion = null;
         try {
-            boolean elegido = false;
             int numHumanos = humanos.getSize();
-            while (!elegido) {
-                int humano = random.nextInt(numHumanos);
-                eleccion= (Humano) humanos.get(humano);
-                if (!eleccion.isSiendoAtacado()){
-                    eleccion.setSiendoAtacado(true);
-                    elegido = true;
-                }
+            int humano = random.nextInt(numHumanos);
+            eleccion = (Humano) humanos.get(humano);
+            if (!eleccion.isSiendoAtacado() && !eleccion.isHerido()) {
+                eleccion.setSiendoAtacado(true);
             }
         } catch (Exception e) {
+            System.out.println("Error | Clase -> ZonaRiesgoH | Método -> elegirHumano");
         } finally {
             cerrojo.unlock();
         }

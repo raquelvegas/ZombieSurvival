@@ -26,6 +26,10 @@ public class Humano extends Thread {
         this.siendoAtacado = siendoAtacado;
     }
 
+    public boolean isHerido() {
+        return herido;
+    }
+
     public void setHerido(boolean herido) {
         this.herido = herido;
     }
@@ -34,10 +38,10 @@ public class Humano extends Thread {
         while (true) {
             //Zona común (1-2 segundos)
             juego.meterZonaComun(this);
+            setHerido(false);
             try {
                 sleep((long) (5 + random.nextDouble()) * 1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
             }
             juego.sacarZonaComun(this);
 
@@ -55,8 +59,8 @@ public class Humano extends Thread {
                     sleep(500);
                 }
             } catch (InterruptedException e){ // Humano muerto
-                log.warning("Humano " + this.getName() + " -> Muerto");
                 juego.sacarZonaRiesgoIzq(this, tunel);
+                log.warning("Humano " + this.getName() + " -> Muerto");
                 Zombie z = new Zombie(juego, id);
                 z.start();
                 break;

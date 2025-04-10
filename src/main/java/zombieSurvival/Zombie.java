@@ -24,15 +24,20 @@ public class Zombie extends Thread {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        double ataque = random.nextDouble();
-        if (ataque > (double) 2/3){ // Ataque exitoso
-            log.info("El zombie " + getName() + " ha matado al humano " + h.getName());
-            contadorMuertes++;
-            h.interrupt();
-        } else { // Ataque fallido
-            log.info("El zombie " + getName() + " ha herido al humano " + h.getName());
-            h.setHerido(true);
-            h.setSiendoAtacado(false);
+        if (h == null) {
+            log.info("El zombie " + getName() + " no ha encontrado ningún humano para atacar");
+        } else {
+            double ataque = random.nextDouble();
+            if (ataque > (double) 2 / 3) { // Ataque exitoso
+                log.info("El zombie " + getName() + " ha matado al humano " + h.getName());
+                h.setHerido(true);
+                contadorMuertes++;
+                h.interrupt();
+            } else { // Ataque fallido
+                log.info("El zombie " + getName() + " ha herido al humano " + h.getName());
+                h.setHerido(true);
+                h.setSiendoAtacado(false);
+            }
         }
     }
 

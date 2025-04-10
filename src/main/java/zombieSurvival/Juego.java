@@ -1,12 +1,15 @@
 package zombieSurvival;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Juego {
     private ListaHilos zonaComun;
     private ArrayList<ListaHilos> esperaTuneles;
     private ArrayList<ZonaRiesgoH> riesgoIzq;
     private ArrayList<ListaHilos> riesgoDch;
+    private static final Logger log = LogConfig.getLogger();
+
 
     public Juego(ListaHilos zonaComun, ArrayList<ListaHilos> esperaTuneles, ArrayList<ZonaRiesgoH> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
         this.zonaComun = zonaComun;
@@ -17,6 +20,7 @@ public class Juego {
 
     public void meterZonaComun(Humano i){
         zonaComun.meter(i);
+        log.info("HUMANO " + i.getName() + " -> Zona Común");
     }
 
     public void sacarZonaComun(Humano i){
