@@ -10,6 +10,9 @@ public class Zombie extends Thread {
     private int contadorMuertes = 0;
     private static final Logger log = LogConfig.getLogger();
 
+    private long TIEMPO_ATAQUE = 500;
+    private long TIEMPO_ESPERA = 2000;
+
 
     public Zombie(Juego juego, int id) {
         this.juego = juego;
@@ -18,17 +21,23 @@ public class Zombie extends Thread {
         super.setName("Z" + StringCeros);
     }
 
-    private void atacar(Humano h) {
+    private void dormir(long tiempo) {
         try {
-            sleep((long) (0.5 + random.nextDouble()) * 1000);
+            sleep(tiempo);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();  // Volver a interrumpir el hilo si ocurre una interrupción
         }
-        if (h != null) {
+    }
+
+    private void atacar(Humano h, int zona) {
+        dormir((long) (TIEMPO_ATAQUE + random.nextDouble() * 500));
+
+        if (h != null && h.isAlive()) {
             double ataque = random.nextDouble();
             if (ataque > (double) 2 / 3) { // Ataque exitoso
                 contadorMuertes++;
                 h.interrupt();
+                juego.getRiesgoIzq().get(zona).eliminarHumano(h);
                 log.info("El zombie " + getName() + " ha matado al humano " + h.getName());
             } else { // Ataque fallido
                 log.info("El zombie " + getName() + " ha herido al humano " + h.getName());
@@ -38,25 +47,20 @@ public class Zombie extends Thread {
         }
     }
 
-    public void run(){
-        while (true){
-            // Movimiento aleatorio entre las zonas de riesgo
+    public void run() {
+        while (true) {
             int zona = random.nextInt(4);
             juego.meterZonaRiesgoDch(this, zona);
 
-            // Comprobación de si hay humanos en la zona de riesgo
-            int numHumanos = juego.getRiesgoIzq().get(zona).getHumanos().getSize();
-            if (numHumanos != 0) {
-                // Ataque
-                atacar(juego.getRiesgoIzq().get(zona).elegirHumano());
+            Humano objetivo = juego.getRiesgoIzq().get(zona).elegirHumano();
+
+            if (objetivo != null) {
+                atacar(objetivo, zona); // Ataca solo a uno
             }
-            // Tiempo dormido
-            try {
-                sleep((long) (2 + random.nextDouble()) * 1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            // Sacamos el zombi de la zona de riesgo en la que esté
+
+            // Espera en la zona aunque no haya podido atacar
+            dormir((long) (TIEMPO_ESPERA + random.nextDouble() * 2000));
+
             juego.sacarZonaRiesgoDch(this, zona);
         }
     }

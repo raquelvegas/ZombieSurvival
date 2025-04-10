@@ -34,19 +34,33 @@ public class ZonaRiesgoH {
 
     public Humano elegirHumano() {
         cerrojo.lock();
-        Humano eleccion = null;
         try {
-            int numHumanos = humanosDisponibles.size();
-            if (numHumanos >= 1) {
-                int humano = random.nextInt(numHumanos);
-                eleccion = humanosDisponibles.get(humano);
-                humanosDisponibles.remove(humano);
+            if (!humanosDisponibles.isEmpty()) {
+                int humanoIndex = random.nextInt(humanosDisponibles.size());
+                Humano h = humanosDisponibles.get(humanoIndex);
+
+                if (!h.isSiendoAtacado() && h.isAlive()) {
+                    h.setSiendoAtacado(true);
+                    return h;
+                }
             }
         } catch (Exception e) {
             System.out.println("Error | Clase -> ZonaRiesgoH | Método -> elegirHumano");
         } finally {
             cerrojo.unlock();
         }
-        return eleccion;
+        return null;
+    }
+
+
+    public void eliminarHumano(Humano h) {
+        cerrojo.lock();
+        try {
+            humanosDisponibles.remove(h);
+        } catch (Exception e) {
+            System.out.println("Error | Clase -> ZonaRiesgoH | Método -> eliminarHumano");
+        } finally {
+            cerrojo.unlock();
+        }
     }
 }

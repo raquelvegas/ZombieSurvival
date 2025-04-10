@@ -7,10 +7,19 @@ public class Humano extends Thread {
     private Juego juego;
     private int id;
     private boolean comida = false;
+    private int tunel;
     private boolean siendoAtacado = false;
     private Random random = new Random();
     private boolean herido = false;
     private static final Logger log = LogConfig.getLogger();
+
+    private boolean vivo = true;
+
+    //Constantes para los tiempos
+    private long TIEMPO_ZONA_COMUN = 5000;
+    private long TIEMPO_ZONA_RIESGO = 3000;
+    private long TIEMPO_ZONA_DESCANSO = 2000;
+
     public Humano(Juego juego, int id) {
         this.id = id;
         this.juego = juego;
@@ -34,50 +43,69 @@ public class Humano extends Thread {
         this.herido = herido;
     }
 
+    private void convertirseEnZombie(int tunel) {
+        vivo = false;  // Marca al humano como muerto
+        juego.sacarZonaRiesgoIzq(this, tunel); // asegurarse de limpiar
+        log.warning("Humano " + this.getName() + " -> Muerto");
+        Zombie z = new Zombie(juego, id);
+        z.start();
+    }
+
+    private void dormir(long tiempo){
+        try{
+            sleep(tiempo);
+        }catch (InterruptedException e){
+            Thread.currentThread().interrupt();
+        }
+    }
+
     public void run() {
-        while (true) {
-            //Zona común (1-2 segundos)
-            juego.meterZonaComun(this);
+        while (vivo && !Thread.currentThread().isInterrupted()) {  // Verificación de que el humano esté vivo
             try {
-                sleep((long) (5 + random.nextDouble()) * 1000);
-            } catch (InterruptedException e) {
-            }
-            juego.sacarZonaComun(this);
+                // Zona común (1-2 segundos)
+                juego.meterZonaComun(this);
+                dormir((long) (TIEMPO_ZONA_COMUN + random.nextDouble()*2000));
+                juego.sacarZonaComun(this);
 
-            // Seleccion de túnel
-            int tunel = random.nextInt(4);
+                // Selección de túnel
+                tunel = random.nextInt(4);
 
-            // Atravesar túnel
+                // Atravesar túnel
 
-            // Zona exterior (3-5 segundos)
-            juego.meterZonaRiesgoIzq(this,tunel);
-            try {
-                sleep((long) (3 + random.nextDouble() * 2) * 1000);
-                while (siendoAtacado){
-                    sleep(500);
+                // Zona exterior (3-5 segundos)
+                juego.meterZonaRiesgoIzq(this, tunel);
+                dormir((long) (TIEMPO_ZONA_RIESGO+ random.nextDouble()*2000));
+
+                while (siendoAtacado && vivo){
+                    dormir(500);
+                    if(Thread.currentThread().isInterrupted()){
+                        convertirseEnZombie(tunel);
+                        return;
+                    }
                 }
-            } catch (InterruptedException e){ // Humano muerto
                 juego.sacarZonaRiesgoIzq(this, tunel);
-                log.warning("Humano " + this.getName() + " -> Muerto");
-                Zombie z = new Zombie(juego, id);
-                z.start();
-                break;
-            }
-            juego.sacarZonaRiesgoIzq(this, tunel);
 
-            // Depositar comida
+                // Depositar comida
 
-            // Zona de descanso
-            if (herido) {
-                juego.meterZonaDescanso(this);
-                try {
-                    sleep((long) (2 + (random.nextDouble() * 2) * 1000));
-                } catch (Exception e) {
+                // Zona de descanso
+                if (herido) {
+                    juego.meterZonaDescanso(this);
+                    dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble()*2000));
+                    this.herido = false;
+                    juego.sacarZonaDescanso(this);
                 }
-                this.herido = false;
-                juego.sacarZonaDescanso(this);
+
+                // Comedor
+
+
+            } catch (Exception e) {
+                // Manejo de excepciones generales
+                if (!vivo || Thread.currentThread().isInterrupted()) {
+                    convertirseEnZombie(tunel);
+                    return;
+                }
             }
-            // Comedor
         }
     }
 }
+

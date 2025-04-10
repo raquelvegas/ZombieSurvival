@@ -118,7 +118,7 @@ public class Main extends Application {
             }
 
             // Crear los humanos
-            for (int i = 1; i < 6; i++) {
+            for (int i = 1; i < 50; i++) {
                 Humano ind = new Humano(controller.getJuego(), i);
                 ind.start();
                 try {
