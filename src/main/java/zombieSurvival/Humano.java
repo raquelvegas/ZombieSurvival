@@ -98,22 +98,26 @@ public class Humano extends Thread {
                 // Depositar comida
 
                 if (comida){
-                    ////////////////////////////////////////////////////////////////
-                    //            AÑADIR COMIDA A LA PILA DE COMIDA               //
-                    ////////////////////////////////////////////////////////////////
-                    // Hay que meter los controllers como atributo de los humanos para poder modificar directamente ese número ??
+                    juego.dejarComida();
                     comida = false;
                 }
+
                 // Zona de descanso
+                juego.meterZonaDescanso(this);
+                dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble()*2000));
+                juego.sacarZonaDescanso(this);
+
+                // Comedor
+                juego.comer(this);
+
+
+                // Zona de descanso (solo si heridos)
                 if (herido) {
                     juego.meterZonaDescanso(this);
                     dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble()*2000));
                     this.herido = false;
                     juego.sacarZonaDescanso(this);
                 }
-
-                // Comedor
-
 
             } catch (Exception e) {
                 // Manejo de excepciones generales
