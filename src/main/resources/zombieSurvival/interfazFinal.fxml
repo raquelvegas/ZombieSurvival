@@ -106,13 +106,14 @@
                            </children>
                         </HBox>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff" height="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
-                        <HBox prefHeight="131.0" prefWidth="350.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="131.0" prefWidth="350.0">
                            <children>
+                              <Text fx:id="comiendoTitle" strokeType="OUTSIDE" strokeWidth="0.0" text=" COMIENDO...  " wrappingWidth="80.619140625" />
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
-                                    <StackPane prefHeight="59.0" prefWidth="179.0">
+                                    <StackPane prefHeight="59.0" prefWidth="111.0">
                                        <children>
-                                          <Text fx:id="comedorText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.19999086856842" />
+                                          <Text fx:id="comedorText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99997866153717" />
                                        </children>
                                     </StackPane>
                                  </content>

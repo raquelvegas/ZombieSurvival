@@ -19,7 +19,7 @@ public class ControladorNuevaInterfaz {
     @FXML
     private Text
             refugioTitle, tunelTitle, riesgoTitle, descansoTitle,
-            colaComedorTitle, comedorTitle, comidaTitle, zonaComunTitle,
+            colaComedorTitle, comiendoTitle, comedorTitle, comidaTitle, zonaComunTitle,
 
             descansoText, colaComedorText, comedorText, comidaCount, zonaComunText,
 
@@ -264,6 +264,7 @@ public class ControladorNuevaInterfaz {
             descansoTitle.setText("DESCANSO");
             comedorTitle.setText("COMEDOR");
             colaComedorTitle.setText(" COLA DE ESPERA:   ");
+            comiendoTitle.setText(" COMIENDO...  ");
             comidaTitle.setText("COMIDA");
             zonaComunTitle.setText("ZONA COMÚN");
 
@@ -282,6 +283,7 @@ public class ControladorNuevaInterfaz {
             descansoTitle.setText("REST AREA");
             comedorTitle.setText("DINING ROOM");
             colaComedorTitle.setText(" WAITING QUEUE:   ");
+            comiendoTitle.setText(" EATING...  ");
             comidaTitle.setText("FOOD");
             zonaComunTitle.setText("COMMON AREA");
 
@@ -300,6 +302,7 @@ public class ControladorNuevaInterfaz {
             descansoTitle.setText("ZONE DE REPOS");
             comedorTitle.setText("SALLE À MANGER");
             colaComedorTitle.setText(" FILE D'ATTENTE:   ");
+            comiendoTitle.setText(" EN MANGEANT...  ");
             comidaTitle.setText("NOURRITURE");
             zonaComunTitle.setText("ESPACE COMMUN");
 
@@ -317,7 +320,8 @@ public class ControladorNuevaInterfaz {
             riesgoTitle.setText("OPASNOST");
             descansoTitle.setText("ZONE ZA ODMOR");
             comedorTitle.setText("BLAGOVAONICA");
-            colaComedorTitle.setText(" COLA DE ESPERA:   ");
+            colaComedorTitle.setText(" RED ČEKANJA:   ");
+            comiendoTitle.setText(" JEDE...  ");
             comidaTitle.setText("HRANA");
             zonaComunTitle.setText("ZAJEDNIČKI PROSTOR");
         }
