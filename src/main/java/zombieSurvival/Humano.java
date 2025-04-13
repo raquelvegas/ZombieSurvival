@@ -61,11 +61,21 @@ public class Humano extends Thread {
         z.start();
     }
 
-    private void dormir(long tiempo){
-        try{
-            sleep(tiempo);
-        }catch (InterruptedException e){
-            Thread.currentThread().interrupt();
+    private void dormir(long tiempo) {
+        long dormido = 0;
+        long intervalo = 100; // Intervalo de sueño corto (100 ms)
+
+        while (dormido < tiempo) {
+            juego.esperarSiPausado();
+
+            try {
+                long restante = Math.min(intervalo, tiempo - dormido);
+                sleep(restante);
+                dormido += restante;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
         }
     }
 
@@ -73,8 +83,10 @@ public class Humano extends Thread {
         while (vivo && !Thread.currentThread().isInterrupted()) {  // Verificación de que el humano esté vivo
             try {
                 // Zona común (1-2 segundos)
+                juego.esperarSiPausado();
                 juego.meterZonaComun(this);
                 dormir((long) (TIEMPO_ZONA_COMUN + random.nextDouble()*2000));
+                juego.esperarSiPausado();
                 juego.sacarZonaComun(this);
 
                 // Selección de túnel
@@ -83,45 +95,57 @@ public class Humano extends Thread {
                 // Atravesar túnel
 
                 // Zona exterior (3-5 segundos)
+                juego.esperarSiPausado();
                 juego.meterZonaRiesgoIzq(this, tunel);
                 dormir((long) (TIEMPO_ZONA_RIESGO+ random.nextDouble()*2000));
 
                 while (siendoAtacado && vivo){
+                    juego.esperarSiPausado();
                     dormir(500);
+                    juego.esperarSiPausado();
                     if(Thread.currentThread().isInterrupted()){
+                        juego.esperarSiPausado();
                         convertirseEnZombie(tunel);
                         return;
                     }
                 }
+                juego.esperarSiPausado();
                 juego.sacarZonaRiesgoIzq(this, tunel);
 
                 // Depositar comida
 
                 if (comida){
+                    juego.esperarSiPausado();
                     juego.dejarComida();
                     comida = false;
                 }
 
                 // Zona de descanso
+                juego.esperarSiPausado();
                 juego.meterZonaDescanso(this);
                 dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble()*2000));
+                juego.esperarSiPausado();
                 juego.sacarZonaDescanso(this);
 
                 // Comedor
+                juego.esperarSiPausado();
                 juego.comer(this);
 
 
                 // Zona de descanso (solo si heridos)
                 if (herido) {
+                    juego.esperarSiPausado();
                     juego.meterZonaDescanso(this);
                     dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble()*2000));
                     this.herido = false;
+                    juego.esperarSiPausado();
                     juego.sacarZonaDescanso(this);
                 }
 
             } catch (Exception e) {
                 // Manejo de excepciones generales
                 if (!vivo || Thread.currentThread().isInterrupted()) {
+                    juego.esperarSiPausado();
                     convertirseEnZombie(tunel);
                     return;
                 }

@@ -24,10 +24,20 @@ public class Zombie extends Thread {
     }
 
     private void dormir(long tiempo) {
-        try {
-            sleep(tiempo);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();  // Volver a interrumpir el hilo si ocurre una interrupción
+        long dormido = 0;
+        long intervalo = 100; // Intervalo de sueño corto (100 ms)
+
+        while (dormido < tiempo) {
+            juego.esperarSiPausado();
+
+            try {
+                long restante = Math.min(intervalo, tiempo - dormido);
+                sleep(restante);
+                dormido += restante;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
         }
     }
 
@@ -51,17 +61,20 @@ public class Zombie extends Thread {
     public void run() {
         while (true) {
             int zona = random.nextInt(4);
+            juego.esperarSiPausado();
             juego.meterZonaRiesgoDch(this, zona);
 
             Humano objetivo = juego.getRiesgoIzq().get(zona).elegirHumano();
 
             if (objetivo != null) {
+                juego.esperarSiPausado();
                 atacar(objetivo, zona); // Ataca solo a uno
             }
 
             // Espera en la zona aunque no haya podido atacar
             dormir((long) (TIEMPO_ESPERA + random.nextDouble() * 2000));
 
+            juego.esperarSiPausado();
             juego.sacarZonaRiesgoDch(this, zona);
         }
     }

@@ -16,6 +16,7 @@ public class Juego {
     private ArrayList<ZonaRiesgoH> riesgoIzq;
     private ArrayList<ListaHilos> riesgoDch;
     private LinkedBlockingDeque colaComedor = new LinkedBlockingDeque();
+    private boolean enPausa = false;
     private static final Logger log = LogConfig.getLogger();
 
 
@@ -102,5 +103,30 @@ public class Juego {
 
     public ArrayList<ZonaRiesgoH> getRiesgoIzq() {
         return riesgoIzq;
+    }
+
+    public synchronized void pausar() {
+        enPausa = true;
+        log.info("Juego en pausa");
+    }
+
+    public synchronized void reanudar() {
+        enPausa = false;
+        notifyAll();  // Despierta a los hilos esperando
+        log.info("Juego reanudado");
+    }
+
+    public synchronized void esperarSiPausado() {
+        while (enPausa) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();  // Respeta la interrupción
+            }
+        }
+    }
+
+    public boolean estaEnPausa() {
+        return enPausa;
     }
 }

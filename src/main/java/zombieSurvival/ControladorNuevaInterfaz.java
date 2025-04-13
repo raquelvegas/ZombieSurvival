@@ -19,9 +19,9 @@ public class ControladorNuevaInterfaz {
     @FXML
     private Text
             refugioTitle, tunelTitle, riesgoTitle, descansoTitle,
-            comedorTitle, comidaTitle, zonaComunTitle,
+            colaComedorTitle, comedorTitle, comidaTitle, zonaComunTitle,
 
-            descansoText, comedorText, comidaCount, zonaComunText,
+            descansoText, colaComedorText, comedorText, comidaCount, zonaComunText,
 
             tunel0IzqText, tunel0MidText, tunel0DchText,
             tunel1IzqText, tunel1MidText, tunel1DchText,
@@ -110,7 +110,8 @@ public class ControladorNuevaInterfaz {
     @FXML
     void pausar(ActionEvent event) {
         // Solo cambiar el estado de pausa y el texto del botón, sin afectar la música
-        if (isPausado) {
+        if (juego.estaEnPausa()) {
+            juego.reanudar();
             isPausado = false;
             mediaPlayer.play();
             if (idiomaActual == 0) {
@@ -123,6 +124,7 @@ public class ControladorNuevaInterfaz {
                 pausa.setText("⏸ Pauza");
             }
         } else {
+            juego.pausar();
             isPausado = true;
             mediaPlayer.pause();
             if (idiomaActual == 0) {
@@ -261,6 +263,7 @@ public class ControladorNuevaInterfaz {
             riesgoTitle.setText("ZONA DE RIESGO");
             descansoTitle.setText("DESCANSO");
             comedorTitle.setText("COMEDOR");
+            colaComedorTitle.setText(" COLA DE ESPERA:   ");
             comidaTitle.setText("COMIDA");
             zonaComunTitle.setText("ZONA COMÚN");
 
@@ -278,6 +281,7 @@ public class ControladorNuevaInterfaz {
             riesgoTitle.setText("DANGER ZONE");
             descansoTitle.setText("REST AREA");
             comedorTitle.setText("DINING ROOM");
+            colaComedorTitle.setText(" WAITING QUEUE:   ");
             comidaTitle.setText("FOOD");
             zonaComunTitle.setText("COMMON AREA");
 
@@ -295,6 +299,7 @@ public class ControladorNuevaInterfaz {
             riesgoTitle.setText("ZONE DE DANGER");
             descansoTitle.setText("ZONE DE REPOS");
             comedorTitle.setText("SALLE À MANGER");
+            colaComedorTitle.setText(" FILE D'ATTENTE:   ");
             comidaTitle.setText("NOURRITURE");
             zonaComunTitle.setText("ESPACE COMMUN");
 
@@ -312,6 +317,7 @@ public class ControladorNuevaInterfaz {
             riesgoTitle.setText("OPASNOST");
             descansoTitle.setText("ZONE ZA ODMOR");
             comedorTitle.setText("BLAGOVAONICA");
+            colaComedorTitle.setText(" COLA DE ESPERA:   ");
             comidaTitle.setText("HRANA");
             zonaComunTitle.setText("ZAJEDNIČKI PROSTOR");
         }

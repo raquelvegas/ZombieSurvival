@@ -91,11 +91,26 @@
                            </font>
                         </Text>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff" height="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="colaComedorTitle" strokeType="OUTSIDE" strokeWidth="0.0" text=" FILA DE ESPERA:   " />
+                              <ScrollPane prefHeight="1.0" prefWidth="350.0">
+                                 <content>
+                                    <StackPane alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="235.0">
+                                       <children>
+                                          <Text fx:id="colaComedorText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </StackPane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </HBox>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff" height="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
                         <HBox prefHeight="131.0" prefWidth="350.0">
                            <children>
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
-                                    <StackPane prefHeight="106.0" prefWidth="179.0">
+                                    <StackPane prefHeight="59.0" prefWidth="179.0">
                                        <children>
                                           <Text fx:id="comedorText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.19999086856842" />
                                        </children>
@@ -351,7 +366,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       " />
                         <ScrollPane maxWidth="-Infinity" prefHeight="106.0" prefWidth="175.0">
                            <content>
-                              <StackPane prefHeight="102.0" prefWidth="147.0">
+                              <StackPane prefHeight="102.0" prefWidth="138.0">
                                  <children>
                                     <Text fx:id="riesgo2DchText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.7999206483364" />
                                  </children>
