@@ -87,12 +87,12 @@ public class Humano extends Thread {
                 juego.meterZonaComun(this);
                 dormir((long) (TIEMPO_ZONA_COMUN + random.nextDouble()*2000));
                 juego.esperarSiPausado();
-                juego.sacarZonaComun(this);
 
                 // Selección de túnel
                 tunel = random.nextInt(4);
 
                 // Atravesar túnel
+                juego.cruzarIda(this, tunel);
 
                 // Zona exterior (3-5 segundos)
                 juego.esperarSiPausado();
@@ -112,6 +112,9 @@ public class Humano extends Thread {
                 juego.esperarSiPausado();
                 juego.sacarZonaRiesgoIzq(this, tunel);
 
+                // Cruzar tunel
+
+                juego.cruzarVuelta(this, tunel);
                 // Depositar comida
 
                 if (comida){

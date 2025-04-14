@@ -147,6 +147,7 @@ public class ControladorNuevaInterfaz {
         ListaHilos zonaComun = new ListaHilos(zonaComunText);
         ListaHilos zonaDescanso = new ListaHilos(descansoText);
         ListaHilos comedor = new ListaHilos(comedorText);
+        ListaHilos colaComedor = new ListaHilos(colaComedorText);
 
         ListaHilos tunel0Izq = new ListaHilos(tunel0IzqText);
         ListaHilos tunel0Mid = new ListaHilos(tunel0MidText);
@@ -166,6 +167,19 @@ public class ControladorNuevaInterfaz {
         esperaTuneles.add(tunel1Izq);
         esperaTuneles.add(tunel2Izq);
         esperaTuneles.add(tunel3Izq);
+
+        ArrayList<ListaHilos> tuneles = new ArrayList<>();
+        tuneles.add(tunel0Mid);
+        tuneles.add(tunel1Mid);
+        tuneles.add(tunel2Mid);
+        tuneles.add(tunel3Mid);
+
+        ArrayList<ListaHilos> tunelesVuelta = new ArrayList<>();
+        tunelesVuelta.add(tunel0Dch);
+        tunelesVuelta.add(tunel1Dch);
+        tunelesVuelta.add(tunel2Dch);
+        tunelesVuelta.add(tunel3Dch);
+
 
 
         ListaHilos riesgo0Izq = new ListaHilos(riesgo0IzqText);
@@ -193,7 +207,7 @@ public class ControladorNuevaInterfaz {
         ArrayList<ListaHilos> riesgoDch = new ArrayList<>();
         riesgoDch.addAll(Arrays.asList(riesgo0Dch, riesgo1Dch, riesgo2Dch, riesgo3Dch));
 
-        juego = new Juego(zonaComun, zonaDescanso, comedor, comidaCount, esperaTuneles, riesgoIzq, riesgoDch);
+        juego = new Juego(zonaComun, zonaDescanso, colaComedor, comedor, comidaCount, esperaTuneles, tuneles, tunelesVuelta, riesgoIzq, riesgoDch);
     }
 
 

@@ -1,5 +1,76 @@
 package zombieSurvival;
 
-public class Tunel {
+import zombieSurvival.configuracionesAdicionales.LogConfig;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Logger;
+
+public class Tunel {
+    private int id;
+    private Lock cerrojo = new ReentrantLock();
+    private Condition esperandoEntrar = cerrojo.newCondition();
+    private Condition esperandoSalir = cerrojo.newCondition();
+    private boolean ocupado = false;
+    private int enEsperaEntrar = 0;
+    private int enEsperaSalir = 0;
+    private static final Logger log = LogConfig.getLogger();
+
+
+    public Tunel(int id) {
+        this.id = id;
+    }
+
+    public void volverDentro(Humano h) {
+        cerrojo.lock();
+        try {
+            enEsperaEntrar++;
+            while (ocupado) {
+                esperandoEntrar.await();
+            }
+            log.info("HUMANO " + h.getName() + " -> Volviendo por el tunel " + id);
+            enEsperaEntrar--;
+            ocupado = true;
+        } catch (Exception e) {
+            System.out.println("Error | Clase -> Túnel | Método -> volverDentro");
+        } finally {
+            cerrojo.unlock();
+        }
+    }
+
+    public void salirAlExterior(Humano h) {
+        cerrojo.lock();
+        try {
+            enEsperaSalir++;
+            while (ocupado || enEsperaEntrar > 0) {
+                esperandoSalir.await();
+            }
+            log.info("HUMANO " + h.getName() + " -> Saliendo por el tunel " + id);
+            enEsperaSalir--;
+            ocupado = true;
+        } catch (Exception e) {
+            System.out.println("Error | Clase -> Tunel | Método -> salirAlExterior");
+        } finally {
+            cerrojo.unlock();
+        }
+    }
+
+    public void salirDelTunel() {
+        cerrojo.lock();
+        try {
+            ocupado = false;
+            if (enEsperaEntrar > 0) {
+                esperandoEntrar.signal();
+                log.info("Tunel " + id + " -> Despierta a un hilo que quiere entrar.");
+            } else {
+                esperandoSalir.signal();
+                log.info("Tunel " + id + " -> Despierta a un hilo que quiere salir.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error | Clase -> Tunel | Método -> salirDelTunel");
+        } finally {
+            cerrojo.unlock();
+        }
+    }
 }
