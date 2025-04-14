@@ -34,7 +34,7 @@ public class ZonaRiesgoH {
             if (!humanosDisponibles.isEmpty()) {
                 int humanoIndex = random.nextInt(humanosDisponibles.size());
                 Humano h = humanosDisponibles.get(humanoIndex);
-                if (!h.isSiendoAtacado() && h.isAlive() && !h.isHerido()) {
+                if (!h.isSiendoAtacado() && h.isAlive()) {
                     h.setSiendoAtacado(true);
                     humanosDisponibles.remove(h);
                     return h;

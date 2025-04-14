@@ -98,31 +98,35 @@ public class Juego {
     }
 
     public void cruzarIda(Humano i, int tunel) {
+        esperarSiPausado();
         entrarEsperaTunel(i, tunel);
+        esperarSiPausado();
         tuneles.get(tunel).salirAlExterior(i);
+        esperarSiPausado();
         esperaTuneles.get(tunel).sacar(i);
+        esperarSiPausado();
         tunelesTxt.get(tunel).meter(i);
-        try {
-            i.sleep(1000);
-        } catch (Exception e) {
-            System.out.println("Error | Clase -> Juego | Método -> cruzarIda");
-        }
+        esperarSiPausado();
+        i.dormir(1000);
         tuneles.get(tunel).salirDelTunel();
+        esperarSiPausado();
         tunelesTxt.get(tunel).sacar(i);
     }
 
     public void cruzarVuelta(Humano i, int tunel) {
+        esperarSiPausado();
         vueltaTuneles.get(tunel).meter(i);
+        esperarSiPausado();
         tuneles.get(tunel).volverDentro(i);
+        esperarSiPausado();
         vueltaTuneles.get(tunel).sacar(i);
-        esperaTuneles.get(tunel).sacar(i);
+        esperarSiPausado();
         tunelesTxt.get(tunel).meter(i);
-        try {
-            i.sleep(1000);
-        } catch (Exception e) {
-            System.out.println("Error | Clase -> Juego | Método -> cruzarIda");
-        }
+        esperarSiPausado();
+        i.dormir(1000);
+        esperarSiPausado();
         tuneles.get(tunel).salirDelTunel();
+        esperarSiPausado();
         tunelesTxt.get(tunel).sacar(i);
     }
 
@@ -132,24 +136,36 @@ public class Juego {
         } catch (Exception e) {
             System.out.println("Error | Clase -> Juego | Método -> entrarEsperaTunel");
         }
+        esperarSiPausado();
         sacarZonaComun(i);
+        esperarSiPausado();
         esperaTuneles.get(tunel).meter(i);
     }
 
     public void comer(Humano i) {
+        esperarSiPausado();
         meterColaComedor(i);
         log.info("HUMANO " + i.getName() + " -> Comedor");
         try {
+            esperarSiPausado();
             colaComedor.take();
+            esperarSiPausado();
             sacarColaComedor(i);
-            String cantidadCeros = String.format("%04d", colaComedor.size());
+            String cantidadCeros;
+            if (colaComedor.size() > 9999) {
+                cantidadCeros = String.format("%05d", colaComedor.size());
+            } else {
+                cantidadCeros = String.format("%04d", colaComedor.size());
+            }
             textoComida.setText(cantidadCeros);
+            esperarSiPausado();
             meterComedor(i);
-            i.sleep((long) (3000 + random.nextDouble() * 2000));
+            i.dormir((long) (3000 + random.nextDouble() * 2000));
         } catch (InterruptedException e) {
             System.out.println("ERROR | Clase -> Juego | Método -> comer");
         }
         log.info("HUMANO " + i.getName() + " -> Come");
+        esperarSiPausado();
         sacarComedor(i);
     }
 
@@ -157,7 +173,12 @@ public class Juego {
         try {
             colaComedor.put("Comida");
             colaComedor.put("Comida");
-            String cantidadCeros = String.format("%04d", colaComedor.size());
+            String cantidadCeros;
+            if (colaComedor.size() > 9999) {
+                cantidadCeros = String.format("%05d", colaComedor.size());
+            } else {
+                cantidadCeros = String.format("%04d", colaComedor.size());
+            }
             textoComida.setText(cantidadCeros);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

@@ -25,7 +25,9 @@ public class Humano extends Thread {
     public Humano(Juego juego, int id) {
         this.id = id;
         this.juego = juego;
-        String StringCeros = String.format("%04d", id);
+        int num = 4;
+        String formato = "%0" + num + "d";
+        String StringCeros = String.format(formato, id);
         super.setName("H" + StringCeros);
     }
 
@@ -55,19 +57,20 @@ public class Humano extends Thread {
 
     private void convertirseEnZombie(int tunel) {
         vivo = false;  // Marca al humano como muerto
+        juego.esperarSiPausado();
         juego.sacarZonaRiesgoIzq(this, tunel); // asegurarse de limpiar
         log.warning("Humano " + this.getName() + " -> Muerto");
+        juego.esperarSiPausado();
         Zombie z = new Zombie(juego, id);
         z.start();
     }
 
-    private void dormir(long tiempo) {
+    public void dormir(long tiempo) {
         long dormido = 0;
         long intervalo = 100; // Intervalo de sueño corto (100 ms)
 
         while (dormido < tiempo) {
             juego.esperarSiPausado();
-
             try {
                 long restante = Math.min(intervalo, tiempo - dormido);
                 sleep(restante);
@@ -85,7 +88,7 @@ public class Humano extends Thread {
                 // Zona común (1-2 segundos)
                 juego.esperarSiPausado();
                 juego.meterZonaComun(this);
-                dormir((long) (TIEMPO_ZONA_COMUN + random.nextDouble()*2000));
+                dormir((long) (TIEMPO_ZONA_COMUN + random.nextDouble() * 2000));
                 juego.esperarSiPausado();
 
                 // Selección de túnel
@@ -97,18 +100,16 @@ public class Humano extends Thread {
                 // Zona exterior (3-5 segundos)
                 juego.esperarSiPausado();
                 juego.meterZonaRiesgoIzq(this, tunel);
-                dormir((long) (TIEMPO_ZONA_RIESGO+ random.nextDouble()*2000));
+                dormir((long) (TIEMPO_ZONA_RIESGO + random.nextDouble() * 2000));
 
-                while (siendoAtacado && vivo){
-                    juego.esperarSiPausado();
-                    dormir(500);
-                    juego.esperarSiPausado();
-                    if(Thread.currentThread().isInterrupted()){
-                        juego.esperarSiPausado();
+                while (siendoAtacado && vivo) {
+                    dormir(100);
+                    if (Thread.currentThread().isInterrupted()) {
                         convertirseEnZombie(tunel);
                         return;
                     }
                 }
+
                 juego.esperarSiPausado();
                 juego.sacarZonaRiesgoIzq(this, tunel);
 
@@ -117,7 +118,7 @@ public class Humano extends Thread {
                 juego.cruzarVuelta(this, tunel);
                 // Depositar comida
 
-                if (comida){
+                if (comida) {
                     juego.esperarSiPausado();
                     juego.dejarComida();
                     comida = false;
@@ -126,7 +127,7 @@ public class Humano extends Thread {
                 // Zona de descanso
                 juego.esperarSiPausado();
                 juego.meterZonaDescanso(this);
-                dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble()*2000));
+                dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble() * 2000));
                 juego.esperarSiPausado();
                 juego.sacarZonaDescanso(this);
 
@@ -139,7 +140,7 @@ public class Humano extends Thread {
                 if (herido) {
                     juego.esperarSiPausado();
                     juego.meterZonaDescanso(this);
-                    dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble()*2000));
+                    dormir((long) (TIEMPO_ZONA_DESCANSO + random.nextDouble() * 2000));
                     this.herido = false;
                     juego.esperarSiPausado();
                     juego.sacarZonaDescanso(this);
@@ -153,6 +154,7 @@ public class Humano extends Thread {
                     return;
                 }
             }
+
         }
     }
 }

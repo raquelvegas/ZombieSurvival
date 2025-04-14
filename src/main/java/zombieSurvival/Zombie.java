@@ -41,7 +41,7 @@ public class Zombie extends Thread {
         }
     }
 
-    private void atacar(Humano h, int zona) {
+    private void atacar(Humano h) {
         dormir((long) (TIEMPO_ATAQUE + random.nextDouble() * 500));
 
         if (h != null && h.isAlive()) {
@@ -68,7 +68,7 @@ public class Zombie extends Thread {
 
             if (objetivo != null) {
                 juego.esperarSiPausado();
-                atacar(objetivo, zona); // Ataca solo a uno
+                atacar(objetivo); // Ataca solo a uno
             }
 
             // Espera en la zona aunque no haya podido atacar
