@@ -7,7 +7,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ZonaRiesgoH {
     private ListaHilos humanos;
-    private Lock cerrojoAdd = new ReentrantLock();
     private ArrayList<Humano> humanosDisponibles = new ArrayList<>();
     private Lock cerrojo = new ReentrantLock();
     private Random random = new Random();
