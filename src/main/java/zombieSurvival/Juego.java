@@ -21,7 +21,7 @@ public class Juego {
     private ArrayList<ListaHilos> vueltaTuneles;
     private ArrayList<ZonaRiesgoH> riesgoIzq;
     private ArrayList<ListaHilos> riesgoDch;
-    private LinkedBlockingDeque<String> colaComedor = new LinkedBlockingDeque<>();
+    private LinkedBlockingDeque<String> colaComedor = new LinkedBlockingDeque<>(); // Deque == Queue pero se puede insertar/extraer por el principio y por el final
     private ArrayList<CyclicBarrier> barrerasTuneles = new ArrayList<>();
     private boolean enPausa = false;
     private Random random = new Random();
