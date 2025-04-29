@@ -1,5 +1,6 @@
 package zombieSurvival;
 
+import com.almasb.fxgl.app.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,6 +53,7 @@ public class ControladorNuevaInterfaz {
     @FXML
     private Spinner<Cancion> reproductor;
 
+    Stage mainStage;
     Stage infoStage = new Stage();
     ControladorInfo controllerInfo = new ControladorInfo();
 
@@ -63,6 +65,9 @@ public class ControladorNuevaInterfaz {
     private int idiomaActual = 0;
     private Juego juego = null;
 
+    public void setStage(Stage stage){
+        mainStage = stage;
+    }
 
     @FXML
     void abrirInfo(ActionEvent event) {
@@ -82,6 +87,7 @@ public class ControladorNuevaInterfaz {
             controllerInfo.infoCroata();
         }
 
+        mainStage.getScene().getRoot().setDisable(true);
         infoWindow = true;
         infoStage.show();
     }
@@ -261,7 +267,11 @@ public class ControladorNuevaInterfaz {
             infoStage.setAlwaysOnTop(true);
 
             infoWindow = false;
-            infoStage.setOnCloseRequest(e -> infoWindow = false);
+            infoStage.setOnCloseRequest(e -> {
+                infoWindow = false;
+                mainStage.getScene().getRoot().setDisable(false);
+            });
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);

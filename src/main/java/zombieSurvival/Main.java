@@ -67,6 +67,7 @@ public class Main extends Application {
         mainStage.setTitle("Zombies Survival");
         mainStage.setScene(new Scene(root));
         mainStage.setResizable(false);
+        controller.setStage(mainStage);
 
         // Configurar la alerta de salida para la ventana principal
         mainStage.setOnCloseRequest(event -> {
