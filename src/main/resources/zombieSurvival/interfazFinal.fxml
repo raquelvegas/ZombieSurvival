@@ -21,7 +21,7 @@
         <ToolBar prefHeight="38.0" prefWidth="1137.0">
          <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="260.0">
             <children>
-               <Button fx:id="comoJugar" mnemonicParsing="false" text="Cómo jugar" />
+               <Button fx:id="info" mnemonicParsing="false" onAction="#abrirInfo" text="Información" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="      " />
                   <MenuButton fx:id="idioma" mnemonicParsing="false" text="Idioma">
                       <items>

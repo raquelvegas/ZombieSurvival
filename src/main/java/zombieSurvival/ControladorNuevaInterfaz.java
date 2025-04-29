@@ -2,14 +2,19 @@ package zombieSurvival;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import zombieSurvival.configuracionesAdicionales.Cancion;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,20 +26,20 @@ public class ControladorNuevaInterfaz {
             refugioTitle, tunelTitle, riesgoTitle, descansoTitle,
             colaComedorTitle, comiendoTitle, comedorTitle, comidaTitle, zonaComunTitle,
 
-            descansoText, colaComedorText, comedorText, comidaCount, zonaComunText,
+    descansoText, colaComedorText, comedorText, comidaCount, zonaComunText,
 
-            tunel0IzqText, tunel0MidText, tunel0DchText,
+    tunel0IzqText, tunel0MidText, tunel0DchText,
             tunel1IzqText, tunel1MidText, tunel1DchText,
             tunel2IzqText, tunel2MidText, tunel2DchText,
             tunel3IzqText, tunel3MidText, tunel3DchText,
 
-            riesgo0IzqText, riesgo0DchText,
+    riesgo0IzqText, riesgo0DchText,
             riesgo1IzqText, riesgo1DchText,
             riesgo2IzqText, riesgo2DchText,
             riesgo3IzqText, riesgo3DchText;
 
     @FXML
-    private Button mute, pausa, comoJugar;
+    private Button mute, pausa, info;
 
     @FXML
     private ToggleGroup grupoIdioma;
@@ -47,14 +52,39 @@ public class ControladorNuevaInterfaz {
     @FXML
     private Spinner<Cancion> reproductor;
 
+    Stage infoStage = new Stage();
+    ControladorInfo controllerInfo = new ControladorInfo();
+
     private Random random = new Random();
     private MediaPlayer mediaPlayer;
-    private boolean isMuted = false;
-    private boolean isPausado = false;
+    private boolean isMuted = false, isPausado = false, infoWindow = false;
     private final List<Cancion> canciones = new ArrayList<>();
     private int cancionActual = 0;
     private int idiomaActual = 0;
     private Juego juego = null;
+
+
+    @FXML
+    void abrirInfo(ActionEvent event) {
+        if (infoWindow) return;
+
+        if (idiomaActual == 0) {
+            infoStage.setTitle("Información");
+            controllerInfo.infoEspanol();
+        } else if (idiomaActual == 1) {
+            infoStage.setTitle("Information");
+            controllerInfo.infoIngles();
+        } else if (idiomaActual == 2) {
+            infoStage.setTitle("Informations");
+            controllerInfo.infoFrances();
+        } else {
+            infoStage.setTitle("Informacija");
+            controllerInfo.infoCroata();
+        }
+
+        infoWindow = true;
+        infoStage.show();
+    }
 
     @FXML
     public void cambiarCancionPorFlecha(MouseEvent event) {
@@ -142,6 +172,7 @@ public class ControladorNuevaInterfaz {
     @FXML
     public void initialize() {
         iniciarMusica();
+        iniciarInfo();
 
         // Inicialización de las zonas
         ListaHilos zonaComun = new ListaHilos(zonaComunText);
@@ -181,7 +212,6 @@ public class ControladorNuevaInterfaz {
         tunelesVuelta.add(tunel3Dch);
 
 
-
         ListaHilos riesgo0Izq = new ListaHilos(riesgo0IzqText);
         ListaHilos riesgo1Izq = new ListaHilos(riesgo1IzqText);
         ListaHilos riesgo2Izq = new ListaHilos(riesgo2IzqText);
@@ -195,8 +225,6 @@ public class ControladorNuevaInterfaz {
 
         ArrayList<ZonaRiesgoH> riesgoIzq = new ArrayList<>();
         riesgoIzq.addAll(Arrays.asList(riesgoIzq0, riesgoIzq1, riesgoIzq2, riesgoIzq3));
-
-
 
 
         ListaHilos riesgo0Dch = new ListaHilos(riesgo0DchText);
@@ -221,6 +249,24 @@ public class ControladorNuevaInterfaz {
                 javafx.collections.FXCollections.observableArrayList(canciones)
         ));
         reproductor.getValueFactory().setValue(canciones.get(cancionActual));
+    }
+
+    private void iniciarInfo() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
+            Parent root = loader.load();
+            controllerInfo = loader.getController();
+            infoStage.setScene(new Scene(root));
+            infoStage.setResizable(false);
+            infoStage.setAlwaysOnTop(true);
+
+            infoWindow = false;
+            infoStage.setOnCloseRequest(e -> infoWindow = false);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void reproducirCancion(int index) {
@@ -265,7 +311,7 @@ public class ControladorNuevaInterfaz {
 
         if (idiomaActual == 0) {
             idioma.setText("Idioma");
-            comoJugar.setText("Cómo Jugar");
+            info.setText("información");
             if (isPausado) {
                 pausa.setText("▶ Jugar");
             } else {
@@ -284,7 +330,7 @@ public class ControladorNuevaInterfaz {
 
         } else if (idiomaActual == 1) {
             idioma.setText("Language");
-            comoJugar.setText("How to Play");
+            info.setText("Information");
             if (isPausado) {
                 pausa.setText("▶ Play");
             } else {
@@ -303,7 +349,7 @@ public class ControladorNuevaInterfaz {
 
         } else if (idiomaActual == 2) {
             idioma.setText("Langue");
-            comoJugar.setText("Comment Jouer");
+            info.setText("Informations");
             if (isPausado) {
                 pausa.setText("▶ Jouer");
             } else {
@@ -322,7 +368,7 @@ public class ControladorNuevaInterfaz {
 
         } else if (idiomaActual == 3) {
             idioma.setText("Jezik");
-            comoJugar.setText("Kako Igrati");
+            info.setText("Informacija");
             if (isPausado) {
                 pausa.setText("▶ Igraj");
             } else {
@@ -342,11 +388,11 @@ public class ControladorNuevaInterfaz {
 
     }
 
-    public Juego getJuego(){
+    public Juego getJuego() {
         return juego;
     }
 
-    public int getCancionActual(){
+    public int getCancionActual() {
         return cancionActual;
     }
 }
