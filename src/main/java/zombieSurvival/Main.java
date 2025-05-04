@@ -124,6 +124,7 @@ public class Main extends Application {
             for (int i = 1; i < 600; i++) {
                 Humano ind = new Humano(controller.getJuego(), i);
                 ind.start();
+                controller.getJuego().esperarSiPausado();
                 try {
                     Thread.sleep((long) (0.5 + (1.5 * random.nextDouble())) * 1000); // medio segundo
                 } catch (InterruptedException e) {
