@@ -30,9 +30,9 @@
                            <ToggleGroup fx:id="grupoIdioma" />
                         </toggleGroup>
                      </RadioMenuItem>
-                     <RadioMenuItem fx:id="ingles" mnemonicParsing="false" onAction="#cambiarIdioma" text="Inglés" toggleGroup="$grupoIdioma" />
-                     <RadioMenuItem fx:id="frances" mnemonicParsing="false" onAction="#cambiarIdioma" text="Francés" toggleGroup="$grupoIdioma" />
-                     <RadioMenuItem fx:id="croata" mnemonicParsing="false" onAction="#cambiarIdioma" text="Croata" toggleGroup="$grupoIdioma" />
+                     <RadioMenuItem fx:id="ingles" mnemonicParsing="false" onAction="#cambiarIdioma" text="English" toggleGroup="$grupoIdioma" />
+                     <RadioMenuItem fx:id="frances" mnemonicParsing="false" onAction="#cambiarIdioma" text="Français" toggleGroup="$grupoIdioma" />
+                     <RadioMenuItem fx:id="croata" mnemonicParsing="false" onAction="#cambiarIdioma" text="Hrvatski" toggleGroup="$grupoIdioma" />
                       </items>
                   </MenuButton>
             </children>

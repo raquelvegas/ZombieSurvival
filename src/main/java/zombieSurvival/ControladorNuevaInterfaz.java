@@ -86,7 +86,7 @@ public class ControladorNuevaInterfaz {
             infoStage.setTitle("Informacija");
             controllerInfo.infoCroata();
         }
-
+        pausar(null);
         mainStage.getScene().getRoot().setDisable(true);
         infoWindow = true;
         infoStage.show();
@@ -269,6 +269,7 @@ public class ControladorNuevaInterfaz {
             infoWindow = false;
             infoStage.setOnCloseRequest(e -> {
                 infoWindow = false;
+                pausar(null);
                 mainStage.getScene().getRoot().setDisable(false);
             });
 
