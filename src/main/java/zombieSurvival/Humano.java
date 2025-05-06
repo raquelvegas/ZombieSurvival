@@ -151,11 +151,8 @@ public class Humano extends Thread {
                 if (!vivo || Thread.currentThread().isInterrupted()) {
                     juego.esperarSiPausado();
                     convertirseEnZombie(tunel);
-                    return;
                 }
             }
-
         }
     }
 }
-
