@@ -3,10 +3,15 @@ package zombieSurvival;
 import javafx.scene.text.Text;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Juego {
     private ListaHilos zonaComun;
@@ -24,6 +29,8 @@ public class Juego {
     private ArrayList<CyclicBarrier> barrerasTuneles = new ArrayList<>();
     private boolean enPausa = false;
     private Random random = new Random();
+    private List<Zombie> zombies = new ArrayList<>();
+    private Lock cerrojoZ = new ReentrantLock();
     private static final LogConfig log = new LogConfig();
 
 
@@ -44,6 +51,23 @@ public class Juego {
             barrerasTuneles.add(new CyclicBarrier(3));
             tuneles.add(new Tunel(i));
         }
+    }
+
+    public void nuevoZombie(Zombie z) {
+        cerrojoZ.lock();
+        try {
+            zombies.add(z);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrojoZ.unlock();
+        }
+    }
+
+    public ArrayList<Zombie> zombiesMortales() {
+        zombies.sort(Comparator.comparingInt(Zombie::getMuertes));
+
+        return new ArrayList<>(zombies.subList(0, Math.min(3, zombies.size())));
     }
 
     public ListaHilos getZonaComun() {

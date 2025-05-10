@@ -131,6 +131,7 @@ public class MainServidor extends Application {
                 // Crear un zombie
                 for (int i = 0; i < 1; i++) {
                     Zombie z = new Zombie(controller.getJuego(), i);
+                    controller.getJuego().nuevoZombie(z);
                     z.start();
                 }
 

@@ -2,6 +2,8 @@ package zombieSurvival;
 
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -21,6 +23,10 @@ public class Zombie extends Thread {
         this.id = id;
         String StringCeros = String.format("%04d", id);
         super.setName("Z" + StringCeros);
+    }
+
+    public int getMuertes(){
+        return contadorMuertes;
     }
 
     private void dormir(long tiempo) {

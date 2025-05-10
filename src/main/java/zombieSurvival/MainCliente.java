@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.rmi.Naming;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -53,17 +54,43 @@ public class MainCliente extends Application {
                     Integer humanosR1 = informacion.humanosRiesgo1();
                     controladorRemoto.sethR1(String.valueOf(humanosR1));
                     Integer humanosR2 = informacion.humanosRiesgo2();
-                    controladorRemoto.sethR1(String.valueOf(humanosR2));
+                    controladorRemoto.sethR2(String.valueOf(humanosR2));
                     Integer humanosR3 = informacion.humanosRiesgo3();
-                    controladorRemoto.sethR1(String.valueOf(humanosR3));
+                    controladorRemoto.sethR3(String.valueOf(humanosR3));
                     Integer humanosR4 = informacion.humanosRiesgo4();
-                    controladorRemoto.sethR1(String.valueOf(humanosR4));
+                    controladorRemoto.sethR4(String.valueOf(humanosR4));
 
                     // Riesgo zombies
+                    Integer zombiesR1 = informacion.zombisRiesgo1();
+                    controladorRemoto.setzR1(String.valueOf(zombiesR1));
+                    Integer zombiesR2 = informacion.zombisRiesgo2();
+                    controladorRemoto.setzR2(String.valueOf(zombiesR2));
+                    Integer zombiesR3 = informacion.zombisRiesgo3();
+                    controladorRemoto.setzR3(String.valueOf(zombiesR3));
+                    Integer zombiesR4 = informacion.zombisRiesgo4();
+                    controladorRemoto.setzR4(String.valueOf(zombiesR4));
 
+                    // Zombies mortales
+//                    ArrayList<Zombie> zombs = informacion.zombiesLetales();
+//                    if (!zombs.isEmpty()) {
+//                        Zombie zom1 = zombs.getFirst();
+//                        String ms1 = zom1.getName() + " - " + zom1.getMuertes() + " muertes";
+//                        controladorRemoto.setMuertes1(ms1);
+//                        if (zombs.size() > 1) {
+//                            Zombie zom2 = zombs.get(1);
+//                            String ms2 = zom2.getName() + " - " + zom2.getMuertes() + " muertes";
+//                            controladorRemoto.setMuertes2(ms2);
+//                            if (zombs.size() > 2) {
+//                                Zombie zom3 = zombs.get(2);
+//                                String ms3 = zom3.getName() + " - " + zom3.getMuertes() + " muertes";
+//                                controladorRemoto.setMuertes3(ms3);
+//                            }
+//                        }
+//                    }
                 }
             } catch (Exception e) {
-                System.out.println("Error | Clase -> MainCliente | Método -> main | Excepcion en la localización del objeto distribuido");            }
+                e.printStackTrace();
+            }
         });
     }
 }

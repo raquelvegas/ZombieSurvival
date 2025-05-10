@@ -79,6 +79,6 @@ public class InformacionServidor extends UnicastRemoteObject implements Interfaz
 
     @Override
     public ArrayList<Zombie> zombiesLetales() throws RemoteException {
-        return null;
+        return juego.zombiesMortales();
     }
 }
