@@ -62,6 +62,10 @@ public class Juego {
         return colaComedorTxt;
     }
 
+//    public Integer humanosEnTunel(int i) {
+//
+//    }
+
     public void meterZonaComun(Humano i){
         zonaComun.meter(i);
         log.logInfo("HUMANO " + i.getName() + " -> Zona Común");

@@ -7,10 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.net.InetAddress;
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -33,7 +31,8 @@ public class MainCliente extends Application {
 
         executor.submit(() -> {
             try {
-                InterfazRMI informacion = (InterfazRMI) Naming.lookup("//127.0.0.1/Informacion");
+                String equipo = InetAddress.getLocalHost().getHostAddress();
+                InterfazRMI informacion = (InterfazRMI) Naming.lookup("//" + equipo + "/Informacion");
                 while (controladorRemoto.isStart()) {
                     Integer humanosRefugio = informacion.humanosEnRefugio();
                     controladorRemoto.sethRefugio(String.valueOf(humanosRefugio));

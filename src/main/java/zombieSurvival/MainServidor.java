@@ -20,7 +20,9 @@ import javafx.util.Duration;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -122,7 +124,8 @@ public class MainServidor extends Application {
             // RMI
             InformacionServidor informacion = new InformacionServidor(controller.getJuego());
             Registry registro = LocateRegistry.createRegistry(1099);
-            Naming.rebind("//127.0.0.1/Informacion", informacion);
+            String equipo = InetAddress.getLocalHost().getHostAddress();
+            Naming.rebind("//" + equipo + "/Informacion", informacion);
 
 
             new Thread(() -> {
@@ -146,6 +149,8 @@ public class MainServidor extends Application {
             }).start();
         } catch (RemoteException | MalformedURLException e) {
             log.logWarning("ERROR | Clase -> MainServidor | Método -> iniciarSimulacion | Excepcion -> RemoteException");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
         }
     }
 
