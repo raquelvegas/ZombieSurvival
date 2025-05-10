@@ -11,6 +11,8 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainCliente extends Application {
     @Override
@@ -19,20 +21,26 @@ public class MainCliente extends Application {
         Stage remoteStage = new Stage();
         FXMLLoader loader = new FXMLLoader(MainCliente.class.getResource("zombiesRemoto.fxml"));
         Parent root = loader.load(); // Cargar el FXML
+        ControladorRemoto controladorRemoto = loader.getController();
         remoteStage.setTitle("Zombies Survival - Remoto");
         remoteStage.setScene(new Scene(root));
         remoteStage.setResizable(false);
         remoteStage.show();
+        controladorRemoto.setStart(true);
 
 
-        try {
-            InterfazRMI informacion = (InterfazRMI) Naming.lookup("//127.0.0.1/Informacion");
-            for (int i = 0; i < 3; i++) {
-                Integer humanoRefugio = informacion.humanosEnRefugio();
-                System.out.println(humanoRefugio);
-            }
-        } catch (NotBoundException | MalformedURLException | RemoteException e) {
-            System.out.println("Error | Clase -> MainCliente | Método -> main | Excepcion en la localización del objeto distribuido");
-        }
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        executor.submit(() -> {
+            try {
+                InterfazRMI informacion = (InterfazRMI) Naming.lookup("//127.0.0.1/Informacion");
+                while (controladorRemoto.isStart()) {
+                    Integer humanosRefugio = informacion.humanosEnRefugio();
+                    controladorRemoto.sethRefugio(String.valueOf(humanosRefugio));
+                    Thread.sleep(1000);
+                }
+            } catch (Exception e) {
+                System.out.println("Error | Clase -> MainCliente | Método -> main | Excepcion en la localización del objeto distribuido");            }
+        });
     }
 }

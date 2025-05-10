@@ -120,7 +120,7 @@ public class MainServidor extends Application {
             log.logInfo("INICIO DE LA EJECUCIÓN");
 
             // RMI
-            InformacionServidor informacion = new InformacionServidor();
+            InformacionServidor informacion = new InformacionServidor(controller.getJuego());
             Registry registro = LocateRegistry.createRegistry(1099);
             Naming.rebind("//127.0.0.1/Informacion", informacion);
 

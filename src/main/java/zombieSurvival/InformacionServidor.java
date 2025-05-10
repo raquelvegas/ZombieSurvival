@@ -5,11 +5,16 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class InformacionServidor extends UnicastRemoteObject implements InterfazRMI {
-    public InformacionServidor() throws RemoteException {}
+    Juego juego;
+
+    public InformacionServidor(Juego juego) throws RemoteException {
+        this.juego = juego;
+    }
 
     @Override
     public Integer humanosEnRefugio() throws RemoteException {
-        return 20;
+        Integer humanos = juego.getZonaComun().getSize() + juego.getZonaDescanso().getSize() + juego.getColaComedorTxt().getSize() + juego.getComiendo().getSize();
+        return humanos;
     }
 
     @Override

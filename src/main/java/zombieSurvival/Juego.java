@@ -46,6 +46,22 @@ public class Juego {
         }
     }
 
+    public ListaHilos getZonaComun() {
+        return zonaComun;
+    }
+
+    public ListaHilos getZonaDescanso() {
+        return zonaDescanso;
+    }
+
+    public ListaHilos getComiendo() {
+        return comiendo;
+    }
+
+    public ListaHilos getColaComedorTxt() {
+        return colaComedorTxt;
+    }
+
     public void meterZonaComun(Humano i){
         zonaComun.meter(i);
         log.logInfo("HUMANO " + i.getName() + " -> Zona Común");
