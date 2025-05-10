@@ -28,8 +28,8 @@ public class MainCliente extends Application {
         controladorRemoto.setStart(true);
 
 
+        // Generamos un nuevo hilo mediante un pool de hilos para que se encargue de actualizar la información en tiepo real
         ExecutorService executor = Executors.newSingleThreadExecutor();
-
         executor.submit(() -> {
             try {
                 InterfazRMI informacion = (InterfazRMI) Naming.lookup("//192.168.157.1/Informacion");

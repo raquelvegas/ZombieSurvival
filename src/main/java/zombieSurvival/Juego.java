@@ -52,48 +52,8 @@ public class Juego {
         }
     }
 
-    public void nuevoZombie(Zombie z) {
-        cerrojoZ.lock();
-        try {
-            zombies.add(z);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            cerrojoZ.unlock();
-        }
-    }
 
-    public ArrayList<String> nombresZombiesMortales() {
-        zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
-        ArrayList<String> nombres = new ArrayList<>();
-        if (!zombies.isEmpty()) {
-            nombres.add(zombies.get(0).getName());
-            if (zombies.size() > 1) {
-                nombres.add(zombies.get(1).getName());
-                if (zombies.size() > 2) {
-                    nombres.add(zombies.get(2).getName());
-                }
-            }
-        }
-        return nombres;
-    }
-
-    public ArrayList<Integer> muertesZombiesMortales() {
-        zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
-        ArrayList<Integer> muertes = new ArrayList<>();
-        if (!zombies.isEmpty()) {
-            muertes.add(zombies.get(0).getMuertes());
-            if (zombies.size() > 1) {
-                muertes.add(zombies.get(1).getMuertes());
-                if (zombies.size() > 2) {
-                    muertes.add(zombies.get(2).getMuertes());
-                }
-            }
-        }
-
-        return muertes;
-    }
-
+    // Getters y Setters
     public ListaHilos getZonaComun() {
         return zonaComun;
     }
@@ -108,6 +68,67 @@ public class Juego {
 
     public ListaHilos getColaComedorTxt() {
         return colaComedorTxt;
+    }
+
+    public ArrayList<ZonaRiesgoH> getRiesgoIzq() {
+        return riesgoIzq;
+    }
+
+
+    // Funciones RMI
+    public void nuevoZombie(Zombie z) {
+        cerrojoZ.lock();
+        try {
+            zombies.add(z);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrojoZ.unlock();
+        }
+    }
+
+    public ArrayList<String> nombresZombiesMortales() {
+        ArrayList<String> nombres = new ArrayList<>();
+        cerrojoZ.lock();
+        try {
+            zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
+            if (!zombies.isEmpty()) {
+                nombres.add(zombies.get(0).getName());
+                if (zombies.size() > 1) {
+                    nombres.add(zombies.get(1).getName());
+                    if (zombies.size() > 2) {
+                        nombres.add(zombies.get(2).getName());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrojoZ.unlock();
+        }
+        return nombres;
+    }
+
+    public ArrayList<Integer> muertesZombiesMortales() {
+        ArrayList<Integer> muertes = new ArrayList<>();
+        cerrojoZ.unlock();
+        try {
+            zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
+            if (!zombies.isEmpty()) {
+                muertes.add(zombies.get(0).getMuertes());
+                if (zombies.size() > 1) {
+                    muertes.add(zombies.get(1).getMuertes());
+                    if (zombies.size() > 2) {
+                        muertes.add(zombies.get(2).getMuertes());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrojoZ.unlock();
+        }
+        return muertes;
     }
 
     public Integer humanosEnTunel(int i) {
@@ -129,6 +150,8 @@ public class Juego {
         return riesgoDch.get(i).getSize();
     }
 
+
+    // Métodos de impresión
     public void meterZonaComun(Humano i){
         zonaComun.meter(i);
         log.logInfo("HUMANO " + i.getName() + " -> Zona Común");
@@ -179,6 +202,35 @@ public class Juego {
         colaComedorTxt.sacar(i);
     }
 
+
+    // Métodos play / pause
+    public synchronized void pausar() {
+        enPausa = true;
+        log.logInfo("Juego en pausa");
+    }
+
+    public synchronized void reanudar() {
+        enPausa = false;
+        notifyAll();  // Despierta a los hilos esperando
+        log.logInfo("Juego reanudado");
+    }
+
+    public synchronized void esperarSiPausado() {
+        while (enPausa) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();  // Respeta la interrupción
+            }
+        }
+    }
+
+    public boolean estaEnPausa() {
+        return enPausa;
+    }
+
+
+    // Otros métodos
     public void cruzarIda(Humano i, int tunel) {
         esperarSiPausado();
         entrarEsperaTunel(i, tunel);
@@ -273,34 +325,5 @@ public class Juego {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public ArrayList<ZonaRiesgoH> getRiesgoIzq() {
-        return riesgoIzq;
-    }
-
-    public synchronized void pausar() {
-        enPausa = true;
-        log.logInfo("Juego en pausa");
-    }
-
-    public synchronized void reanudar() {
-        enPausa = false;
-        notifyAll();  // Despierta a los hilos esperando
-        log.logInfo("Juego reanudado");
-    }
-
-    public synchronized void esperarSiPausado() {
-        while (enPausa) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();  // Respeta la interrupción
-            }
-        }
-    }
-
-    public boolean estaEnPausa() {
-        return enPausa;
     }
 }
