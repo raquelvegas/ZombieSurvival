@@ -18,11 +18,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
+import zombieSurvival.distribuida.InformacionServidor;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Optional;
 import java.util.Random;
-import java.util.logging.Logger;
 
 public class Main extends Application {
     private static final LogConfig log = new LogConfig();
@@ -111,27 +117,38 @@ public class Main extends Application {
 
     // Método que inicia la simulación después de la pantalla de carga
     private void iniciarSimulacion() {
-        log.logInfo("INICIO DE LA EJECUCIÓN");
         // Inicialización de la simulación, solo después de que la pantalla de carga haya terminado
-        new Thread(() -> {
-            // Crear un zombie
-            for (int i = 0; i < 1; i++) {
-                Zombie z = new Zombie(controller.getJuego(), i);
-                z.start();
-            }
+        try {
+            log.logInfo("INICIO DE LA EJECUCIÓN");
 
-            // Crear los humanos
-            for (int i = 1; i < 600; i++) {
-                Humano ind = new Humano(controller.getJuego(), i);
-                ind.start();
-                controller.getJuego().esperarSiPausado();
-                try {
-                    Thread.sleep((long) (0.5 + (1.5 * random.nextDouble())) * 1000); // medio segundo
-                } catch (InterruptedException e) {
-                    System.out.println("ERROR | Clase -> Main | Método -> iniciarSimulación");
+            // RMI
+            InformacionServidor informacion = new InformacionServidor();
+            Registry registro = LocateRegistry.createRegistry(1099);
+            Naming.rebind("//127.0.0.1/Informacion", informacion);
+
+
+            new Thread(() -> {
+                // Crear un zombie
+                for (int i = 0; i < 1; i++) {
+                    Zombie z = new Zombie(controller.getJuego(), i);
+                    z.start();
                 }
-            }
-        }).start();
+
+                // Crear los humanos
+                for (int i = 1; i < 600; i++) {
+                    Humano ind = new Humano(controller.getJuego(), i);
+                    ind.start();
+                    controller.getJuego().esperarSiPausado();
+                    try {
+                        Thread.sleep((long) (0.5 + (1.5 * random.nextDouble())) * 1000); // medio segundo
+                    } catch (InterruptedException e) {
+                        System.out.println("ERROR | Clase -> Main | Método -> iniciarSimulación");
+                    }
+                }
+            }).start();
+        } catch (RemoteException | MalformedURLException e) {
+            log.logWarning("ERROR | Clase -> Main | Método -> iniciarSimulacion | Excepcion -> RemoteException");
+        }
     }
 
     public static void main(String[] args) {
