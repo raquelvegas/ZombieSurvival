@@ -15,7 +15,7 @@ public class Tunel {
     private boolean ocupado = false;
     private int enEsperaEntrar = 0;
     private int enEsperaSalir = 0;
-    private static final Logger log = LogConfig.getLogger();
+    private static final LogConfig log = new LogConfig();
 
 
     public Tunel(int id) {
@@ -29,7 +29,7 @@ public class Tunel {
             while (ocupado) {
                 esperandoEntrar.await();
             }
-            log.info("HUMANO " + h.getName() + " -> Volviendo por el tunel " + id);
+            log.logInfo("HUMANO " + h.getName() + " -> Volviendo por el tunel " + id);
             enEsperaEntrar--;
             ocupado = true;
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class Tunel {
             while (ocupado || enEsperaEntrar > 0) {
                 esperandoSalir.await();
             }
-            log.info("HUMANO " + h.getName() + " -> Saliendo por el tunel " + id);
+            log.logInfo("HUMANO " + h.getName() + " -> Saliendo por el tunel " + id);
             enEsperaSalir--;
             ocupado = true;
         } catch (Exception e) {
@@ -62,10 +62,10 @@ public class Tunel {
             ocupado = false;
             if (enEsperaEntrar > 0) {
                 esperandoEntrar.signal();
-                log.info("Tunel " + id + " -> Despierta a un hilo que quiere entrar.");
+                log.logInfo("Tunel " + id + " -> Despierta a un hilo que quiere entrar.");
             } else {
                 esperandoSalir.signal();
-                log.info("Tunel " + id + " -> Despierta a un hilo que quiere salir.");
+                log.logInfo("Tunel " + id + " -> Despierta a un hilo que quiere salir.");
             }
         } catch (Exception e) {
             System.out.println("Error | Clase -> Tunel | Método -> salirDelTunel");

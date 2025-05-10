@@ -25,7 +25,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 public class Main extends Application {
-    private static final Logger log = LogConfig.getLogger();
+    private static final LogConfig log = new LogConfig();
     Stage mainStage = new Stage();
     ControladorNuevaInterfaz controller = new ControladorNuevaInterfaz();
     Random random = new Random();
@@ -78,7 +78,7 @@ public class Main extends Application {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                log.info("FIN DE LA EJECUCIÓN");
+                log.logInfo("FIN DE LA EJECUCIÓN");
                 Platform.exit();
                 System.exit(0);
             } else {
@@ -111,7 +111,7 @@ public class Main extends Application {
 
     // Método que inicia la simulación después de la pantalla de carga
     private void iniciarSimulacion() {
-        log.info("INICIO DE LA EJECUCIÓN");
+        log.logInfo("INICIO DE LA EJECUCIÓN");
         // Inicialización de la simulación, solo después de que la pantalla de carga haya terminado
         new Thread(() -> {
             // Crear un zombie

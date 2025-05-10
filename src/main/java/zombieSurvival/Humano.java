@@ -13,7 +13,7 @@ public class Humano extends Thread {
     private boolean siendoAtacado = false;
     private Random random = new Random();
     private boolean herido = false;
-    private static final Logger log = LogConfig.getLogger();
+    private static final LogConfig log = new LogConfig();
 
     private boolean vivo = true;
 
@@ -59,7 +59,7 @@ public class Humano extends Thread {
         vivo = false;  // Marca al humano como muerto
         juego.esperarSiPausado();
         juego.sacarZonaRiesgoIzq(this, tunel); // asegurarse de limpiar
-        log.warning("Humano " + this.getName() + " -> Muerto");
+        log.logWarning("Humano " + this.getName() + " -> Muerto");
         juego.esperarSiPausado();
         Zombie z = new Zombie(juego, id);
         z.start();

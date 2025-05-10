@@ -25,7 +25,7 @@ public class Juego {
     private ArrayList<CyclicBarrier> barrerasTuneles = new ArrayList<>();
     private boolean enPausa = false;
     private Random random = new Random();
-    private static final Logger log = LogConfig.getLogger();
+    private static final LogConfig log = new LogConfig();
 
 
     public Juego(ListaHilos zonaComun, ListaHilos zonaDescanso, ListaHilos colaComedor, ListaHilos comiendo, Text textoComida, ArrayList<ListaHilos> esperaTuneles, ArrayList<ListaHilos> tunelesTxt, ArrayList<ListaHilos> tunelesVuelta, ArrayList<ZonaRiesgoH> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
@@ -49,7 +49,7 @@ public class Juego {
 
     public void meterZonaComun(Humano i){
         zonaComun.meter(i);
-        log.info("HUMANO " + i.getName() + " -> Zona Común");
+        log.logInfo("HUMANO " + i.getName() + " -> Zona Común");
     }
 
     public void sacarZonaComun(Humano i){
@@ -58,7 +58,7 @@ public class Juego {
 
     public void meterZonaDescanso(Humano i) {
         zonaDescanso.meter(i);
-        log.info("HUMANO " + i.getName() + " -> Zona Descanso");
+        log.logInfo("HUMANO " + i.getName() + " -> Zona Descanso");
     }
 
     public void sacarZonaDescanso(Humano i) {
@@ -145,7 +145,7 @@ public class Juego {
     public void comer(Humano i) {
         esperarSiPausado();
         meterColaComedor(i);
-        log.info("HUMANO " + i.getName() + " -> Comedor");
+        log.logInfo("HUMANO " + i.getName() + " -> Comedor");
         try {
             esperarSiPausado();
             colaComedor.take();
@@ -164,7 +164,7 @@ public class Juego {
         } catch (InterruptedException e) {
             System.out.println("ERROR | Clase -> Juego | Método -> comer");
         }
-        log.info("HUMANO " + i.getName() + " -> Come");
+        log.logInfo("HUMANO " + i.getName() + " -> Come");
         esperarSiPausado();
         sacarComedor(i);
     }
@@ -191,13 +191,13 @@ public class Juego {
 
     public synchronized void pausar() {
         enPausa = true;
-        log.info("Juego en pausa");
+        log.logInfo("Juego en pausa");
     }
 
     public synchronized void reanudar() {
         enPausa = false;
         notifyAll();  // Despierta a los hilos esperando
-        log.info("Juego reanudado");
+        log.logInfo("Juego reanudado");
     }
 
     public synchronized void esperarSiPausado() {
