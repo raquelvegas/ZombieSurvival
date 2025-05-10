@@ -1,4 +1,4 @@
-package zombieSurvival.distribuida;
+package zombieSurvival;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;

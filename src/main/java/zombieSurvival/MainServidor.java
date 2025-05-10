@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
-import zombieSurvival.distribuida.InformacionServidor;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

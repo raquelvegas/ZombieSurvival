@@ -1,4 +1,4 @@
-package zombieSurvival.distribuida;
+package zombieSurvival;
 
 import zombieSurvival.Zombie;
 

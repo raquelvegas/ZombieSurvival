@@ -1,6 +1,4 @@
-package zombieSurvival.distribuida;
-
-import zombieSurvival.Zombie;
+package zombieSurvival;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

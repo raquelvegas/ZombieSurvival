@@ -15,9 +15,7 @@ module com.example.zombiesprueba {
     requires java.rmi;
 
     opens zombieSurvival to javafx.fxml;
-    opens zombieSurvival.distribuida to javafx.fxml;
     exports zombieSurvival;
-    exports zombieSurvival.distribuida;
     exports zombieSurvival.configuracionesAdicionales;
     opens zombieSurvival.configuracionesAdicionales to javafx.fxml;
 }
