@@ -3,7 +3,6 @@ package zombieSurvival;
 import javafx.scene.text.Text;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -64,10 +63,35 @@ public class Juego {
         }
     }
 
-    public ArrayList<Zombie> zombiesMortales() {
-        zombies.sort(Comparator.comparingInt(Zombie::getMuertes));
+    public ArrayList<String> nombresZombiesMortales() {
+        zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
+        ArrayList<String> nombres = new ArrayList<>();
+        if (!zombies.isEmpty()) {
+            nombres.add(zombies.get(0).getName());
+            if (zombies.size() > 1) {
+                nombres.add(zombies.get(1).getName());
+                if (zombies.size() > 2) {
+                    nombres.add(zombies.get(2).getName());
+                }
+            }
+        }
+        return nombres;
+    }
 
-        return new ArrayList<>(zombies.subList(0, Math.min(3, zombies.size())));
+    public ArrayList<Integer> muertesZombiesMortales() {
+        zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
+        ArrayList<Integer> muertes = new ArrayList<>();
+        if (!zombies.isEmpty()) {
+            muertes.add(zombies.get(0).getMuertes());
+            if (zombies.size() > 1) {
+                muertes.add(zombies.get(1).getMuertes());
+                if (zombies.size() > 2) {
+                    muertes.add(zombies.get(2).getMuertes());
+                }
+            }
+        }
+
+        return muertes;
     }
 
     public ListaHilos getZonaComun() {

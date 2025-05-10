@@ -23,54 +23,86 @@ public class ControladorRemoto {
     }
 
     public void sethRefugio(String m) {
-        hRefugio.setText(m);
+        if (m != null) {
+            hRefugio.setText(m);
+        }
     }
     public void setT1(String m) {
-        t1.setText(m);
+        if (m != null) {
+            t1.setText(m);
+        }
     }
     public void setT2(String m) {
+        if (m != null) {
         t2.setText(m);
+        }
     }
     public void setT3(String m) {
+        if (m != null) {
         t3.setText(m);
+        }
     }
     public void setT4(String m) {
-        t4.setText(m);
+        if (m != null) {
+            t4.setText(m);
+        }
     }
 
     public void sethR1(String m) {
-        hR1.setText(m);
+        if (m != null) {
+            hR1.setText(m);
+        }
     }
     public void sethR2(String m) {
-        hR2.setText(m);
+        if (m != null) {
+            hR2.setText(m);
+        }
     }
     public void sethR3(String m) {
-        hR3.setText(m);
+        if (m != null) {
+            hR3.setText(m);
+        }
     }
     public void sethR4(String m) {
-        hR4.setText(m);
+        if (m != null) {
+            hR4.setText(m);
+        }
     }
 
     public void setzR1(String m) {
-        zR1.setText(m);
+        if (m != null) {
+            zR1.setText(m);
+        }
     }
     public void setzR2(String m) {
-        zR2.setText(m);
+        if (m != null) {
+            zR2.setText(m);
+        }
     }
     public void setzR3(String m) {
-        zR3.setText(m);
+        if (m != null) {
+            zR3.setText(m);
+        }
     }
     public void setzR4(String m) {
-        zR4.setText(m);
+        if (m != null) {
+            zR4.setText(m);
+        }
     }
 
     public void setMuertes1(String m) {
-        muertes1.setText(m);
+        if (m != null) {
+            muertes1.setText(m);
+        }
     }
     public void setMuertes2(String m) {
-        muertes2.setText(m);
+        if (m != null) {
+            muertes2.setText(m);
+        }
     }
     public void setMuertes3(String m) {
+        if (m != null) {
         muertes3.setText(m);
+        }
     }
 }

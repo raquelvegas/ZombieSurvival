@@ -1,7 +1,5 @@
 package zombieSurvival;
 
-import zombieSurvival.Zombie;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -20,5 +18,6 @@ public interface InterfazRMI extends Remote {
     Integer zombisRiesgo2() throws RemoteException;
     Integer zombisRiesgo3() throws RemoteException;
     Integer zombisRiesgo4() throws RemoteException;
-    ArrayList<Zombie> zombiesLetales() throws RemoteException;
+    ArrayList<String> nombresZombiesLetales() throws RemoteException;
+    ArrayList<Integer> muertesZombiesLetales() throws RemoteException;
 }

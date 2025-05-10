@@ -32,8 +32,6 @@ public class MainCliente extends Application {
 
         executor.submit(() -> {
             try {
-                String equipo = InetAddress.getLocalHost().getHostAddress();
-                System.out.println(equipo);
                 InterfazRMI informacion = (InterfazRMI) Naming.lookup("//192.168.157.1/Informacion");
                 while (controladorRemoto.isStart()) {
                     // Refugio
@@ -71,22 +69,26 @@ public class MainCliente extends Application {
                     controladorRemoto.setzR4(String.valueOf(zombiesR4));
 
                     // Zombies mortales
-//                    ArrayList<Zombie> zombs = informacion.zombiesLetales();
-//                    if (!zombs.isEmpty()) {
-//                        Zombie zom1 = zombs.getFirst();
-//                        String ms1 = zom1.getName() + " - " + zom1.getMuertes() + " muertes";
-//                        controladorRemoto.setMuertes1(ms1);
-//                        if (zombs.size() > 1) {
-//                            Zombie zom2 = zombs.get(1);
-//                            String ms2 = zom2.getName() + " - " + zom2.getMuertes() + " muertes";
-//                            controladorRemoto.setMuertes2(ms2);
-//                            if (zombs.size() > 2) {
-//                                Zombie zom3 = zombs.get(2);
-//                                String ms3 = zom3.getName() + " - " + zom3.getMuertes() + " muertes";
-//                                controladorRemoto.setMuertes3(ms3);
-//                            }
-//                        }
-//                    }
+                    ArrayList<String> Nzombies = informacion.nombresZombiesLetales();
+                    ArrayList<Integer> Mzombies = informacion.muertesZombiesLetales();
+                    if (!Nzombies.isEmpty()) {
+                        String zom1 = Nzombies.getFirst();
+                        Integer Mzom1 = Mzombies.getFirst();
+                        String ms1 = zom1 + " - " + Mzom1 + " muertes";
+                        controladorRemoto.setMuertes1(ms1);
+                        if (Nzombies.size() > 1) {
+                            String zom2 = Nzombies.get(1);
+                            Integer Mzom2 = Mzombies.get(1);
+                            String ms2 = zom2 + " - " + Mzom2 + " muertes";
+                            controladorRemoto.setMuertes2(ms2);
+                            if (Nzombies.size() > 2) {
+                                String zom3 = Nzombies.get(2);
+                                Integer Mzom3 = Mzombies.get(2);
+                                String ms3 = zom3 + " - " + Mzom3 + " muertes";
+                                controladorRemoto.setMuertes3(ms3);
+                            }
+                        }
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
