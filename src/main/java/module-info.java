@@ -12,6 +12,7 @@ module com.example.zombiesprueba {
     requires com.almasb.fxgl.all;
     requires java.logging;
     requires javafx.media;
+    requires java.rmi;
 
     opens zombieSurvival to javafx.fxml;
     exports zombieSurvival;
