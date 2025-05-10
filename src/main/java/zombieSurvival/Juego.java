@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.logging.Logger;
 
 public class Juego {
     private ListaHilos zonaComun;
@@ -107,7 +106,11 @@ public class Juego {
         esperarSiPausado();
         tunelesTxt.get(tunel).meter(i);
         esperarSiPausado();
-        i.dormir(1000);
+        try {
+            i.dormir(1000);
+        } catch (InterruptedException e) {
+            System.out.println("ERROR | Clase -> Juego | Método -> cruzarIda | InterruptedException al dormir al humano");
+        }
         tuneles.get(tunel).salirDelTunel();
         esperarSiPausado();
         tunelesTxt.get(tunel).sacar(i);
@@ -123,7 +126,11 @@ public class Juego {
         esperarSiPausado();
         tunelesTxt.get(tunel).meter(i);
         esperarSiPausado();
-        i.dormir(1000);
+        try {
+            i.dormir(1000);
+        } catch (InterruptedException e) {
+            System.out.println("ERROR | Clase -> Juego | Método -> cruzarVuelta | InterruptedException al dormir al humano");
+        }
         esperarSiPausado();
         tuneles.get(tunel).salirDelTunel();
         esperarSiPausado();

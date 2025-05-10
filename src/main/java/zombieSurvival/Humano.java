@@ -3,7 +3,6 @@ package zombieSurvival;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
 import java.util.Random;
-import java.util.logging.Logger;
 
 public class Humano extends Thread {
     private Juego juego;
@@ -39,20 +38,16 @@ public class Humano extends Thread {
         this.siendoAtacado = siendoAtacado;
     }
 
-    public boolean isComida() {
-        return comida;
-    }
-
     public void setComida(boolean comida) {
         this.comida = comida;
     }
 
-    public boolean isHerido() {
-        return herido;
-    }
-
     public void setHerido(boolean herido) {
         this.herido = herido;
+    }
+
+    public void setVivo(boolean vivo) {
+        this.vivo = vivo;
     }
 
     private void convertirseEnZombie(int tunel) {
@@ -65,19 +60,25 @@ public class Humano extends Thread {
         z.start();
     }
 
-    public void dormir(long tiempo) {
+    public void dormir(long tiempo) throws InterruptedException {
         long dormido = 0;
         long intervalo = 100; // Intervalo de sueño corto (100 ms)
 
         while (dormido < tiempo) {
             juego.esperarSiPausado();
+            long restante = Math.min(intervalo, tiempo - dormido);
+            sleep(restante);
+            dormido += restante;
+        }
+    }
+
+    public synchronized void esperarAtaque() {
+        System.out.println("Humano " + getName() + " esperando a ser atacado.");
+        while (siendoAtacado) {
             try {
-                long restante = Math.min(intervalo, tiempo - dormido);
-                sleep(restante);
-                dormido += restante;
+                wait();
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                break;
+                throw new RuntimeException(e);
             }
         }
     }
@@ -85,29 +86,30 @@ public class Humano extends Thread {
     public void run() {
         while (vivo && !Thread.currentThread().isInterrupted()) {  // Verificación de que el humano esté vivo
             try {
-                // Zona común (1-2 segundos)
-                juego.esperarSiPausado();
-                juego.meterZonaComun(this);
-                dormir((long) (TIEMPO_ZONA_COMUN + random.nextDouble() * 2000));
-                juego.esperarSiPausado();
+                if (!siendoAtacado) {
+                    // Zona común (1-2 segundos)
+                    juego.esperarSiPausado();
+                    juego.meterZonaComun(this);
+                    dormir((long) (TIEMPO_ZONA_COMUN + random.nextDouble() * 2000));
+                    juego.esperarSiPausado();
 
-                // Selección de túnel
-                tunel = random.nextInt(4);
+                    // Selección de túnel
+                    tunel = random.nextInt(4);
 
-                // Atravesar túnel
-                juego.cruzarIda(this, tunel);
+                    // Atravesar túnel
+                    juego.cruzarIda(this, tunel);
 
-                // Zona exterior (3-5 segundos)
-                juego.esperarSiPausado();
-                juego.meterZonaRiesgoIzq(this, tunel);
-                dormir((long) (TIEMPO_ZONA_RIESGO + random.nextDouble() * 2000));
-
-                while (siendoAtacado && vivo) {
-                    dormir(100);
-                    if (Thread.currentThread().isInterrupted()) {
-                        convertirseEnZombie(tunel);
-                        return;
-                    }
+                    // Zona exterior (3-5 segundos)
+                    juego.esperarSiPausado();
+                    juego.meterZonaRiesgoIzq(this, tunel);
+                    dormir((long) (TIEMPO_ZONA_RIESGO + random.nextDouble() * 2000));
+                }
+                // Si el humano esta siendo atacado se ejecuta este código
+                esperarAtaque();
+                if (!vivo) {
+                    juego.esperarSiPausado();
+                    convertirseEnZombie(tunel);
+                    return;
                 }
 
                 juego.esperarSiPausado();
@@ -146,12 +148,9 @@ public class Humano extends Thread {
                     juego.sacarZonaDescanso(this);
                 }
 
-            } catch (Exception e) {
-                // Manejo de excepciones generales
-                if (!vivo || Thread.currentThread().isInterrupted()) {
-                    juego.esperarSiPausado();
-                    convertirseEnZombie(tunel);
-                }
+            } catch (InterruptedException e) {
+                log.logInfo("Humano " + getName() + " interrumpido");
+                System.out.println("Humano " + getName() + " interrumpido");
             }
         }
     }

@@ -42,19 +42,23 @@ public class Zombie extends Thread {
     }
 
     private void atacar(Humano h) {
+        h.interrupt();
         dormir((long) (TIEMPO_ATAQUE + random.nextDouble() * 500));
 
-        if (h != null && h.isAlive()) {
+        if (h.isAlive()) {
             double ataque = random.nextDouble();
             if (ataque > (double) 2 / 3) { // Ataque exitoso
                 contadorMuertes++;
-                h.interrupt();
+                h.setVivo(false);
                 log.logInfo("El zombie " + getName() + " ha matado al humano " + h.getName());
             } else { // Ataque fallido
                 log.logInfo("El zombie " + getName() + " ha herido al humano " + h.getName());
                 h.setHerido(true);
-                h.setSiendoAtacado(false);
             }
+            h.setSiendoAtacado(false);
+        }
+        synchronized (h) {
+            h.notify();
         }
     }
 

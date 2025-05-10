@@ -23,14 +23,13 @@ import zombieSurvival.distribuida.InformacionServidor;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Optional;
 import java.util.Random;
 
-public class Main extends Application {
+public class MainServidor extends Application {
     private static final LogConfig log = new LogConfig();
     Stage mainStage = new Stage();
     ControladorNuevaInterfaz controller = new ControladorNuevaInterfaz();
@@ -135,19 +134,19 @@ public class Main extends Application {
                 }
 
                 // Crear los humanos
-                for (int i = 1; i < 600; i++) {
+                for (int i = 1; i < 30; i++) {
                     Humano ind = new Humano(controller.getJuego(), i);
                     ind.start();
                     controller.getJuego().esperarSiPausado();
                     try {
                         Thread.sleep((long) (0.5 + (1.5 * random.nextDouble())) * 1000); // medio segundo
                     } catch (InterruptedException e) {
-                        System.out.println("ERROR | Clase -> Main | Método -> iniciarSimulación");
+                        System.out.println("ERROR | Clase -> MainServidor | Método -> iniciarSimulación");
                     }
                 }
             }).start();
         } catch (RemoteException | MalformedURLException e) {
-            log.logWarning("ERROR | Clase -> Main | Método -> iniciarSimulacion | Excepcion -> RemoteException");
+            log.logWarning("ERROR | Clase -> MainServidor | Método -> iniciarSimulacion | Excepcion -> RemoteException");
         }
     }
 
