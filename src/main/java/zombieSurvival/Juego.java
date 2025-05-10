@@ -62,9 +62,24 @@ public class Juego {
         return colaComedorTxt;
     }
 
-//    public Integer humanosEnTunel(int i) {
-//
-//    }
+    public Integer humanosEnTunel(int i) {
+        Integer humanos = 0;
+        humanos += esperaTuneles.get(i).getSize();
+        if (tuneles.get(i).isOcupado()) {
+            humanos++;
+        }
+        humanos += vueltaTuneles.get(i).getSize();
+
+        return humanos;
+    }
+
+    public Integer humanosEnRiesgo(int i) {
+        return riesgoIzq.get(i).getHumanos().getSize();
+    }
+
+    public Integer zombiesEnRiesgo(int i) {
+        return riesgoDch.get(i).getSize();
+    }
 
     public void meterZonaComun(Humano i){
         zonaComun.meter(i);

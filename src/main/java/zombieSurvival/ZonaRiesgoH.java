@@ -61,4 +61,8 @@ public class ZonaRiesgoH {
             cerrojo.unlock();
         }
     }
+
+    public ListaHilos getHumanos() {
+        return humanos;
+    }
 }

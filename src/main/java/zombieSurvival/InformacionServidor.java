@@ -19,62 +19,62 @@ public class InformacionServidor extends UnicastRemoteObject implements Interfaz
 
     @Override
     public Integer humanosTunel1() throws RemoteException {
-        return 1;
+        return juego.humanosEnTunel(0);
     }
 
     @Override
     public Integer humanosTunel2() throws RemoteException {
-        return 2;
+        return juego.humanosEnTunel(1);
     }
 
     @Override
     public Integer humanosTunel3() throws RemoteException {
-        return 3;
+        return juego.humanosEnTunel(2);
     }
 
     @Override
     public Integer humanosTunel4() throws RemoteException {
-        return 4;
+        return juego.humanosEnTunel(3);
     }
 
     @Override
     public Integer humanosRiesgo1() throws RemoteException {
-        return 11;
+        return juego.humanosEnRiesgo(0);
     }
 
     @Override
     public Integer humanosRiesgo2() throws RemoteException {
-        return 12;
+        return juego.humanosEnRiesgo(1);
     }
 
     @Override
     public Integer humanosRiesgo3() throws RemoteException {
-        return 13;
+        return juego.humanosEnRiesgo(2);
     }
 
     @Override
     public Integer humanosRiesgo4() throws RemoteException {
-        return 14;
+        return juego.humanosEnRiesgo(3);
     }
 
     @Override
     public Integer zombisRiesgo1() throws RemoteException {
-        return 111;
+        return juego.zombiesEnRiesgo(0);
     }
 
     @Override
     public Integer zombisRiesgo2() throws RemoteException {
-        return 112;
+        return juego.zombiesEnRiesgo(1);
     }
 
     @Override
     public Integer zombisRiesgo3() throws RemoteException {
-        return 113;
+        return juego.zombiesEnRiesgo(2);
     }
 
     @Override
     public Integer zombisRiesgo4() throws RemoteException {
-        return 114;
+        return juego.zombiesEnRiesgo(3);
     }
 
     @Override

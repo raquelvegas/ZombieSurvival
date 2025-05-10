@@ -22,6 +22,10 @@ public class Tunel {
         this.id = id;
     }
 
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
     public void volverDentro(Humano h) {
         cerrojo.lock();
         try {
