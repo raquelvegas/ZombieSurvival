@@ -33,7 +33,7 @@ public class MainCliente extends Application {
             try {
                 String equipo = InetAddress.getLocalHost().getHostAddress();
                 System.out.println(equipo);
-                InterfazRMI informacion = (InterfazRMI) Naming.lookup("//" + equipo + "/Informacion");
+                InterfazRMI informacion = (InterfazRMI) Naming.lookup("//192.168.157.1/Informacion");
                 while (controladorRemoto.isStart()) {
                     // Refugio
                     Integer humanosRefugio = informacion.humanosEnRefugio();
