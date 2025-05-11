@@ -31,7 +31,6 @@ public class MainCliente extends Application {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             try {
-                boolean cambio = true;
                 InterfazRMI informacion = (InterfazRMI) Naming.lookup("//192.168.157.1/Informacion");
                 while (controladorRemoto.isStart()) {
                     // Refugio
@@ -89,14 +88,9 @@ public class MainCliente extends Application {
                             }
                         }
                     }
-
                     // Pausar
-                    if (controladorRemoto.isCambio()) {
-                        if (controladorRemoto.isPausado()) {
-                            informacion.play_pause(true);
-                        } else {
-                            informacion.play_pause(false);
-                        }
+                    if (controladorRemoto.tocaCambio()) {
+                        informacion.play_pause();
                         controladorRemoto.cambio();
                     }
                 }

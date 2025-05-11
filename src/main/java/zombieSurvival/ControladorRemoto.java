@@ -15,21 +15,15 @@ public class ControladorRemoto {
     @FXML
     private MenuItem but1;
 
-    private boolean pausado = false;
     private boolean cambio = false;
 
     private boolean start = false;
     @FXML
     void playPause() {
         cambio = true;
-        pausado = !pausado;
     }
 
-    public boolean isPausado() {
-        return pausado;
-    }
-
-    public boolean isCambio() {
+    public boolean tocaCambio() {
         return cambio;
     }
 
