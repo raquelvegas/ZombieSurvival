@@ -99,4 +99,8 @@ public class MainCliente extends Application {
             }
         });
     }
+
+    public static void main(String[] args){
+        launch();
+    }
 }
