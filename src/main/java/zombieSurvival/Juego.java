@@ -111,7 +111,7 @@ public class Juego {
 
     public ArrayList<Integer> muertesZombiesMortales() {
         ArrayList<Integer> muertes = new ArrayList<>();
-        cerrojoZ.unlock();
+        cerrojoZ.lock();
         try {
             zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
             if (!zombies.isEmpty()) {
