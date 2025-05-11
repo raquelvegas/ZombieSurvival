@@ -1,6 +1,7 @@
 package zombieSurvival;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.text.Text;
 
 public class ControladorRemoto {
@@ -11,8 +12,30 @@ public class ControladorRemoto {
             hR1, hR2, hR3, hR4,
             zR1, zR2, zR3, zR4,
             muertes1, muertes2, muertes3;
+    @FXML
+    private MenuItem but1;
+
+    private boolean pausado = false;
+    private boolean cambio = false;
 
     private boolean start = false;
+    @FXML
+    void playPause() {
+        cambio = true;
+        pausado = !pausado;
+    }
+
+    public boolean isPausado() {
+        return pausado;
+    }
+
+    public boolean isCambio() {
+        return cambio;
+    }
+
+    public void cambio(){
+        cambio = false;
+    }
 
     public boolean isStart() {
         return start;

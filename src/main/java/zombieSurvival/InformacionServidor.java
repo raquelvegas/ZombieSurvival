@@ -86,4 +86,13 @@ public class InformacionServidor extends UnicastRemoteObject implements Interfaz
     public ArrayList<Integer> muertesZombiesLetales() throws RemoteException {
         return juego.muertesZombiesMortales();
     }
+
+    @Override
+    public void play_pause(boolean b) throws RemoteException {
+        if (b) {
+            juego.pausar();
+        } else {
+            juego.reanudar();
+        }
+    }
 }

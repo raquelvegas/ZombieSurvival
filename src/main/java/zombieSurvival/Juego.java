@@ -311,10 +311,11 @@ public class Juego {
         sacarComedor(i);
     }
 
-    public void dejarComida() {
+    public void dejarComida(Humano h) {
         try {
             colaComedor.put("Comida");
             colaComedor.put("Comida");
+            log.logInfo("HUMANO "+h.getName()+" -> Deja su comida.");
             String cantidadCeros;
             if (colaComedor.size() > 9999) {
                 cantidadCeros = String.format("%05d", colaComedor.size());

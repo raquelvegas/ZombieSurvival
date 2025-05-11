@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -32,6 +31,7 @@ public class MainCliente extends Application {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             try {
+                boolean cambio = true;
                 InterfazRMI informacion = (InterfazRMI) Naming.lookup("//192.168.157.1/Informacion");
                 while (controladorRemoto.isStart()) {
                     // Refugio
@@ -88,6 +88,16 @@ public class MainCliente extends Application {
                                 controladorRemoto.setMuertes3(ms3);
                             }
                         }
+                    }
+
+                    // Pausar
+                    if (controladorRemoto.isCambio()) {
+                        if (controladorRemoto.isPausado()) {
+                            informacion.play_pause(true);
+                        } else {
+                            informacion.play_pause(false);
+                        }
+                        controladorRemoto.cambio();
                     }
                 }
             } catch (Exception e) {

@@ -74,7 +74,7 @@ public class Humano extends Thread {
     }
 
     public synchronized void esperarAtaque() {
-        System.out.println("Humano " + getName() + " esperando a ser atacado.");
+        log.logInfo("Humano " + getName() + " esperando a ser atacado.");
         while (siendoAtacado) {
             try {
                 wait();
@@ -123,7 +123,7 @@ public class Humano extends Thread {
 
                 if (comida) {
                     juego.esperarSiPausado();
-                    juego.dejarComida();
+                    juego.dejarComida(this);
                     comida = false;
                 }
 
@@ -150,8 +150,7 @@ public class Humano extends Thread {
                 }
 
             } catch (InterruptedException e) {
-                log.logInfo("Humano " + getName() + " interrumpido");
-                System.out.println("Humano " + getName() + " interrumpido");
+                log.logInfo("Humano " + getName() + " interrumpido (ha sido seleccionado para un ataque)");
             }
         }
     }
