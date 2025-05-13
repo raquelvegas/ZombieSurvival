@@ -12,7 +12,7 @@ public class Humano extends Thread {
     private boolean siendoAtacado = false;
     private Random random = new Random();
     private boolean herido = false;
-    private static LogConfig log;
+    private static final LogConfig log = new LogConfig();
 
     private boolean vivo = true;
 
@@ -21,10 +21,9 @@ public class Humano extends Thread {
     private long TIEMPO_ZONA_RIESGO = 3000;
     private long TIEMPO_ZONA_DESCANSO = 2000;
 
-    public Humano(Juego juego, int id, LogConfig log) {
+    public Humano(Juego juego, int id) {
         this.id = id;
         this.juego = juego;
-        this.log = log;
         int num = 4;
         String formato = "%0" + num + "d";
         String StringCeros = String.format(formato, id);
@@ -57,7 +56,7 @@ public class Humano extends Thread {
         juego.sacarZonaRiesgoIzq(this, tunel); // asegurarse de limpiar
         log.logWarning("Humano " + this.getName() + " -> Muerto");
         juego.esperarSiPausado();
-        Zombie z = new Zombie(juego, id, log);
+        Zombie z = new Zombie(juego, id);
         juego.nuevoZombie(z);
         z.start();
     }

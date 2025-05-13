@@ -120,7 +120,6 @@ public class MainServidor extends Application {
         // Inicialización de la simulación, solo después de que la pantalla de carga haya terminado
         try {
             log.logInfo("INICIO DE LA EJECUCIÓN");
-            controller.getJuego().setLogger(log);
 
             // RMI
             InformacionServidor informacion = new InformacionServidor(controller.getJuego());
@@ -131,14 +130,14 @@ public class MainServidor extends Application {
             new Thread(() -> {
                 // Crear un zombie
                 for (int i = 0; i < 1; i++) {
-                    Zombie z = new Zombie(controller.getJuego(), i, log);
+                    Zombie z = new Zombie(controller.getJuego(), i);
                     controller.getJuego().nuevoZombie(z);
                     z.start();
                 }
 
                 // Crear los humanos
                 for (int i = 1; i < 10000; i++) {
-                    Humano ind = new Humano(controller.getJuego(), i, log);
+                    Humano ind = new Humano(controller.getJuego(), i);
                     ind.start();
                     controller.getJuego().esperarSiPausado();
                     try {

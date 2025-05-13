@@ -30,7 +30,7 @@ public class Juego {
     private Random random = new Random();
     private List<Zombie> zombies = new ArrayList<>();
     private Lock cerrojoZ = new ReentrantLock();
-    private static LogConfig log;
+    private static final LogConfig log = new LogConfig();
 
 
     public Juego(ListaHilos zonaComun, ListaHilos zonaDescanso, ListaHilos colaComedor, ListaHilos comiendo, Text textoComida, ArrayList<ListaHilos> esperaTuneles, ArrayList<ListaHilos> tunelesTxt, ArrayList<ListaHilos> tunelesVuelta, ArrayList<ZonaRiesgoH> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
@@ -48,7 +48,7 @@ public class Juego {
         // Inicializamos las barreras de los túneles y los túneles
         for (int i = 0; i < 4; i++) {
             barrerasTuneles.add(new CyclicBarrier(3));
-            tuneles.add(new Tunel(i, log));
+            tuneles.add(new Tunel(i));
         }
     }
 
@@ -72,10 +72,6 @@ public class Juego {
 
     public ArrayList<ZonaRiesgoH> getRiesgoIzq() {
         return riesgoIzq;
-    }
-
-    public void setLogger(LogConfig log){
-        this.log = log;
     }
 
 
