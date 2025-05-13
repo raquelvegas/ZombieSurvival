@@ -1,0 +1,57 @@
+@startuml
+
+' Clases auxiliares referenciadas (sin detalle)
+class ListaHilos
+class Tunel
+class Zombie
+class Humano
+class ZonaRiesgoH
+class Text
+class LogConfig
+
+class Juego {
+    - zonaComun : ListaHilos
+    - zonaDescanso : ListaHilos
+    - comiendo : ListaHilos
+    - colaComedorTxt : ListaHilos
+    - textoComida : Text
+    - esperaTuneles : ArrayList<ListaHilos>
+    - tunelesTxt : ArrayList<ListaHilos>
+    - tuneles : ArrayList<Tunel>
+    - vueltaTuneles : ArrayList<ListaHilos>
+    - riesgoIzq : ArrayList<ZonaRiesgoH>
+    - riesgoDch : ArrayList<ListaHilos>
+    - colaComedor : LinkedBlockingDeque<String>
+    - barrerasTuneles : ArrayList<CyclicBarrier>
+    - enPausa : boolean
+    - random : Random
+    - zombies : ArrayList<Zombie>
+    - cerrojoZ : Lock
+    - log : LogConfig
+    --
+    + Juego(...)
+    + nuevoZombie(z : Zombie)
+    + zombiesMortales() : ArrayList<String>
+    + humanosEnTunel(i : int) : Integer
+    + humanosEnRiesgo(i : int) : Integer
+    + zombiesEnRiesgo(i : int) : Integer
+    + pausar()
+    + reanudar()
+    + esperarSiPausado()
+    + estaEnPausa() : boolean
+    + cruzarIda(i : Humano, tunel : int)
+    + cruzarVuelta(i : Humano, tunel : int)
+    + entrarEsperaTunel(i : Humano, tunel : int)
+    + comer(i : Humano)
+    + dejarComida(h : Humano)
+}
+
+' Relaciones con otras clases
+Juego --> ListaHilos
+Juego --> Tunel
+Juego --> Zombie
+Juego --> Humano
+Juego --> ZonaRiesgoH
+Juego --> Text
+Juego --> LogConfig
+@enduml
