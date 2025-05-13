@@ -45,7 +45,7 @@
          </HBox>
          <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="260.0">
             <children>
-                  <Button fx:id="pausa" onAction="#pausar" text="⏸ Pausa" />
+                  <Button fx:id="pausa" onAction="#pausar" text="▶ Jugar / ⏸ Pausar" />
             </children>
          </HBox>
         </ToolBar>

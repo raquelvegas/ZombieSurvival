@@ -153,28 +153,10 @@ public class ControladorNuevaInterfaz {
             juego.reanudar();
             isPausado = false;
             mediaPlayer.play();
-            if (idiomaActual == 0) {
-                pausa.setText("⏸ Pausar");
-            } else if (idiomaActual == 1) {
-                pausa.setText("⏸ Pause");
-            } else if (idiomaActual == 2) {
-                pausa.setText("⏸ Pause");
-            } else if (idiomaActual == 3) {
-                pausa.setText("⏸ Pauza");
-            }
         } else {
             juego.pausar();
             isPausado = true;
             mediaPlayer.pause();
-            if (idiomaActual == 0) {
-                pausa.setText("▶ Jugar");
-            } else if (idiomaActual == 1) {
-                pausa.setText("▶ Play");
-            } else if (idiomaActual == 2) {
-                pausa.setText("▶ Jouer");
-            } else if (idiomaActual == 3) {
-                pausa.setText("▶ Igraj");
-            }
         }
     }
 
@@ -329,11 +311,7 @@ public class ControladorNuevaInterfaz {
         if (idiomaActual == 0) {
             idioma.setText("Idioma");
             info.setText("información");
-            if (isPausado) {
-                pausa.setText("▶ Jugar");
-            } else {
-                pausa.setText("⏸ Pausar");
-            }
+            pausa.setText("▶ Jugar / ⏸ Pausar");
 
             refugioTitle.setText("REFUGIO");
             tunelTitle.setText("TÚNELES");
@@ -348,11 +326,7 @@ public class ControladorNuevaInterfaz {
         } else if (idiomaActual == 1) {
             idioma.setText("Language");
             info.setText("Information");
-            if (isPausado) {
-                pausa.setText("▶ Play");
-            } else {
-                pausa.setText("⏸ Pause");
-            }
+            pausa.setText("▶ Play / ⏸ Pause");
 
             refugioTitle.setText("SHELTER");
             tunelTitle.setText("TUNNELS");
@@ -367,11 +341,7 @@ public class ControladorNuevaInterfaz {
         } else if (idiomaActual == 2) {
             idioma.setText("Langue");
             info.setText("Informations");
-            if (isPausado) {
-                pausa.setText("▶ Jouer");
-            } else {
-                pausa.setText("⏸ Pause");
-            }
+            pausa.setText("▶ Jouer / ⏸ Pause");
 
             refugioTitle.setText("REFUGE");
             tunelTitle.setText("TUNNELS");
@@ -386,11 +356,7 @@ public class ControladorNuevaInterfaz {
         } else if (idiomaActual == 3) {
             idioma.setText("Jezik");
             info.setText("Informacija");
-            if (isPausado) {
-                pausa.setText("▶ Igraj");
-            } else {
-                pausa.setText("⏸ Pauza");
-            }
+            pausa.setText("▶ Igraj / ⏸ Pauza");
 
             refugioTitle.setText("SKLONIŠTE");
             tunelTitle.setText("TUNELI");
