@@ -14,11 +14,12 @@ public class Tunel {
     private Condition esperandoSalir = cerrojo.newCondition();
     private boolean ocupado = false;
     private int enEsperaEntrar = 0;
-    private static final LogConfig log = new LogConfig();
+    private static LogConfig log;
 
 
-    public Tunel(int id) {
+    public Tunel(int id, LogConfig log) {
         this.id = id;
+        this.log = log;
     }
 
     public boolean isOcupado() {

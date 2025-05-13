@@ -12,15 +12,16 @@ public class Zombie extends Thread {
     private Juego juego;
     private Random random = new Random();
     private int contadorMuertes = 0;
-    private static final LogConfig log = new LogConfig();
+    private static LogConfig log;
 
     private long TIEMPO_ATAQUE = 500;
     private long TIEMPO_ESPERA = 2000;
 
 
-    public Zombie(Juego juego, int id) {
+    public Zombie(Juego juego, int id, LogConfig log) {
         this.juego = juego;
         this.id = id;
+        this.log = log;
         String StringCeros = String.format("%04d", id);
         super.setName("Z" + StringCeros);
     }
