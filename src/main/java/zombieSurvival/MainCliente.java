@@ -68,26 +68,17 @@ public class MainCliente extends Application {
                     controladorRemoto.setzR4(String.valueOf(zombiesR4));
 
                     // Zombies mortales
-                    ArrayList<String> Nzombies = informacion.nombresZombiesLetales();
-                    ArrayList<Integer> Mzombies = informacion.muertesZombiesLetales();
-                    if (!Nzombies.isEmpty()) {
-                        String zom1 = Nzombies.getFirst();
-                        Integer Mzom1 = Mzombies.getFirst();
-                        String ms1 = zom1 + " - " + Mzom1 + " muertes";
-                        controladorRemoto.setMuertes1(ms1);
-                        if (Nzombies.size() > 1) {
-                            String zom2 = Nzombies.get(1);
-                            Integer Mzom2 = Mzombies.get(1);
-                            String ms2 = zom2 + " - " + Mzom2 + " muertes";
-                            controladorRemoto.setMuertes2(ms2);
-                            if (Nzombies.size() > 2) {
-                                String zom3 = Nzombies.get(2);
-                                Integer Mzom3 = Mzombies.get(2);
-                                String ms3 = zom3 + " - " + Mzom3 + " muertes";
-                                controladorRemoto.setMuertes3(ms3);
+                    ArrayList<String> zombies = informacion.zombiesLetales();
+                    if (!zombies.isEmpty()) {
+                        controladorRemoto.setMuertes1(zombies.get(0));
+                        if (zombies.size() > 1) {
+                            controladorRemoto.setMuertes2(zombies.get(1));
+                            if (zombies.size() > 2) {
+                                controladorRemoto.setMuertes3(zombies.get(2));
                             }
                         }
                     }
+
                     // Pausar
                     if (controladorRemoto.tocaCambio()) {
                         informacion.play_pause();

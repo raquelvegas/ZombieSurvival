@@ -23,6 +23,7 @@ public class Zombie extends Thread {
         this.id = id;
         String StringCeros = String.format("%04d", id);
         super.setName("Z" + StringCeros);
+        juego.nuevoZombie(this);
     }
 
     public int getMuertes(){

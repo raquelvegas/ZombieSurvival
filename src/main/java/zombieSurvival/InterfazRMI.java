@@ -18,7 +18,6 @@ public interface InterfazRMI extends Remote {
     Integer zombisRiesgo2() throws RemoteException;
     Integer zombisRiesgo3() throws RemoteException;
     Integer zombisRiesgo4() throws RemoteException;
-    ArrayList<String> nombresZombiesLetales() throws RemoteException;
-    ArrayList<Integer> muertesZombiesLetales() throws RemoteException;
+    ArrayList<String> zombiesLetales() throws  RemoteException;
     void play_pause() throws RemoteException;
 }

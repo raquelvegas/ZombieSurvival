@@ -57,7 +57,6 @@ public class Humano extends Thread {
         log.logWarning("Humano " + this.getName() + " -> Muerto");
         juego.esperarSiPausado();
         Zombie z = new Zombie(juego, id);
-        juego.nuevoZombie(z);
         z.start();
     }
 

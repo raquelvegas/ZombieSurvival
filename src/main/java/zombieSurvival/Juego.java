@@ -4,8 +4,6 @@ import javafx.scene.text.Text;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -28,7 +26,7 @@ public class Juego {
     private ArrayList<CyclicBarrier> barrerasTuneles = new ArrayList<>();
     private boolean enPausa = false;
     private Random random = new Random();
-    private List<Zombie> zombies = new ArrayList<>();
+    private ArrayList<Zombie> zombies = new ArrayList<>();
     private Lock cerrojoZ = new ReentrantLock();
     private static final LogConfig log = new LogConfig();
 
@@ -87,48 +85,22 @@ public class Juego {
         }
     }
 
-    public ArrayList<String> nombresZombiesMortales() {
-        ArrayList<String> nombres = new ArrayList<>();
+    public ArrayList<String> zombiesMortales() {
+        ArrayList<String> zomb = new ArrayList<>();
         cerrojoZ.lock();
         try {
-            zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
-            if (!zombies.isEmpty()) {
-                nombres.add(zombies.get(0).getName());
-                if (zombies.size() > 1) {
-                    nombres.add(zombies.get(1).getName());
-                    if (zombies.size() > 2) {
-                        nombres.add(zombies.get(2).getName());
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            cerrojoZ.unlock();
-        }
-        return nombres;
-    }
+            zombies.sort((z1, z2) -> Integer.compare(z2.getMuertes(), z1.getMuertes()));
 
-    public ArrayList<Integer> muertesZombiesMortales() {
-        ArrayList<Integer> muertes = new ArrayList<>();
-        cerrojoZ.lock();
-        try {
-            zombies.sort(Comparator.comparingInt(Zombie::getMuertes).reversed());
-            if (!zombies.isEmpty()) {
-                muertes.add(zombies.get(0).getMuertes());
-                if (zombies.size() > 1) {
-                    muertes.add(zombies.get(1).getMuertes());
-                    if (zombies.size() > 2) {
-                        muertes.add(zombies.get(2).getMuertes());
-                    }
-                }
+            for (int i = 0; i < Math.min(3, zombies.size()); i++) {
+                zomb.add(zombies.get(i).getName() + " - " + zombies.get(i).getMuertes() + " muertes");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             cerrojoZ.unlock();
         }
-        return muertes;
+        return zomb;
     }
 
     public Integer humanosEnTunel(int i) {
