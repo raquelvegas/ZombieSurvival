@@ -30,11 +30,11 @@ public class LogConfig {
         return LOGGER;
     }
 
-    public synchronized void logInfo(String mensaje) {
+    public static synchronized void logInfo(String mensaje) {
         LOGGER.info(mensaje);
     }
 
-    public synchronized void logWarning(String mensaje) {
+    public static synchronized void logWarning(String mensaje) {
         LOGGER.warning(mensaje);
     }
 }

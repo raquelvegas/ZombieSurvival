@@ -14,7 +14,6 @@ public class Tunel {
     private Condition esperandoSalir = cerrojo.newCondition();
     private boolean ocupado = false;
     private int enEsperaEntrar = 0;
-    private static final LogConfig log = new LogConfig();
 
 
     public Tunel(int id) {
@@ -32,7 +31,7 @@ public class Tunel {
             while (ocupado) {
                 esperandoEntrar.await();
             }
-            log.logInfo("HUMANO " + h.getName() + " -> Volviendo por el tunel " + id);
+            LogConfig.logInfo("HUMANO " + h.getName() + " -> Volviendo por el tunel " + id);
             enEsperaEntrar--;
             ocupado = true;
         } catch (Exception e) {
@@ -48,7 +47,7 @@ public class Tunel {
             while (ocupado || enEsperaEntrar > 0) {
                 esperandoSalir.await();
             }
-            log.logInfo("HUMANO " + h.getName() + " -> Saliendo por el tunel " + id);
+            LogConfig.logInfo("HUMANO " + h.getName() + " -> Saliendo por el tunel " + id);
             ocupado = true;
         } catch (Exception e) {
             System.out.println("Error | Clase -> Tunel | Método -> salirAlExterior");
@@ -63,10 +62,10 @@ public class Tunel {
             ocupado = false;
             if (enEsperaEntrar > 0) {
                 esperandoEntrar.signal();
-                log.logInfo("Tunel " + id + " -> Despierta a un hilo que quiere entrar.");
+                LogConfig.logInfo("Tunel " + id + " -> Despierta a un hilo que quiere entrar.");
             } else {
                 esperandoSalir.signal();
-                log.logInfo("Tunel " + id + " -> Despierta a un hilo que quiere salir.");
+                LogConfig.logInfo("Tunel " + id + " -> Despierta a un hilo que quiere salir.");
             }
         } catch (Exception e) {
             System.out.println("Error | Clase -> Tunel | Método -> salirDelTunel");

@@ -54,7 +54,7 @@ public class Humano extends Thread {
         vivo = false;  // Marca al humano como muerto
         juego.esperarSiPausado();
         juego.sacarZonaRiesgoIzq(this, tunel); // asegurarse de limpiar
-        log.logWarning("Humano " + this.getName() + " -> Muerto");
+        LogConfig.logWarning("Humano " + this.getName() + " -> Muerto");
         juego.esperarSiPausado();
         Zombie z = new Zombie(juego, id);
         z.start();

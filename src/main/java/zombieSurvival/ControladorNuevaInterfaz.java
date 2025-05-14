@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class ControladorNuevaInterfaz {
     @FXML
@@ -56,9 +55,8 @@ public class ControladorNuevaInterfaz {
     Stage infoStage = new Stage();
     ControladorInfo controllerInfo = new ControladorInfo();
 
-    private Random random = new Random();
     private MediaPlayer mediaPlayer;
-    private boolean isMuted = false, isPausado = false, infoWindow = false;
+    private boolean isMuted = false, estabaPausado = false, infoWindow = false;
     private final List<Cancion> canciones = new ArrayList<>();
     private int cancionActual = 0;
     private int idiomaActual = 0;
@@ -85,9 +83,11 @@ public class ControladorNuevaInterfaz {
             infoStage.setTitle("Informacija");
             controllerInfo.infoCroata();
         }
-        if(!isPausado){
+        if (!juego.estaEnPausa()) {
             pausar(null);
-            isPausado = false;
+            estabaPausado = false;
+        } else {
+            estabaPausado = true;
         }
         mainStage.getScene().getRoot().setDisable(true);
         infoWindow = true;
@@ -147,14 +147,11 @@ public class ControladorNuevaInterfaz {
 
     @FXML
     void pausar(ActionEvent event) {
-        // Solo cambiar el estado de pausa y el texto del botón, sin afectar la música
         if (juego.estaEnPausa()) {
             juego.reanudar();
-            isPausado = false;
             mediaPlayer.play();
         } else {
             juego.pausar();
-            isPausado = true;
             mediaPlayer.pause();
         }
     }
@@ -253,8 +250,7 @@ public class ControladorNuevaInterfaz {
             infoWindow = false;
             infoStage.setOnCloseRequest(e -> {
                 infoWindow = false;
-                if(!isPausado){
-                    isPausado = true;
+                if (!estabaPausado) {
                     pausar(null);
                 }
                 mainStage.getScene().getRoot().setDisable(false);

@@ -28,8 +28,6 @@ public class Juego {
     private Random random = new Random();
     private ArrayList<Zombie> zombies = new ArrayList<>();
     private Lock cerrojoZ = new ReentrantLock();
-    private static final LogConfig log = new LogConfig();
-
 
     public Juego(ListaHilos zonaComun, ListaHilos zonaDescanso, ListaHilos colaComedor, ListaHilos comiendo, Text textoComida, ArrayList<ListaHilos> esperaTuneles, ArrayList<ListaHilos> tunelesTxt, ArrayList<ListaHilos> tunelesVuelta, ArrayList<ZonaRiesgoH> riesgoIzq, ArrayList<ListaHilos> riesgoDch) {
         this.zonaComun = zonaComun;
@@ -126,7 +124,7 @@ public class Juego {
     // Métodos de impresión
     public void meterZonaComun(Humano i){
         zonaComun.meter(i);
-        log.logInfo("HUMANO " + i.getName() + " -> Zona Común");
+        LogConfig.logInfo("HUMANO " + i.getName() + " -> Zona Común");
     }
 
     public void sacarZonaComun(Humano i){
@@ -135,7 +133,7 @@ public class Juego {
 
     public void meterZonaDescanso(Humano i) {
         zonaDescanso.meter(i);
-        log.logInfo("HUMANO " + i.getName() + " -> Zona Descanso");
+        LogConfig.logInfo("HUMANO " + i.getName() + " -> Zona Descanso");
     }
 
     public void sacarZonaDescanso(Humano i) {
@@ -178,13 +176,13 @@ public class Juego {
     // Métodos play / pause
     public synchronized void pausar() {
         enPausa = true;
-        log.logInfo("Juego en pausa");
+        LogConfig.logInfo("Juego en pausa");
     }
 
     public synchronized void reanudar() {
         enPausa = false;
         notifyAll();  // Despierta a los hilos esperando
-        log.logInfo("Juego reanudado");
+        LogConfig.logInfo("Juego reanudado");
     }
 
     public synchronized void esperarSiPausado() {
@@ -259,7 +257,7 @@ public class Juego {
     public void comer(Humano i) {
         esperarSiPausado();
         meterColaComedor(i);
-        log.logInfo("HUMANO " + i.getName() + " -> Comedor");
+        LogConfig.logInfo("HUMANO " + i.getName() + " -> Comedor");
         try {
             esperarSiPausado();
             colaComedor.take();
@@ -278,7 +276,7 @@ public class Juego {
         } catch (InterruptedException e) {
             System.out.println("ERROR | Clase -> Juego | Método -> comer");
         }
-        log.logInfo("HUMANO " + i.getName() + " -> Come");
+        LogConfig.logInfo("HUMANO " + i.getName() + " -> Come");
         esperarSiPausado();
         sacarComedor(i);
     }
@@ -287,7 +285,7 @@ public class Juego {
         try {
             colaComedor.put("Comida");
             colaComedor.put("Comida");
-            log.logInfo("HUMANO "+h.getName()+" -> Deja su comida.");
+            LogConfig.logInfo("HUMANO "+h.getName()+" -> Deja su comida.");
             String cantidadCeros;
             if (colaComedor.size() > 9999) {
                 cantidadCeros = String.format("%05d", colaComedor.size());

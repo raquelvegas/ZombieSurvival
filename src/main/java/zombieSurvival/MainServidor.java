@@ -31,7 +31,6 @@ import java.util.Optional;
 import java.util.Random;
 
 public class MainServidor extends Application {
-    private static final LogConfig log = new LogConfig();
     Stage mainStage = new Stage();
     ControladorNuevaInterfaz controller = new ControladorNuevaInterfaz();
     Random random = new Random();
@@ -84,7 +83,7 @@ public class MainServidor extends Application {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                log.logInfo("FIN DE LA EJECUCIÓN");
+                LogConfig.logInfo("FIN DE LA EJECUCIÓN DEL SERVIDOR");
                 Platform.exit();
                 System.exit(0);
             } else {
@@ -119,7 +118,7 @@ public class MainServidor extends Application {
     private void iniciarSimulacion() {
         // Inicialización de la simulación, solo después de que la pantalla de carga haya terminado
         try {
-            log.logInfo("INICIO DE LA EJECUCIÓN");
+            LogConfig.logInfo("INICIO DE LA EJECUCIÓN DEL SERVIDOR");
 
             // RMI
             InformacionServidor informacion = new InformacionServidor(controller.getJuego());
@@ -147,7 +146,7 @@ public class MainServidor extends Application {
                 }
             }).start();
         } catch (RemoteException | MalformedURLException e) {
-            log.logWarning("ERROR | Clase -> MainServidor | Método -> iniciarSimulacion | Excepcion -> RemoteException");
+            LogConfig.logWarning("ERROR | Clase -> MainServidor | Método -> iniciarSimulacion | Excepcion -> RemoteException");
         }
     }
 

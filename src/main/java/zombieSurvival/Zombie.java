@@ -12,8 +12,6 @@ public class Zombie extends Thread {
     private Juego juego;
     private Random random = new Random();
     private int contadorMuertes = 0;
-    private static final LogConfig log = new LogConfig();
-
     private long TIEMPO_ATAQUE = 500;
     private long TIEMPO_ESPERA = 2000;
 
@@ -57,9 +55,9 @@ public class Zombie extends Thread {
             if (ataque > (double) 2 / 3) { // Ataque exitoso
                 contadorMuertes++;
                 h.setVivo(false);
-                log.logInfo("El zombie " + getName() + " ha matado al humano " + h.getName());
+                LogConfig.logInfo("El zombie " + getName() + " ha matado al humano " + h.getName());
             } else { // Ataque fallido
-                log.logInfo("El zombie " + getName() + " ha herido al humano " + h.getName());
+                LogConfig.logInfo("El zombie " + getName() + " ha herido al humano " + h.getName());
                 h.setHerido(true);
             }
             h.setSiendoAtacado(false);

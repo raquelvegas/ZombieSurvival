@@ -1,14 +1,19 @@
 package zombieSurvival;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import zombieSurvival.configuracionesAdicionales.LogConfig;
 
 import java.io.IOException;
 import java.rmi.Naming;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,6 +30,12 @@ public class MainCliente extends Application {
         remoteStage.setResizable(false);
         remoteStage.show();
         controladorRemoto.setStart(true);
+
+        remoteStage.setOnCloseRequest(event -> {
+                LogConfig.logInfo("FIN DE LA EJECUCIÓN DEL CLIENTE");
+                Platform.exit();
+                System.exit(0);
+        });
 
 
         // Generamos un nuevo hilo mediante un pool de hilos para que se encargue de actualizar la información en tiepo real
