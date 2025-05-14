@@ -12,7 +12,7 @@ public class Humano extends Thread {
     private boolean siendoAtacado = false;
     private Random random = new Random();
     private boolean herido = false;
-    private static final LogConfig log = new LogConfig();
+
 
     private boolean vivo = true;
 
@@ -73,7 +73,7 @@ public class Humano extends Thread {
     }
 
     public synchronized void esperarAtaque() {
-        log.logInfo("Humano " + getName() + " esperando a ser atacado.");
+        LogConfig.logInfo("Humano " + getName() + " esperando a ser atacado.");
         while (siendoAtacado) {
             try {
                 wait();
@@ -149,7 +149,7 @@ public class Humano extends Thread {
                 }
 
             } catch (InterruptedException e) {
-                log.logInfo("Humano " + getName() + " interrumpido (ha sido seleccionado para un ataque)");
+                LogConfig.logInfo("Humano " + getName() + " interrumpido (ha sido seleccionado para un ataque)");
             }
         }
     }
