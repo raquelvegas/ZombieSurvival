@@ -25,6 +25,7 @@ public class Juego {
     private LinkedBlockingDeque<String> colaComedor = new LinkedBlockingDeque<>(); // Deque == Queue pero se puede insertar/extraer por el principio y por el final
     private ArrayList<CyclicBarrier> barrerasTuneles = new ArrayList<>();
     private boolean enPausa = false;
+    private boolean infoIn = false; // Este booleano se activa cuando la pantalla de información esta visible
     private Random random = new Random();
     private ArrayList<Zombie> zombies = new ArrayList<>();
     private Lock cerrojoZ = new ReentrantLock();
@@ -70,6 +71,9 @@ public class Juego {
         return riesgoIzq;
     }
 
+    public void setInfoIn(boolean infoIn) {
+        this.infoIn = infoIn;
+    }
 
     // Funciones RMI
     public void nuevoZombie(Zombie z) {
@@ -180,9 +184,11 @@ public class Juego {
     }
 
     public synchronized void reanudar() {
-        enPausa = false;
-        notifyAll();  // Despierta a los hilos esperando
-        LogConfig.logInfo("Juego reanudado");
+        if (!infoIn) { // Si no esta la pantalla de información abierta, podemos reanudar la ejecución
+            enPausa = false;
+            notifyAll();  // Despierta a los hilos esperando
+            LogConfig.logInfo("Juego reanudado");
+        }
     }
 
     public synchronized void esperarSiPausado() {

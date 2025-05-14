@@ -11,13 +11,16 @@ public class ControladorRemoto {
             t1, t2, t3, t4,
             hR1, hR2, hR3, hR4,
             zR1, zR2, zR3, zR4,
-            muertes1, muertes2, muertes3;
+            muertes1, muertes2, muertes3,
+            errorInfo;
     @FXML
     private MenuItem but1;
 
     private boolean cambio = false;
 
     private boolean start = false;
+
+
     @FXML
     void playPause() {
         cambio = true;
@@ -121,5 +124,10 @@ public class ControladorRemoto {
         if (m != null) {
         muertes3.setText(m);
         }
+    }
+
+    @FXML
+    public Text getErrorInfo() {
+        return errorInfo;
     }
 }

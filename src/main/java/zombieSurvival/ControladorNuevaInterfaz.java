@@ -68,18 +68,17 @@ public class ControladorNuevaInterfaz {
 
     @FXML
     void abrirInfo(ActionEvent event) {
-        if (infoWindow) return;
-
-        if (idiomaActual == 0) {
+        juego.setInfoIn(true);
+        if (idiomaActual == 0) { // Idioma: Español
             infoStage.setTitle("Información");
             controllerInfo.infoEspanol();
-        } else if (idiomaActual == 1) {
+        } else if (idiomaActual == 1) { // Idioma: Inglés
             infoStage.setTitle("Information");
             controllerInfo.infoIngles();
-        } else if (idiomaActual == 2) {
+        } else if (idiomaActual == 2) { // Idioma: Francés
             infoStage.setTitle("Informations");
             controllerInfo.infoFrances();
-        } else {
+        } else { // Idioma: Croata
             infoStage.setTitle("Informacija");
             controllerInfo.infoCroata();
         }
@@ -90,7 +89,6 @@ public class ControladorNuevaInterfaz {
             estabaPausado = true;
         }
         mainStage.getScene().getRoot().setDisable(true);
-        infoWindow = true;
         infoStage.show();
     }
 
@@ -126,20 +124,16 @@ public class ControladorNuevaInterfaz {
     void cambiarIdioma(ActionEvent event) {
         RadioMenuItem seleccionado = (RadioMenuItem) grupoIdioma.getSelectedToggle();
 
-        if (seleccionado == espanol) {
-            //Cambiar a Español
+        if (seleccionado == espanol) { // Cambiar a Español
             idiomaActual = 0;
             actualizarTextos();
-        } else if (seleccionado == ingles) {
-            //Cambiar a Inglés
+        } else if (seleccionado == ingles) { // Cambiar a Inglés
             idiomaActual = 1;
             actualizarTextos();
-        } else if (seleccionado == frances) {
-            //Cambiar a Francés
+        } else if (seleccionado == frances) { // Cambiar a Francés
             idiomaActual = 2;
             actualizarTextos();
-        } else if (seleccionado == croata) {
-            //Cambiar a Croata
+        } else if (seleccionado == croata) { // Cambiar a Croata
             idiomaActual = 3;
             actualizarTextos();
         }
@@ -147,6 +141,7 @@ public class ControladorNuevaInterfaz {
 
     @FXML
     void pausar(ActionEvent event) {
+        // Cambiamos el booleano "enPausa" del objeto Juego para bloquear los hilos y paramos la música
         if (juego.estaEnPausa()) {
             juego.reanudar();
             mediaPlayer.play();
@@ -247,20 +242,17 @@ public class ControladorNuevaInterfaz {
             infoStage.setResizable(false);
             infoStage.setAlwaysOnTop(true);
 
-            infoWindow = false;
-            infoStage.setOnCloseRequest(e -> {
-                infoWindow = false;
+            infoStage.setOnCloseRequest(e -> { // Al cerrar la pestaña volvemos al estado de "play/pause" de antes de abrirla
+                juego.setInfoIn(false);
                 if (!estabaPausado) {
                     pausar(null);
                 }
                 mainStage.getScene().getRoot().setDisable(false);
+
             });
-
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void reproducirCancion(int index) {

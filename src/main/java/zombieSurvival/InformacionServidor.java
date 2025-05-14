@@ -83,11 +83,17 @@ public class InformacionServidor extends UnicastRemoteObject implements Interfaz
     }
 
     @Override
-    public void play_pause() throws RemoteException {
+    public boolean play_pause() throws RemoteException {
         if (juego.estaEnPausa()) {
             juego.reanudar();
+            if (juego.estaEnPausa()) {
+                return false;
+            } else {
+                return true;
+            }
         } else {
             juego.pausar();
+            return true;
         }
     }
 }

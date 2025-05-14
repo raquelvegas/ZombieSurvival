@@ -26,10 +26,6 @@ public class LogConfig {
         }
     }
 
-    public static Logger getLogger() {
-        return LOGGER;
-    }
-
     public static synchronized void logInfo(String mensaje) {
         LOGGER.info(mensaje);
     }

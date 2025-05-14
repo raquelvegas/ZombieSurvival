@@ -5,17 +5,16 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
 import java.io.IOException;
 import java.rmi.Naming;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static java.lang.Thread.sleep;
 
 public class MainCliente extends Application {
     @Override
@@ -30,6 +29,7 @@ public class MainCliente extends Application {
         remoteStage.setResizable(false);
         remoteStage.show();
         controladorRemoto.setStart(true);
+        controladorRemoto.getErrorInfo().setVisible(false);
 
         remoteStage.setOnCloseRequest(event -> {
                 LogConfig.logInfo("FIN DE LA EJECUCIÓN DEL CLIENTE");
@@ -92,7 +92,23 @@ public class MainCliente extends Application {
 
                     // Pausar
                     if (controladorRemoto.tocaCambio()) {
-                        informacion.play_pause();
+                        boolean hecho = informacion.play_pause();
+                        /***
+                         * Si no se lleva a cabo la acción (solo ocurrirá cuando se quiera reanudar el juego con la
+                         * pantalla de información abierta) se lanza un mensaje de error
+                         */
+
+                        if (!hecho && !controladorRemoto.getErrorInfo().isVisible()) {
+                            new Thread(() -> {
+                                Platform.runLater(() -> controladorRemoto.getErrorInfo().setVisible(true));
+                                try {
+                                    sleep(2000);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                Platform.runLater(() -> controladorRemoto.getErrorInfo().setVisible(false));
+                            }).start();
+                        }
                         controladorRemoto.cambio();
                     }
                 }
@@ -105,4 +121,5 @@ public class MainCliente extends Application {
     public static void main(String[] args){
         launch();
     }
+
 }

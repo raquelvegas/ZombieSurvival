@@ -137,5 +137,6 @@
             <Font size="22.0" />
          </font>
       </Text>
+      <Text fx:id="errorInfo" fill="RED" layoutX="44.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¡No puedes reanudar le ejecución mientras el servidor tiene abierta la ventana de información!" wrappingWidth="192.16542053222656" />
    </children>
 </AnchorPane>
