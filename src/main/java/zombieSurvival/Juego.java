@@ -71,9 +71,14 @@ public class Juego {
         return riesgoIzq;
     }
 
+    public boolean isEnPausa() {
+        return enPausa;
+    }
+
     public void setInfoIn(boolean infoIn) {
         this.infoIn = infoIn;
     }
+
 
     // Funciones RMI
     public void nuevoZombie(Zombie z) {
@@ -199,10 +204,6 @@ public class Juego {
                 Thread.currentThread().interrupt();  // Respeta la interrupción
             }
         }
-    }
-
-    public boolean estaEnPausa() {
-        return enPausa;
     }
 
 

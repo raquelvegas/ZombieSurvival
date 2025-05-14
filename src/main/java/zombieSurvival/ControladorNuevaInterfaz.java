@@ -82,7 +82,7 @@ public class ControladorNuevaInterfaz {
             infoStage.setTitle("Informacija");
             controllerInfo.infoCroata();
         }
-        if (!juego.estaEnPausa()) {
+        if (!juego.isEnPausa()) {
             pausar(null);
             estabaPausado = false;
         } else {
@@ -142,7 +142,7 @@ public class ControladorNuevaInterfaz {
     @FXML
     void pausar(ActionEvent event) {
         // Cambiamos el booleano "enPausa" del objeto Juego para bloquear los hilos y paramos la música
-        if (juego.estaEnPausa()) {
+        if (juego.isEnPausa()) {
             juego.reanudar();
             mediaPlayer.play();
         } else {
