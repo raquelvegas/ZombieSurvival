@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import zombieSurvival.configuracionesAdicionales.LogConfig;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -42,7 +43,11 @@ public class MainCliente extends Application {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             try {
-                InterfazRMI informacion = (InterfazRMI) Naming.lookup("//192.168.157.1/Informacion");
+                InetAddress ip = InetAddress.getLocalHost();
+                String ipAddress = ip.getHostAddress();
+                // Tomamos la ip del ordenador local
+                InterfazRMI informacion = (InterfazRMI) Naming.lookup("//" + ipAddress + "/Informacion");
+
                 while (controladorRemoto.isStart()) {
                     // Refugio
                     Integer humanosRefugio = informacion.humanosEnRefugio();

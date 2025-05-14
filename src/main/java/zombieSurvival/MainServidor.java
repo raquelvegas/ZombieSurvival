@@ -123,7 +123,9 @@ public class MainServidor extends Application {
             // RMI
             InformacionServidor informacion = new InformacionServidor(controller.getJuego());
             Registry registro = LocateRegistry.createRegistry(1099);
-            Naming.rebind("//192.168.157.1/Informacion", informacion);
+            InetAddress ip = InetAddress.getLocalHost();
+            String ipAddress = ip.getHostAddress();
+            Naming.rebind("//" + ipAddress + "/Informacion", informacion);
 
 
             new Thread(() -> {
@@ -147,6 +149,8 @@ public class MainServidor extends Application {
             }).start();
         } catch (RemoteException | MalformedURLException e) {
             LogConfig.logWarning("ERROR | Clase -> MainServidor | Método -> iniciarSimulacion | Excepcion -> RemoteException");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
         }
     }
 
