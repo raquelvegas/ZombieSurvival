@@ -1,0 +1,15 @@
+@startuml
+
+package zombieSurvival.configuracionesAdicionales {
+    class Cancion {
+        - nombre : String
+        - ruta : String
+        --
+        + Cancion(nombre: String, ruta: String)
+        + getNombre() : String
+        + getRuta() : String
+        + toString() : String
+    }
+}
+
+@enduml

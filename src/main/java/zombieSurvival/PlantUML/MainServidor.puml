@@ -1,0 +1,14 @@
+@startuml
+
+package zombieSurvival {
+    class MainServidor {
+            - mainStage : Stage
+            - controller : ControladorNuevaInterfaz
+            - random : Random
+            + start(Stage) : void
+            - iniciarSimulacion() : void
+            + main(String[]) : void
+        }
+}
+
+@enduml

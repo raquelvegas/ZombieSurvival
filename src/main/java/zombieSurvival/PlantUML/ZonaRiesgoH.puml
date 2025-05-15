@@ -1,0 +1,17 @@
+@startuml
+
+package zombieSurvival {
+    class ZonaRiesgoH {
+            - humanos : ListaHilos
+            - humanosDisponibles : ArrayList<Humano>
+            - cerrojo : Lock
+            - random : Random
+            + ZonaRiesgoH(humanos : ListaHilos)
+            + añadirHumano(h : Humano) : void
+            + elegirHumano() : Humano
+            + eliminarHumano(h : Humano) : void
+            + getHumanos() : ListaHilos
+        }
+}
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+
+package zombieSurvival {
+    class ControladorInfo {
+        - Text infoText
+        - Text infoTitle
+        --
+        + void infoEspanol()
+        + void infoIngles()
+        + void infoFrances()
+        + void infoCroata()
+        + void initialize()
+    }
+}
+
+@enduml

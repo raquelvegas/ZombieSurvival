@@ -1,0 +1,10 @@
+@startuml
+
+package zombieSurvival {
+    class MainCliente {
+            + start(Stage) : void
+            + main(String[]) : void
+        }
+}
+
+@enduml

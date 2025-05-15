@@ -1,0 +1,62 @@
+@startuml
+
+package zombieSurvival {
+    class ControladorNuevaInterfaz {
+            - Text refugioTitle
+            - Text tunelTitle
+            - Text riesgoTitle
+            - Text descansoTitle
+            - Text colaComedorTitle
+            - Text comiendoTitle
+            - Text comedorTitle
+            - Text comidaTitle
+            - Text zonaComunTitle
+            - Text descansoText
+            - Text colaComedorText
+            - Text comedorText
+            - Text comidaCount
+            - Text zonaComunText
+            - Text tunelXText...
+            - Text riesgoXText...
+            - Button mute
+            - Button pausa
+            - Button info
+            - ToggleGroup grupoIdioma
+            - RadioMenuItem espanol
+            - RadioMenuItem ingles
+            - RadioMenuItem frances
+            - RadioMenuItem croata
+            - MenuButton idioma
+            - Spinner<Cancion> reproductor
+            - Stage mainStage
+            - Stage infoStage
+            - ControladorInfo controllerInfo
+            - MediaPlayer mediaPlayer
+            - boolean isMuted
+            - boolean estabaPausado
+            - boolean infoWindow
+            - List<Cancion> canciones
+            - int cancionActual
+            - int idiomaActual
+            - Juego juego
+
+            + setStage(Stage)
+            + abrirInfo(ActionEvent)
+            + cambiarCancionPorFlecha(MouseEvent)
+            + mute(ActionEvent)
+            + cambiarIdioma(ActionEvent)
+            + pausar(ActionEvent)
+            + initialize()
+            - iniciarMusica()
+            - iniciarInfo()
+            + reproducirCancion(int)
+            - siguienteCancion()
+            - anteriorCancion()
+            - actualizarCancion()
+            - actualizarTextos()
+            + getJuego(): Juego
+            + getCancionActual(): int
+        }
+}
+
+@enduml

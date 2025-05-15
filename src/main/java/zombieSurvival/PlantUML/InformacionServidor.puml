@@ -1,0 +1,26 @@
+@startuml
+
+package zombieSurvival {
+    class InformacionServidor{
+            - Juego juego
+
+            + InformacionServidor(Juego juego)
+            + Integer humanosEnRefugio()
+            + Integer humanosTunel1()
+            + Integer humanosTunel2()
+            + Integer humanosTunel3()
+            + Integer humanosTunel4()
+            + Integer humanosRiesgo1()
+            + Integer humanosRiesgo2()
+            + Integer humanosRiesgo3()
+            + Integer humanosRiesgo4()
+            + Integer zombisRiesgo1()
+            + Integer zombisRiesgo2()
+            + Integer zombisRiesgo3()
+            + Integer zombisRiesgo4()
+            + ArrayList<String> zombiesLetales()
+            + boolean play_pause()
+        }
+}
+
+@enduml

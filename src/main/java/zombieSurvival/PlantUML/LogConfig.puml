@@ -1,0 +1,11 @@
+@startuml
+
+package zombieSurvival {
+    class LogConfig {
+            - static LOGGER : Logger
+            {static} + logInfo(mensaje: String) : void
+            {static} + logWarning(mensaje: String) : void
+        }
+}
+
+@enduml

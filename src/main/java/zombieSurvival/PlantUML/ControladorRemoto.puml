@@ -1,0 +1,56 @@
+@startuml
+
+package zombieSurvival {
+    class ControladorRemoto {
+            - Text hRefugio
+            - Text t1
+            - Text t2
+            - Text t3
+            - Text t4
+            - Text hR1
+            - Text hR2
+            - Text hR3
+            - Text hR4
+            - Text zR1
+            - Text zR2
+            - Text zR3
+            - Text zR4
+            - Text muertes1
+            - Text muertes2
+            - Text muertes3
+            - Text errorInfo
+            - MenuItem but1
+            - boolean cambio
+            - boolean start
+
+            + void playPause()
+            + boolean tocaCambio()
+            + void cambio()
+            + boolean isStart()
+            + void setStart(boolean start)
+
+            + void sethRefugio(String m)
+            + void setT1(String m)
+            + void setT2(String m)
+            + void setT3(String m)
+            + void setT4(String m)
+
+            + void sethR1(String m)
+            + void sethR2(String m)
+            + void sethR3(String m)
+            + void sethR4(String m)
+
+            + void setzR1(String m)
+            + void setzR2(String m)
+            + void setzR3(String m)
+            + void setzR4(String m)
+
+            + void setMuertes1(String m)
+            + void setMuertes2(String m)
+            + void setMuertes3(String m)
+
+            + Text getErrorInfo()
+        }
+}
+
+@enduml

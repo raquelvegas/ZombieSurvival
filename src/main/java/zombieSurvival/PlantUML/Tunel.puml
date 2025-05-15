@@ -1,0 +1,19 @@
+@startuml
+
+package zombieSurvival {
+    class Tunel {
+            - id : int
+            - cerrojo : Lock
+            - esperandoEntrar : Condition
+            - esperandoSalir : Condition
+            - ocupado : boolean
+            - enEsperaEntrar : int
+            + Tunel(id : int)
+            + isOcupado() : boolean
+            + volverDentro(h : Humano) : void
+            + salirAlExterior(h : Humano) : void
+            + salirDelTunel() : void
+        }
+}
+
+@enduml

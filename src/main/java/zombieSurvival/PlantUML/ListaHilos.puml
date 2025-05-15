@@ -1,0 +1,15 @@
+@startuml
+
+package zombieSurvival {
+    class ListaHilos {
+            - ArrayList<Thread> lista
+            - Text text
+            + ListaHilos(Text)
+            + meter(Thread)
+            + sacar(Thread)
+            - imprimir()
+            + getSize(): int
+        }
+}
+
+@enduml

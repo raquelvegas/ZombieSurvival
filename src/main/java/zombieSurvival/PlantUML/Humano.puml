@@ -1,0 +1,30 @@
+@startuml
+
+package zombieSurvival {
+    class Humano{
+            - Juego juego
+            - int id
+            - boolean comida
+            - int tunel
+            - boolean siendoAtacado
+            - Random random
+            - boolean herido
+            - boolean vivo
+            - long TIEMPO_ZONA_COMUN
+            - long TIEMPO_ZONA_RIESGO
+            - long TIEMPO_ZONA_DESCANSO
+
+            + Humano(Juego juego, int id)
+            + boolean isSiendoAtacado()
+            + void setSiendoAtacado(boolean siendoAtacado)
+            + void setComida(boolean comida)
+            + void setHerido(boolean herido)
+            + void setVivo(boolean vivo)
+            - void convertirseEnZombie(int tunel)
+            + void dormir(long tiempo) throws InterruptedException
+            + synchronized void esperarAtaque()
+            + void run()
+        }
+}
+
+@enduml

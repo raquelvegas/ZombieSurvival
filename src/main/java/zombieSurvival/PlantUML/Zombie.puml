@@ -1,0 +1,19 @@
+@startuml
+
+package zombieSurvival {
+    class Zombie{
+            - id : int
+            - juego : Juego
+            - random : Random
+            - contadorMuertes : int
+            - TIEMPO_ATAQUE : long
+            - TIEMPO_ESPERA : long
+            + Zombie(juego : Juego, id : int)
+            + getMuertes() : int
+            - dormir(tiempo : long) : void
+            - atacar(h : Humano) : void
+            + run() : void
+        }
+}
+
+@enduml
